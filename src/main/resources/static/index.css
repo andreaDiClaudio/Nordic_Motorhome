@@ -1,0 +1,67 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.navBar{
+    padding: 1%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+}
+
+.navBar_href{
+    margin: auto;
+    position: relative;
+    text-decoration: none!important;
+    color: black;
+}
+.navBar_href:visited{
+    text-decoration: none!important;
+    color: black;
+}
+.logo{
+    margin-left: 2%;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    width: 5%;
+}
+
+.page{
+    justify-content: space-between;
+    position: center;
+    display: flex;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 2.5%;
+    margin: 2%;
+    flex-direction: row;
+
+}
+
+.text_LandingPage{
+    flex-direction: column;
+    display: flex;
+}
+
+.title_LandingPage{
+    font-size: 450%;
+    font-family: lucida,sans-serif;
+    font-weight: bold;
+}
+
+.body_LandingPage{
+    font-size: 140%;
+    margin-top: -2%;
+    font-family: lucida,sans-serif;
+    font-weight: lighter;
+}
+
+.motorhomes_image{
+    box-shadow: 0 0 50px #ccc;
+    border-radius: 10px;
+    margin-top: 3%;
+    width: 45%;
+}

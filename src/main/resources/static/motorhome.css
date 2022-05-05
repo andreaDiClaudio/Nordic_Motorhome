@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.navBar{
+    padding: 1%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+}
+
+.navBar_href{
+    margin: auto;
+    position: relative;
+    text-decoration: none!important;
+    color: black;
+}
+.navBar_href:visited{
+    text-decoration: none!important;
+    color: black;
+}
+.logo{
+    margin-left: 2%;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    width: 5%;
+}

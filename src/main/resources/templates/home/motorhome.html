@@ -1,38 +1,22 @@
+<!-- Declaration to "inform" the browser to expect an html file-->
 <!DOCTYPE html>
-<html lang="en">
+<!-- xmlns to link html file to css file via thymeleaf-->
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Motorhome area</title>
+    <link th:href="@{/motorhome.css}" rel="stylesheet">
 </head>
-<style>
-
-    body{
-        margin: 0;
-        padding: 0;
-    }
-
-    .header{
-        padding: 2%;
-        justify-content: space-between;
-        display: flex;
-        flex-direction: row;
-        border-bottom: 1px solid gray;
-    }
-
-    .header_href{
-        margin: auto;
-        position: relative;
-    }
-</style>
 <body>
 
-    <div class="header">
-        <a class="header_href" href="booking.html">Booking</a>
-        <a class="header_href" href="motorhome.html">Motorhome</a>
-        <a class="header_href" href="client.html">Client</a>
-    </div>
+    <nav class="navBar">
+        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        <a class="navBar_href" href="booking.html">Booking</a>
+        <a class="navBar_href" href="motorhome.html">Motorhome</a>
+        <a class="navBar_href" href="client.html">Client</a>
+    </nav>
 
-    <h1>Vehicle</h1>
+    <h1>Motorhome</h1>
     <a href="index.html">Go back</a>
 </body>
 </html>
