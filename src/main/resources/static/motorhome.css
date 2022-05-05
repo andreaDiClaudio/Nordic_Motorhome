@@ -21,10 +21,27 @@ body{
     text-decoration: none!important;
     color: black;
 }
+
 .logo{
     margin-left: 2%;
     margin-top: 0;
     margin-bottom: 0;
     position: relative;
     width: 5%;
+}
+
+.page{
+    justify-content: space-between;
+    position: center;
+    display: flex;
+    padding-left: 1%;
+    padding-right: 1%;
+    margin: 2%;
+    flex-direction: row;
+}
+
+.title{
+    font-size: 450%;
+    font-family: lucida,sans-serif;
+    font-weight: bold;
 }

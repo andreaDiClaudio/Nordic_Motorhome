@@ -38,28 +38,27 @@ body{
     padding-top: 2.5%;
     margin: 2%;
     flex-direction: row;
-
 }
 
-.text_LandingPage{
+.text{
     flex-direction: column;
     display: flex;
 }
 
-.title_LandingPage{
+.title{
     font-size: 450%;
     font-family: lucida,sans-serif;
     font-weight: bold;
 }
 
-.body_LandingPage{
+.body{
     font-size: 140%;
     margin-top: -2%;
     font-family: lucida,sans-serif;
     font-weight: lighter;
 }
 
-.motorhomes_image{
+.motorhome_image{
     box-shadow: 0 0 50px #ccc;
     border-radius: 10px;
     margin-top: 3%;
