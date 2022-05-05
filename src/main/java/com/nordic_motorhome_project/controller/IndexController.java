@@ -17,6 +17,7 @@ public class IndexController {
     //Specifically, @GetMapping is a composed annotation that acts as shortcut for @RequestMapping(method = RequestMethod.GET)
     // When the client asks for "/" the method will return "home/index" which is the html file inside resources>templates.home>index.html
     //This mapping is for "each" first time you enter the web page.
+    //Delete after pushing
     @GetMapping("/")
     public String index(){
         return "home/index";
