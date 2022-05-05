@@ -4,6 +4,6 @@ import org.springframework.stereotype.Service;
 
 //@Service annotation is used with classes that proved business functionalities.
 @Service
-public class VehicleService {
+public class MotorhomeService {
 
 }

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 //When working with DBs  it is important to annotate the model class with the annotation @Entity.
 //An Entity represents a table stored in a DB. Every instance of the entity represent a row in the table.
 @Entity
-public class VehicleModel {
+public class MotorhomeModel {
 
     // Once created the DB change the following field with the column in the table. I'll do it just to give you an idea.
 
