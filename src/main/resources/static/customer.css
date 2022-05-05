@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.header{
+    padding: 2%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+}
+
+.header_href{
+    margin: auto;
+    position: relative;
+}
+
+#customer-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+#customer-table thead th {
+    width: 20%;
+}
+
+#customer-table th, td {
+    border: 1px solid black;
+}
