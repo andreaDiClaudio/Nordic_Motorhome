@@ -4,7 +4,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Motorhome area</title>
+    <title>Motorhome Area</title>
     <link th:href="@{/motorhome.css}" rel="stylesheet">
 </head>
 <body>
@@ -17,10 +17,40 @@
     </nav>
 
     <div class="page">
+
         <div class="text">
-            <h1 class="title">Motorhome</h1>
+            <h1 class="title">Motorhomes</h1>
+            <div>
+                <table class="motorhome_table">
+                    <tr>
+                        <th>License Plate</th>
+                        <th>Type</th>
+                        <th>Capacity</th>
+                        <th>Brand</th>
+                        <th>Luxury</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="motorhome : ${motorhomesList}">
+                        <td th:text="${motorhome.getLicense_plate()}"></td>
+                        <td th:text="${motorhome.getType()}"></td>
+                        <td th:text="${motorhome.getNumber_of_persons()}"></td>
+                        <td th:text="${motorhome.getBrand()}"></td>
+                        <td th:text="${motorhome.getLuxury()}"></td>
+                        <td th:text="${motorhome.getBase_price()}"></td>
+                        <td class="buttons_column">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
     <a href="index.html">Go back</a>
 </body>
 </html>

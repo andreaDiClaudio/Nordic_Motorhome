@@ -31,17 +31,35 @@ body{
 }
 
 .page{
-    justify-content: space-between;
-    position: center;
     display: flex;
-    padding-left: 1%;
-    padding-right: 1%;
-    margin: 2%;
-    flex-direction: row;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
 }
 
-.title{
+.title {
     font-size: 450%;
-    font-family: lucida,sans-serif;
+    font-family: lucida, sans-serif;
     font-weight: bold;
+    text-align: center;
+}
+
+.motorhome_table{
+    margin: auto;
+}
+
+th{
+    font-family: "Arial Rounded MT Bold";
+    color: aliceblue;
+    background-color: rgba(0, 0, 139, 0.75);
+    padding: 20px;
+}
+
+td{
+    text-align: left;
+    padding: 20px;
+}
+
+tr:nth-child(even){
+    background-color: lightgrey;
 }
