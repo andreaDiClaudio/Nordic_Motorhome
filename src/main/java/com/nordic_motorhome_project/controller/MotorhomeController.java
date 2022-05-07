@@ -15,7 +15,7 @@ public class MotorhomeController {
     @Autowired
     private MotorhomeService motorhomeService;
 
-    @GetMapping("/motorhome.html")
+    @GetMapping("/motorhome")
     public String vehicle(Model model){
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
         model.addAttribute("motorhomesList", motorhomesList);

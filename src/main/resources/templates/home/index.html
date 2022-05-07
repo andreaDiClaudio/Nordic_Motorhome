@@ -9,24 +9,41 @@
 
     <div class="navBar">
         <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
-        <a class="navBar_href" href="booking.html">Booking</a>
-        <a class="navBar_href" href="motorhome.html">Motorhome</a>
-        <a class="navBar_href" href="client.html">Client</a>
+        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
+        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
+        <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
     </div>
 
     <div class="page">
-        <div class="text">
+        <div class="paragraph1">
+
             <h1 class="title">Nordic Motorhome</h1>
-            <p class="body">
+            <p class="description">
                 Founded in 2019, Nordic Motorhome is a danish company<br>
                 that rents out motorhomes.<br>
-                We offer up to 32 motorhomes in 8 different types.<br>
-                Convenient pick-up and drop-off points:<br>
-                airports, ferry ports, and hotels are just some options. <br>
-                <br>Choose what fits you the best!
             </p>
         </div>
-        <img class="motorhome_image" th:src="@{images/1.png}">
+
+
+        <div class="paragraph2">
+
+            <p class="bullet_points">
+
+                <br>
+                <span style="font-weight: bold">•</span> Create the perfect experience for your costumer in the<br>
+                &nbsp;&nbsp;&nbsp;<a class="href" th:href="@{'/booking'}">Booking area</a> where you can choose all the specs for a rent.<br>
+
+                <br>
+                <span style="font-weight: bold">•</span> The <a class="href" id="hrefInText_motorhome" th:href="@{'/motorhome'}">Motorhome area</a> gives you the options to see all the <br>
+                &nbsp;&nbsp;&nbsp;motorhomes saved in the system, save new one in the<br>
+                &nbsp;&nbsp;&nbsp;system, or update information of existing motorhomes.<br>
+
+                <br>
+                    <span style="font-weight: bold">•</span> Save your customer in the system and manage their <br>
+                &nbsp;&nbsp;&nbsp;info with a couple of clicks in the <a class="href" th:href="@{'/client'}">Client area</a>
+            </p>
+            <img class="motorhome_image" th:src="@{images/1.png}">
+        </div>
     </div>
 </body>
 </html>
