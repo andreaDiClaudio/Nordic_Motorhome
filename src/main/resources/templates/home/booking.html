@@ -14,16 +14,20 @@
 </nav>
 
 <h1>Bookings</h1>
-<table th:each="el:${bookings}" class="alert alert-info mt-2" th:if="${motorhomes.} ">
-    <tr>
-        <th>Plate number</th>
-        <th></th>
-    </tr>
-    <tr>
-        <td><img th:src="@{images/mercedes.png}" width="50"></td>
-        <td th:text="${el.motorhome_id}"/>
-        <td th:text="${el.customer_id}"/>
-    </tr>
+<table th:each="booking:${bookings}" class="alert alert-info mt-2">
+    <div th:each="motorhome:${motorhomes}" th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id}">
+        <tr>
+            <th></th>
+            <th>Plate number</th>
+        </tr>
+        <tr>
+            <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
+            <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
+            <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
+            <td th:text="${booking.motorhome_id}"/>
+            <td th:text="${booking.customer_id}"/>
+        </tr>
+    </div>
 </table>
 <a href="index.html">Go back</a>
 </body>

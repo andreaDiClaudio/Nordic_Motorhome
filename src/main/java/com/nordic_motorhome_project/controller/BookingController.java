@@ -3,7 +3,6 @@ package com.nordic_motorhome_project.controller;
 import com.nordic_motorhome_project.model.Booking;
 import com.nordic_motorhome_project.model.MotorhomeModel;
 import com.nordic_motorhome_project.repository.BookingRepository;
-import com.nordic_motorhome_project.repository.BookingRepository2;
 import com.nordic_motorhome_project.service.MotorhomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,19 +27,8 @@ public class BookingController {
         //bookings
         List<Booking> bookings = bookingRepository.getBookings();
         model.addAttribute("bookings", bookings);
-
-
         //all motorhomes
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
-        //mothorhomes matching bookings
-        List<MotorhomeModel> bookingsMotorhomes;
-        for(Booking b : bookings)
-        {
-            for (MotorhomeModel m : motorhomesList)
-            {
-                if(b.getMotorhome_id()==m.getId())
-            }
-        }
         model.addAttribute("motorhomes", motorhomesList);
         return "home/booking";
     }
