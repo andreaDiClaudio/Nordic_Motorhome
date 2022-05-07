@@ -14,21 +14,40 @@
 </nav>
 
 <h1>Bookings</h1>
-<table th:each="booking:${bookings}" class="alert alert-info mt-2">
-    <div th:each="motorhome:${motorhomes}" th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id}">
-        <tr>
-            <th></th>
-            <th>Plate number</th>
-        </tr>
-        <tr>
-            <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
-            <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
-            <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
-            <td th:text="${booking.motorhome_id}"/>
-            <td th:text="${booking.customer_id}"/>
-        </tr>
+<table>
+    <tr>
+        <th></th>
+        <th width="150">Name</th>
+        <th width="100">Phone</th>
+        <th width="25">Num. of people</th>
+        <th width="50">Date in</th>
+        <th width="50">Date out</th>
+        <th width="100">Plate</th>
+        <th width="80">Type</th>
+    </tr>
+    <div th:each="booking:${bookings}">
+        <div th:each="motorhome:${motorhomes}">
+            <div th:each="customer:${customers}" th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
+                <tr>
+                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
+                    <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
+                    <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
+                    <td th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
+                    <td th:text="${customer.phone_number}"/>
+                    <td th:text="${motorhome.number_of_persons}"/>
+                    <td th:text="${booking.date_start}"/>
+                    <td th:text="${booking.date_end}"/>
+                    <td th:text="${booking.motorhome_id}"/>
+                    <td th:text="${motorhome.luxury}"/>
+                    <td th:if="${motorhome.luxury eq 'false'} " th:text="Crap"/>
+                    <td class="buttons_column">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </div>
+        </div>
     </div>
 </table>
-<a href="index.html">Go back</a>
 </body>
 </html>
