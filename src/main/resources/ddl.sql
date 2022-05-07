@@ -5,6 +5,7 @@ CREATE SCHEMA nordic_motorhome;
 
 USE nordic_motorhome;
 
+
 CREATE TABLE IF NOT EXISTS customer (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                                     first_name VARCHAR(255) NOT NULL, last_name VARCHAR(255) NOT NULL, dob DATE NOT NULL,
                                     email VARCHAR(255) NOT NULL, phone_number VARCHAR(255) NOT NULL);
@@ -19,4 +20,3 @@ CREATE TABLE IF NOT EXISTS motorhome (license_plate VARCHAR(255) NOT NULL, type 
 CREATE TABLE IF NOT EXISTS booking (id INT NOT NULL, motorhome_id VARCHAR(255) NOT NULL, customer_id INT NOT NULL,
                                     date_start DATE NOT NULL, date_end DATE NOT NULL, PRIMARY KEY (id), FOREIGN KEY (motorhome_id)
                                    REFERENCES motorhome(license_plate), FOREIGN KEY (customer_id) REFERENCES customer (id));
-
