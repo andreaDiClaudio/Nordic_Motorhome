@@ -3,24 +3,76 @@ body{
     padding: 0;
 }
 
+
 .navBar{
-    padding: 1%;
+    z-index: 1;
+    background-color: white;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid gray;
+    position: fixed;
+    width: 100%;
 }
 
 .navBar_href{
     margin: auto;
     position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    padding: 0.5% 1%;
+    color: white;
     text-decoration: none!important;
-    color: black;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
 }
 .navBar_href:visited{
     text-decoration: none!important;
-    color: black;
+    color: white;
 }
+
+#navBar_href1:hover {
+    text-decoration: none!important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid black;
+}
+#navBar_href1{
+    margin-right: -10%;
+}
+
+#navBar_href2:hover {
+    text-decoration: none!important;
+    color: rgba(0, 81, 255, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid rgba(0, 81, 255, 0.77);
+}
+#navBar_href3{
+    margin-left: -10%;
+}
+
+#navBar_href3:hover {
+    text-decoration: none!important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid black;
+}
+
 
 .logo{
     margin-left: 2%;
@@ -31,35 +83,156 @@ body{
 }
 
 .page{
+    padding-top: 3%;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     margin: auto;
 }
 
 .title {
-    font-size: 450%;
+    font-size: 480%;
     font-family: lucida, sans-serif;
     font-weight: bold;
     text-align: center;
+}
+
+.description{
+    text-align: center;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: lighter;
+    font-size: 140%;
+    margin-top: -2%;
+    padding-bottom: 2%;
+}
+
+.href_inText{
+    font-weight: normal;
+    text-decoration: none!important;
+
+    color: black;
+}
+
+.href_inText:visited{
+    color: black;
+}
+
+#edit_hrefInText:hover{
+    color: rgba(255, 140, 0, 0.77);
+    cursor: pointer;
+}
+
+#delete_hrefInText:hover{
+    color: rgba(255, 60, 0, 0.77);
+    cursor: pointer;
+}
+
+#create_hrefInText:hover{
+    color: rgba(76, 197, 81, 0.77);
+    cursor: pointer;
 }
 
 .motorhome_table{
     margin: auto;
 }
 
+#create_button
+
+table{
+    z-index: -1;
+    margin: auto;
+}
+
 th{
     font-family: "Arial Rounded MT Bold";
-    color: aliceblue;
-    background-color: rgba(0, 0, 139, 0.75);
+    color: #ffffff;
+    background-color: rgba(0, 81, 255, 0.77);
     padding: 20px;
 }
 
 td{
     text-align: left;
+    font-family: "Arial Rounded", system-ui;
     padding: 20px;
 }
 
 tr:nth-child(even){
     background-color: lightgrey;
 }
+
+.action_button{
+    margin: auto;
+    position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none!important;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    padding: 3% 10%;
+}
+.action_button:visited{
+    text-decoration: none!important;
+    color: white;
+}
+#action_buttonEdit:hover {
+    text-decoration: none!important;
+    color: rgba(255, 140, 0, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid rgba(255, 140, 0, 0.77);
+}
+#action_buttonEdit{
+    background-color: rgba(255, 140, 0, 0.77);
+}
+#action_buttonDelete:hover{
+    text-decoration: none!important;
+    color: rgba(255, 60, 0, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid rgba(255, 60, 0, 0.77);;
+}
+#action_buttonDelete{
+    background-color: rgba(255, 60, 0, 0.77);
+}
+
+#action_buttonCreate{
+    margin-left: 17%;
+    margin-top: 0.5%;
+    position: fixed;
+    font-weight: normal;
+    font-size: larger;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none!important;
+    border-radius: 20px;
+    padding: 0.25% 1% 0.35%;
+    font-family: "Arial Rounded", system-ui;
+    background-color: rgba(76, 197, 81, 0.77);
+}
+#action_buttonCreate:hover{
+    text-decoration: none!important;
+    color: rgba(76, 197, 81, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: larger;
+    background-color: transparent;
+    border:  1px solid rgba(76, 197, 81, 0.77);
+}
+
+.buttons_column{
+    table-layout: auto;
+    text-align: center;
+    width: 25%;
+}
+
