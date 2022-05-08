@@ -18,4 +18,12 @@ public class CustomerService {
     public List<Customer> getCustomers(){
         return customerRepo.getCustomers();
     }
+
+    public Customer findCustomerByID(int id) { return customerRepo.findCustomerByID(id); }
+
+    public void updateCustomer(int id, Customer customer) { customerRepo.updateCustomer(id, customer); }
+
+    public void deleteCustomer(int id) { customerRepo.deleteCustomer(id); }
+
+    public void addCustomer(Customer customer) { customerRepo.addCustomer(customer); }
 }

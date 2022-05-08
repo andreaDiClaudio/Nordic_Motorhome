@@ -51,3 +51,5 @@ INSERT INTO motorhome (license_plate, type)
                     ('AB00030', 5),
                     ('AB00031', 2),
                     ('AB00032', 1);
+
+SELECT * from customer;
