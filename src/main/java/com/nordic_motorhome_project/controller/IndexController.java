@@ -22,9 +22,12 @@ public class IndexController {
         return "home/index";
     }
 
+    /*
     //This mapping is for when you click any <a> tag with href=index.html.
     @GetMapping("/index.html")
     public String goBack(){
         return "home/index";
     }
+
+     */
 }

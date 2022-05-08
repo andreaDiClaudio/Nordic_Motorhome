@@ -1,6 +1,5 @@
 package com.nordic_motorhome_project.repository;
 
-
 import com.nordic_motorhome_project.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,5 +20,28 @@ public class CustomerRepository {
         String sql = "SELECT * FROM nordic_motorhome.customer";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
         return template.query(sql, rowMapper);
+    }
+
+    public Customer findCustomerByID(int id){
+        String sql = "SELECT * FROM nordic_motorhome.customer WHERE id = ?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        Customer customer = template.queryForObject(sql, rowMapper, id);
+        return customer;
+    }
+
+    public void updateCustomer(int id, Customer customer){
+        String sql = "UPDATE nordic_motorhome.customer SET first_name = ?, last_name = ?, dob = ?, email = ?, phone_number = ? WHERE id = ?";
+        template.update(sql, customer.getFirst_name(), customer.getLast_name(), customer.getDob(),
+                customer.getEmail(), customer.getPhone_number(), customer.getId());
+    }
+
+    public void deleteCustomer(int id){
+        String sql = "DELETE FROM nordic_motorhome.customer WHERE id = ?";
+        template.update(sql, id);
+    }
+
+    public void addCustomer(Customer customer){
+        String sql = "INSERT INTO nordic_motorhome.customer (first_name, last_name, dob, email, phone_number) values (?, ?, ?, ?, ?)";
+        template.update(sql, customer.getFirst_name(), customer.getLast_name(), customer.getDob(), customer.getEmail(), customer.getPhone_number());
     }
 }
