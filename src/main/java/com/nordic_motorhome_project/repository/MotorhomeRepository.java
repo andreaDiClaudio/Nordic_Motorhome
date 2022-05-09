@@ -24,4 +24,8 @@ public class MotorhomeRepository {
         RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
         return jdbcTemplate.query(sql, rowMapper);
     }
+
+    public void createMotorhome(MotorhomeModel motorhomeModel){
+
+    }
 }

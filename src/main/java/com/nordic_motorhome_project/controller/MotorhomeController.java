@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -20,5 +22,26 @@ public class MotorhomeController {
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
         model.addAttribute("motorhomesList", motorhomesList);
         return "home/motorhome";
+    }
+
+    @GetMapping("/createMotorhome")
+    public String createMotorhome(Model model){
+        MotorhomeModel motorhome = new MotorhomeModel();
+        model.addAttribute("motorhome", motorhome);
+        return "home/createMotorhome";
+    }
+
+    @PostMapping("/createMotorhome")
+    public String createMotorhomeSubmit(@ModelAttribute("motorhome") MotorhomeModel motorhomeModel, Model model){
+
+        MotorhomeModel motorhome = new MotorhomeModel();
+        model.addAttribute("motorhome", motorhome);
+        motorhomeService.createMotorhome(motorhome);
+        System.out.println(motorhome.toString());
+
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        motorhomesList.add(motorhome);
+
+        return "home/createMotorhome";
     }
 }
