@@ -33,6 +33,27 @@ public class CustomerController {
         return "home/customer";
     }
 
+    @GetMapping("/customerAtoZ")
+    public String customerAToZ(Model model){
+        List<Customer> customerList = customerService.getCustomerAToZ();
+        model.addAttribute("customers", customerList);
+        return "home/customer";
+    }
+
+    @GetMapping("/customerZtoA")
+    public String customerZToA(Model model){
+        List<Customer> customerList = customerService.getCustomerZToA();
+        model.addAttribute("customers", customerList);
+        return "home/customer";
+    }
+
+    @GetMapping("/customerDateLast")
+    public String customerByDateLast(Model model){
+        List<Customer> customerList = customerService.getCustomerByDateLast();
+        model.addAttribute("customers", customerList);
+        return "home/customer";
+    }
+
     @GetMapping("/editCustomer/{id}")
     // @PathVariable is used to handle template variables in the URL.
     // In this case the Path Variable is ID
