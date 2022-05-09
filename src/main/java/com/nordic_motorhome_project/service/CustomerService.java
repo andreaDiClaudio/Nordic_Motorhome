@@ -19,6 +19,12 @@ public class CustomerService {
         return customerRepo.getCustomers();
     }
 
+    public List<Customer> getCustomerAToZ() { return customerRepo.getCustomerAToZ(); }
+
+    public List<Customer> getCustomerZToA() { return customerRepo.getCustomerZToA(); }
+
+    public List<Customer> getCustomerByDateLast() { return customerRepo.getCustomerByDateLast(); }
+
     public Customer findCustomerByID(int id) { return customerRepo.findCustomerByID(id); }
 
     public void updateCustomer(int id, Customer customer) { customerRepo.updateCustomer(id, customer); }

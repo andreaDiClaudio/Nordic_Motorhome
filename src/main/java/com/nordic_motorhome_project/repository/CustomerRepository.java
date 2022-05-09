@@ -22,6 +22,24 @@ public class CustomerRepository {
         return template.query(sql, rowMapper);
     }
 
+    public List<Customer> getCustomerAToZ(){
+        String sql = "SELECT * FROM nordic_motorhome.customer ORDER BY last_name ASC";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.query(sql, rowMapper);
+    }
+
+    public List<Customer> getCustomerZToA(){
+        String sql = "SELECT * FROM nordic_motorhome.customer ORDER BY last_name DESC";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.query(sql, rowMapper);
+    }
+
+    public List<Customer> getCustomerByDateLast(){
+        String sql = "SELECT * FROM nordic_motorhome.customer ORDER BY id DESC";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        return template.query(sql, rowMapper);
+    }
+
     public Customer findCustomerByID(int id){
         String sql = "SELECT * FROM nordic_motorhome.customer WHERE id = ?";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
