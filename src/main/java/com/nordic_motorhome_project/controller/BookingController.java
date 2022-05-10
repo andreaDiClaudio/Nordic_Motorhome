@@ -20,7 +20,7 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    private BookingRepository bookingRepository;
+    private BookingRepository bookingService;
     @Autowired
     private MotorhomeService motorhomeService;
     @Autowired
@@ -29,7 +29,7 @@ public class BookingController {
     @GetMapping("/booking")
     public String booking(Model model){
         //bookings
-        List<Booking> bookings = bookingRepository.getBookings();
+        List<Booking> bookings = bookingService.getBookings();
         model.addAttribute("bookings", bookings);
         //motorhomes
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
@@ -45,8 +45,6 @@ public class BookingController {
                              @RequestParam String dateStart, @RequestParam String dateEnd,
                              @RequestParam int numberOfPpl, @RequestParam boolean type)
     {
-        Booking booking = new Booking();
-        System.out.println(brand+client+dateStart+dateEnd+numberOfPpl+type);
         return "redirect:/booking";
     }
 }
