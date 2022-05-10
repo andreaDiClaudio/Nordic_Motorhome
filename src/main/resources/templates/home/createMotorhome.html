@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Motorhome</title>
+    <link th:href="@{/createMotorhome.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="navBar">
+    <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
+    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
+    <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
+</div>
+
+<div class="page">
+    <div class="text">
+        <h1 class="title">Create</h1>
+        <p class="description">
+            Fill all the fields and press submit to create and save a new motorhome in the system
+        </p>
+    </div>
+    <a th:href="@{'/'}">Go back</a>
+
+    <form action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
+
+        <label class="label" id="label_licensePlate">License Plate
+            <input type="text" th:field="*{license_plate}">
+        </label>
+
+        <label class="label" id="label_numberOfPersons">Capacity (No. of people)
+            <input type="text" th:field="*{number_of_persons}">
+        </label>
+
+        <label class="label" id="label_brand">Brand
+            <input type="text" th:field="*{brand}">
+        </label>
+
+        <label class="label" id="label_isLuxury">Luxury
+            <input type="checkbox" th:field="*{luxury}" >
+        </label>
+
+        <label class="label" id="label_price">Price
+            <input type="text" th:field="*{base_price}">
+        </label>
+
+        <input type="submit" name="Create">
+
+    </form>
+</div>
+</body>
+</html>

@@ -15,5 +15,6 @@ public class MotorhomeService {
     private MotorhomeRepository motorhomeRepository;
 
     public List<MotorhomeModel> getMotorhomes(){ return motorhomeRepository.getMotorhomes();}
+    public void createMotorhome(MotorhomeModel motorhomeModel) {motorhomeRepository.createMotorhome(motorhomeModel);}
 }
 
