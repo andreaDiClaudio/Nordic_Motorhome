@@ -26,6 +26,7 @@ public class MotorhomeRepository {
     }
 
     public void createMotorhome(MotorhomeModel motorhomeModel){
-
+    String sql = "INSERT INTO motorhome (license_plate, type) VALUES (?, ?)";
+    jdbcTemplate.update(sql, motorhomeModel.getLicense_plate(), motorhomeModel.getType());
     }
 }
