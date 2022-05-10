@@ -49,8 +49,8 @@
                         <td th:text="${motorhome.getLuxury()}"></td>
                         <td th:text="${motorhome.getBase_price()}"></td>
                         <td class="buttons_column">
-                            <a class="action_button" id="action_buttonEdit">Edit</a>
-                            <a class="action_button" id="action_buttonDelete">Delete</a>
+                            <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
+                            <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}">Delete</a>
                         </td>
                     </tr>
                     </tbody>

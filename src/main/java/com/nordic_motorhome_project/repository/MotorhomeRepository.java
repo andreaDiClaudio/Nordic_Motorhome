@@ -29,4 +29,21 @@ public class MotorhomeRepository {
     String sql = "INSERT INTO motorhome (license_plate, type) VALUES (?, ?)";
     jdbcTemplate.update(sql, motorhomeModel.getLicense_plate(), motorhomeModel.getType());
     }
+
+    public MotorhomeModel findMotorhomeByLicensePlate(String license_plate){
+        String sql = "SELECT * FROM motorhome WHERE license_plate = ?";
+        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
+        MotorhomeModel motorhomeModel = jdbcTemplate.queryForObject(sql, rowMapper, license_plate);
+        return motorhomeModel;
+    }
+
+    public void updateMotorhome(String license_plate, MotorhomeModel motorhomeModel){
+        String sql = "UPDATE motorhome SET license_plate = ?, type = ? WHERE license_plate = ?";
+        jdbcTemplate.update(sql, motorhomeModel.getLicense_plate(), motorhomeModel.getType(), motorhomeModel.getLicense_plate());
+    }
+
+    public void deleteMotorhome(String license_plate){
+        String sql ="DELETE FROM motorhome WHERE license_plate = ?";
+        jdbcTemplate.update(sql, license_plate);
+    }
 }
