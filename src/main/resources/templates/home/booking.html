@@ -68,19 +68,19 @@
     </div>
 </table>
 <div id="footer">
-    <form>
+    <form action="/booking" method="post">
             <select name="brand">
                 <option value="ford">Ford</option>
                 <option value="mercedes">Mercedes</option>
                 <option value="fiat">Fiat</option>
             </select>
             <select name="client">
-                <option th:each="customer:${customers}" value="ford"
+                <option th:each="customer:${customers}"
                         th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
                 </option>
             </select>
-    <input type="date">
-    <input type="date">
+    <input name="dateStart" type="date">
+    <input name="dateEnd" type="date">
 <select name="numberOfPpl">
     <option value="2">Two</option>
     <option value="3">Three</option>
