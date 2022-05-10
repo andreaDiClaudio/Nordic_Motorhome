@@ -11,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 @Controller
 public class BookingController {
@@ -26,7 +23,7 @@ public class BookingController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/booking.html")
+    @GetMapping("/booking")
     public String booking(Model model){
         //bookings
         List<Booking> bookings = bookingRepository.getBookings();

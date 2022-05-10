@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <title>Booking</title>
     <link th:href="@{/motorhome.css}" rel="stylesheet">
+
+    <style>
+        #footer {
+            position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            /* Height of the footer*/
+            height: 55px;
+            background: grey;
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 </head>
+
 <body>
 <nav class="navBar">
     <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
-    <a class="navBar_href" href="booking.html">Booking</a>
-    <a class="navBar_href" href="motorhome.html">Motorhome</a>
+    <a class="navBar_href" href="booking">Booking</a>
+    <a class="navBar_href" href="motorhome">Motorhome</a>
     <a class="navBar_href" href="client.html">Client</a>
 </nav>
 
@@ -18,18 +33,21 @@
     <tr>
         <th></th>
         <th width="150">Name</th>
-        <th width="100">Phone</th>
+        <th width="120">Phone</th>
         <th width="25">Num. of people</th>
         <th width="50">Date in</th>
         <th width="50">Date out</th>
         <th width="100">Plate</th>
-        <th width="80">Type</th>
+        <th width="50">Type</th>
+        <th class="buttons_column">Actions</th>
     </tr>
     <div th:each="booking:${bookings}">
         <div th:each="motorhome:${motorhomes}">
-            <div th:each="customer:${customers}" th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
+            <div th:each="customer:${customers}"
+                 th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
                 <tr>
-                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
+                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50">
+                    </td>
                     <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
                     <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
                     <td th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
@@ -41,13 +59,40 @@
                     <td th:text="${motorhome.luxury}"/>
                     <td th:if="${motorhome.luxury eq 'false'} " th:text="Crap"/>
                     <td class="buttons_column">
-                        <button>Edit</button>
-                        <button>Delete</button>
+                        <a class="action_button" id="action_buttonEdit">Edit</a>
+                        <a class="action_button" id="action_buttonDelete">Delete</a>
                     </td>
                 </tr>
             </div>
         </div>
     </div>
 </table>
+<div id="footer">
+    <form>
+            <select name="brand">
+                <option value="ford">Ford</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="fiat">Fiat</option>
+            </select>
+            <select name="client">
+                <option th:each="customer:${customers}" value="ford"
+                        th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+                </option>
+            </select>
+    <input type="date">
+    <input type="date">
+<select name="numberOfPpl">
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+    <option value="4">Four</option>
+    <option value="6">Six</option>
+</select>
+<select name="type">
+    <option value="true">Luxury</option>
+    <option value="false">Economy</option>
+</select>
+<button type="submit" name="btn">Submit</button>
+</form>
+</div>
 </body>
 </html>
