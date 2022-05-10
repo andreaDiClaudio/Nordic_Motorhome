@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Edit ' + ${motorhome.getLicense_plate()}"></title>
+</head>
+<body>
+    <h1>Edit</h1>
+    <form action="#" th:action="@{/editMotorhome}" th:object="${motorhome}" method="post">
+        <label class="label" id="label_licensePlate" hidden>License Plate
+            <input type="text" th:field="*{license_plate}" th:value="${motorhome.getLicense_plate()}" hidden>
+        </label>
+
+        <label class="label" id="label_type">Type
+            <input type="text" th:field="*{type}" th:value="${motorhome.getType()}">
+        </label>
+
+        <input type="submit" name="update">
+    </form>
+</body>
+</html>

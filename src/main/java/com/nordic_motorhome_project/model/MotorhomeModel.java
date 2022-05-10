@@ -78,4 +78,12 @@ public class MotorhomeModel {
     public void setBase_price(int base_price) {
         this.base_price = base_price;
     }
+
+    @Override
+    public String toString() {
+        return "MotorhomeModel{" +
+                "license_plate='" + license_plate + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }
