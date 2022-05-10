@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${customer.getFirst_name()} + ' ' + ${customer.getLast_name()}"></title>
+    <link th:href="@{/customer.css}" rel="stylesheet"/>
+</head>
+
+<body>
+    <h1>Edit Customer</h1>
+    <form action="/edit" method="post">
+        <input type="hidden" id="id" name="id" th:value="${customer.getId()}">
+        <input type="text" id="first_name" name="first_name" th:value="${customer.getFirst_name()}">
+        <input type="text" id="last_name" name="last_name" th:value="${customer.getLast_name()}">
+        <input type="text" id="dob" name="dob" th:value="${customer.getDob()}">
+        <input type="text" id="email" name="email" th:value="${customer.getEmail()}">
+        <input type="text" id="phone_number" name="phone_number" th:value="${customer.getPhone_number()}">
+        <input type="submit" value="Save">
+    </form>
+</body>
