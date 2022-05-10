@@ -34,13 +34,13 @@ public class MotorhomeController {
     @PostMapping("/createMotorhome")
     public String createMotorhomeSubmit(@ModelAttribute("motorhome") MotorhomeModel motorhomeModel, Model model){
 
-        MotorhomeModel motorhome = new MotorhomeModel();
-        model.addAttribute("motorhome", motorhome);
-        motorhomeService.createMotorhome(motorhome);
-        System.out.println(motorhome.toString());
+        //MotorhomeModel motorhome = new MotorhomeModel();
+        //model.addAttribute("motorhome", motorhome);
+        motorhomeService.createMotorhome(motorhomeModel);
+        System.out.println(motorhomeModel.toString());
 
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
-        motorhomesList.add(motorhome);
+        motorhomesList.add(motorhomeModel);
 
         return "home/createMotorhome";
     }
