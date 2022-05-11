@@ -52,7 +52,11 @@ public class MotorhomeController {
     }
 
     @PostMapping("/editMotorhome")
-    public String editMotorhomeSubmit(@ModelAttribute MotorhomeModel motorhomeModel){
+    public String editMotorhomeSubmit(@Valid @ModelAttribute MotorhomeModel motorhomeModel, BindingResult result){
+        String lp = motorhomeModel.getLicense_plate();
+        if(result.hasErrors()){
+            return "redirect:/editMotorhome/" + lp;
+        }
         motorhomeService.updateMotorhome(motorhomeModel.getLicense_plate(), motorhomeModel);
         System.out.println(motorhomeModel.toString());
         return "redirect:/motorhome";

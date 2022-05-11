@@ -29,14 +29,14 @@
             <label class="label" id="label_licensePlate" th:placeholder="'AA00000'" th:name="input_licensePlate">License Plate
                 <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}">
             </label>
-            <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}">Something</div>
+            <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
 
             <label class="label" id="label_type">Type
                 <input class="input" id="input_type" type="text" th:field="*{type}" required>
             </label>
             <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
-            <input class="create_button" type="submit" name="Create">
+            <input class="create_button" type="submit" name="Create" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">
 
         </form>
 

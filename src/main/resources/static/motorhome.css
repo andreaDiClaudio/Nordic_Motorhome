@@ -1,6 +1,7 @@
 body{
     margin: 0;
     padding: 0;
+    padding-bottom: 5%;
 }
 
 
@@ -232,3 +233,28 @@ tr:nth-child(even){
     width: 25%;
 }
 
+.goBack{
+    margin: auto;
+    margin-top: 2%;
+    position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    padding: 0.5% 1%;
+    color: white;
+    text-decoration: none !important;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+}
+.goBack:hover{
+    text-decoration: none !important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border: 1px solid black;
+}
