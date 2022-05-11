@@ -1,6 +1,21 @@
-body{
-    margin: 0;
-    padding: 0;
+#pageHeader {
+    padding-top: 6%;
+    font-size: 480%;
+    font-family: lucida, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+#addButton {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+
+#orderByButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .header{
@@ -16,16 +31,20 @@ body{
     position: relative;
 }
 
-#customer-table {
-    margin-left: auto;
-    margin-right: auto;
-    border-collapse: collapse;
+#customer-table th {
+    color: #ffffff;
+    background-color: #8D608C;
 }
 
-#customer-table thead th {
-    width: 15%;
+.customerButton {
+    margin: 5px;
 }
 
-#customer-table th, td {
-    border: 1px solid black;
+a {
+    text-decoration: none !important;
 }
+
+.goBackButton {
+    margin: 15px;
+}
+
