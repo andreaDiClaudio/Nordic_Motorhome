@@ -34,7 +34,7 @@
             <label class="label" id="label_type">Type
                 <input class="input" id="input_type" type="text" th:field="*{type}" required>
             </label>
-            <div class="alert_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
+            <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
             <input class="create_button" type="submit" name="Create">
 
