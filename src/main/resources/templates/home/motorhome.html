@@ -46,7 +46,7 @@
                         <td th:text="${motorhome.getType()}"></td>
                         <td th:text="${motorhome.getNumber_of_persons()}"></td>
                         <td th:text="${motorhome.getBrand()}"></td>
-                        <td th:text="${motorhome.getLuxury()}"></td>
+                        <td th:text="${motorhome.getIsLuxury()}"></td>
                         <td th:text="${motorhome.getBase_price()}"></td>
                         <td class="buttons_column">
                             <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>

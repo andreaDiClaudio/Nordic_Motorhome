@@ -31,7 +31,7 @@ public class MotorhomeRepository {
     }
 
     public MotorhomeModel findMotorhomeByLicensePlate(String license_plate){
-        String sql = "SELECT * FROM motorhome WHERE license_plate = ?";
+        String sql = "SELECT * FROM motorhome JOIN motorhome_type mt on mt.id = motorhome.type WHERE license_plate = ?";
         RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
         MotorhomeModel motorhomeModel = jdbcTemplate.queryForObject(sql, rowMapper, license_plate);
         return motorhomeModel;

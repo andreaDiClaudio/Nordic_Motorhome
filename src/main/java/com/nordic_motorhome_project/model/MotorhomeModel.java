@@ -20,7 +20,7 @@ public class MotorhomeModel {
     private int id;
     private int number_of_persons;
     private String brand;
-    private boolean isLuxury;
+    private String isLuxury;
     private int base_price;
 
     public String getLicense_plate() {
@@ -63,11 +63,11 @@ public class MotorhomeModel {
         this.brand = brand;
     }
 
-    public Boolean getLuxury() {
+    public String getIsLuxury() {
         return isLuxury;
     }
 
-    public void setLuxury(Boolean luxury) {
+    public void setIsLuxury(String luxury) {
         isLuxury = luxury;
     }
 

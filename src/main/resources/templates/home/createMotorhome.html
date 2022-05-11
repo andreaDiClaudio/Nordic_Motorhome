@@ -21,21 +21,97 @@
             Fill all the fields and press submit to create and save a new motorhome in the system
         </p>
     </div>
-    <a th:href="@{'/'}">Go back</a>
 
-    <form action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
+    <div class="horizontalContainer(outer)">
 
-        <label class="label" id="label_licensePlate">License Plate
-            <input type="text" th:field="*{license_plate}">
-        </label>
+        <form class="form" action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
 
-        <label class="label" id="label_type">Type
-            <input type="text" th:field="*{type}">
-        </label>
+            <label class="label" id="label_licensePlate">License Plate
+                <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}" required>
+            </label>
 
-        <input type="submit" name="Create">
+            <label class="label" id="label_type">Type
+                <input class="input" id="input_type" type="text" th:field="*{type}" required>
+            </label>
 
-    </form>
+            <input class="create_button" type="submit" name="Create">
+
+        </form>
+
+        <div class="verticalDiv">
+
+            <div class="horizontalDiv" id="HorizontalDiv1">
+                <div class="textDiv" id="1">
+                    <p class="info"><a class="href_inText">• Type 1</a> <br><br>
+                        Capacity: <a class="href_inText">2</a>
+                        <br>Brand: <a class="href_inText">Ford</a>
+                        <br>Luxury: <a class="href_inText">No</a>
+                        <br>Price: <a class="href_inText">25 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="2">
+                    <p class="info"><a class="href_inText">• Type 2</a> <br><br>
+                        Capacity: <a class="href_inText">2</a>
+                        <br>Brand: <a class="href_inText">Mercedes</a>
+                        <br>Luxury: <a class="href_inText">Yes</a>
+                        <br>Price: <a class="href_inText">35 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="3">
+                    <p class="info"><a class="href_inText">• Type 3</a> <br><br>
+                        Capacity: <a class="href_inText">3</a>
+                        <br>Brand: <a class="href_inText">Fiat</a>
+                        <br>Luxury: <a class="href_inText">No</a>
+                        <br>Price: <a class="href_inText">35 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="4">
+                    <p class="info"><a class="href_inText">• Type 4</a> <br><br>
+                        Capacity: <a class="href_inText">3</a>
+                        <br>Brand: <a class="href_inText">Mercedes</a>
+                        <br>Luxury: <a class="href_inText">Yes</a>
+                        <br>Price: <a class="href_inText">45 dkk</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="horizontalDiv" id="HorizontalDiv2">
+                <div class="textDiv" id="5">
+                    <p class="info"><a class="href_inText">• Type 5</a> <br><br>
+                        Capacity: <a class="href_inText">4</a>
+                        <br>Brand: <a class="href_inText">Ford</a>
+                        <br>Luxury: <a class="href_inText">No</a>
+                        <br>Price: <a class="href_inText">45 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="6">
+                    <p class="info"><a class="href_inText">• Type 6</a> <br><br>
+                        Capacity: <a class="href_inText">4</a>
+                        <br>Brand: <a class="href_inText">Mercedes</a>
+                        <br>Luxury: <a class="href_inText">Yes</a>
+                        <br>Price: <a class="href_inText">55 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="7">
+                    <p class="info"><a class="href_inText">• Type 7</a> <br><br>
+                        Capacity: <a class="href_inText">6</a>
+                        <br>Brand: <a class="href_inText">Fiat</a>
+                        <br>Luxury: <a class="href_inText">No</a>
+                        <br>Price: <a class="href_inText">55 dkk</a>
+                    </p>
+                </div>
+                <div class="textDiv" id="8">
+                    <p class="info"><a class="href_inText">• Type 8</a> <br><br>
+                        Capacity: <a class="href_inText">6</a>
+                        <br>Brand: <a class="href_inText">Mercedes</a>
+                        <br>Luxury: <a class="href_inText">Yes</a>
+                        <br>Price: <a class="href_inText">65 dkk</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="goBack" th:href="@{'/motorhome'}">Go back</a>
 </div>
 </body>
 </html>

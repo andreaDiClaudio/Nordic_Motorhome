@@ -118,24 +118,20 @@ body{
 
 #edit_hrefInText:hover{
     color: rgba(255, 140, 0, 0.77);
-    cursor: pointer;
 }
 
 #delete_hrefInText:hover{
     color: rgba(255, 60, 0, 0.77);
-    cursor: pointer;
 }
 
 #create_hrefInText:hover{
     color: rgba(76, 197, 81, 0.77);
-    cursor: pointer;
 }
 
 .motorhome_table{
     margin: auto;
 }
 
-#create_button
 
 table{
     z-index: -1;

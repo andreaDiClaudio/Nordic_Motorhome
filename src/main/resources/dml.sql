@@ -8,14 +8,14 @@ INSERT INTO customer (first_name, last_name, dob, email, phone_number)
 
 INSERT INTO motorhome_type (number_of_persons, brand, is_luxury, base_price)
             VALUES
-                   (2, 'Ford', false, 25),
-                   (2, 'Mercedes', true, 35),
-                   (3, 'Fiat', false, 35),
-                   (3, 'Mercedes', true, 45),
-                   (4, 'Ford', false, 45),
-                   (4, 'Mercedes', true, 55),
-                   (6, 'Fiat', false, 55),
-                   (6, 'Mercedes', true, 65);
+                   (2, 'Ford', 'false', 25),
+                   (2, 'Mercedes', 'true', 35),
+                   (3, 'Fiat', 'false', 35),
+                   (3, 'Mercedes', 'true', 45),
+                   (4, 'Ford', 'false', 45),
+                   (4, 'Mercedes', 'true', 55),
+                   (6, 'Fiat', 'false', 55),
+                   (6, 'Mercedes', 'true', 65);
 
 INSERT INTO motorhome (license_plate, type)
             VALUES
