@@ -222,7 +222,7 @@ body {
 
 .goBack{
     margin: auto;
-    margin-top: 3%;
+    margin-top: 2%;
     position: relative;
     font-weight: normal;
     font-size: medium;
@@ -244,4 +244,14 @@ body {
     font-size: medium;
     background-color: transparent;
     border: 1px solid black;
+}
+
+.alert_error{
+    font-family: "Arial Rounded", system-ui;
+    font-weight: lighter;
+    color: #bd0101;
+}
+
+#type_error{
+    margin-top: 4%;
 }
