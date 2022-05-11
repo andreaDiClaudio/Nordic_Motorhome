@@ -26,13 +26,15 @@
 
         <form class="form" action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
 
-            <label class="label" id="label_licensePlate">License Plate
-                <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}" required>
+            <label class="label" id="label_licensePlate" th:placeholder="'AA00000'" th:name="input_licensePlate">License Plate
+                <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}">
             </label>
+            <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}">Something</div>
 
             <label class="label" id="label_type">Type
                 <input class="input" id="input_type" type="text" th:field="*{type}" required>
             </label>
+            <div class="alert_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
             <input class="create_button" type="submit" name="Create">
 

@@ -2,6 +2,10 @@ package com.nordic_motorhome_project.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 //Here we are in Model area of MVC design pattern.
 //The Model works as a container that contains data of the application.
@@ -15,8 +19,14 @@ public class MotorhomeModel {
     //Each field represent a column in the table, and they must match name and data type in the DB.
     //The @Id annotation defines the primary key in a table.
     @Id
+    @NotEmpty(message = "License Plate cannot be empty")
+    @Size(min = 7, max = 7, message = "License Plate must be 7 characters")
     private String license_plate;
+
+
+    @Max(value = 8, message = "Please Choose valid type (1 to 8)")@Min(value=1, message = "Please Choose valid type (1 to 8)")
     private int type;
+
     private int id;
     private int number_of_persons;
     private String brand;
