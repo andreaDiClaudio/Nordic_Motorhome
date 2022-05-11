@@ -8,12 +8,12 @@
 
 <body>
 <h1>Add New Customer</h1>
-    <form action="/addCustomer" method="post">
-        <input type="text" name="first_name" placeholder="First Name">
-        <input type="text" name="last_name" placeholder="Last Name">
-        <input type="text" name="dob" placeholder="Date Of Birth">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="phone_number" placeholder="Phone Number">
+    <form th:action="@{/addCustomer}" th:object="${customer}" method="post">
+        <input type="text" th:field="*{first_name}" placeholder="First Name">
+        <input type="text" th:field="*{last_name}" placeholder="Last Name">
+        <input type="text" th:field="*{dob}" placeholder="Date Of Birth">
+        <input type="text" th:field="*{email}" placeholder="Email">
+        <input type="text" th:field="*{phone_number}" placeholder="Phone Number">
         <input type="submit" value="Add Customer!">
     </form>
 </body>
