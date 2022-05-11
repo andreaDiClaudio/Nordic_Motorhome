@@ -22,6 +22,7 @@ public class MotorhomeController {
     @GetMapping("/motorhome")
     public String vehicle(Model model){
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        System.out.println(motorhomeService.getMotorhomes().toArray());
         model.addAttribute("motorhomesList", motorhomesList);
         return "home/motorhome";
     }
@@ -37,7 +38,7 @@ public class MotorhomeController {
     public String createMotorhomeSubmit(@ModelAttribute("motorhome") MotorhomeModel motorhomeModel){
         motorhomeService.createMotorhome(motorhomeModel);
         System.out.println(motorhomeModel.toString());
-        return "home/createMotorhome";
+        return "redirect:/motorhome";
     }
 
     @GetMapping("/editMotorhome/{license_plate}")

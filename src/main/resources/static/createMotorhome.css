@@ -3,15 +3,12 @@ body {
     padding: 0;
 }
 
-
 .navBar {
-    z-index: 1;
     background-color: white;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid gray;
-    position: fixed;
     width: 100%;
 }
 
@@ -86,10 +83,11 @@ body {
 }
 
 .page {
-    padding-top: 3%;
+    margin-top: -2%;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     flex-direction: column;
-    margin: auto;
 }
 
 .title {
@@ -104,6 +102,146 @@ body {
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     font-size: 140%;
-    margin-top: -2%;
+    margin-top: -3.5%;
     padding-bottom: 2%;
+}
+
+.label{
+    font-family: "Arial Rounded", system-ui;
+    font-weight: lighter;
+    font-size: 140%;
+}
+
+#label_licensePlate{
+    margin-bottom: 5%;
+}
+
+#label_type{
+    margin-top: 5%;
+}
+
+.create_button{
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    padding: 0.5% 1%;
+    color: white;
+    text-decoration: none !important;
+    background-color: rgba(76, 197, 81, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    margin-top: 15%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input{
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 1px solid red;
+    text-align: center;
+    margin-top: 5%;
+}
+
+#input_type{
+    margin-left: 28%;
+}
+
+.input:valid{
+    border-bottom: solid blue 1px;
+}
+
+.horizontalContainer\(outer\){
+    margin-left: 5%;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    margin: auto;
+    padding: 4% 2%;
+    margin-bottom: 6%;
+    box-shadow: 0 0 20px rgb(204, 204, 204);
+}
+
+.verticalDiv{
+    display: flex;
+    flex-direction: column;
+    margin-right: 15%;
+}
+
+
+.horizontalDiv{
+    width: 150%;
+    display: flex;
+    flex-direction: row;
+}
+
+#HorizontalDiv1{
+    margin-bottom: 2%;
+}
+
+#HorizontalDiv2{
+    margin-top: 2%;
+}
+.textDiv{
+    padding: 2% 4.5%;
+    border: 1px solid rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    margin-right: 2%;
+    margin-left: 2%;
+    align-items: center;
+}
+.textDiv:hover{
+    box-shadow: 0 0 10px #ccc;;
+}
+
+.info{
+    font-family: "Arial Rounded", system-ui;
+    font-weight: lighter;
+    font-size: 100%;
+    width: 150%;
+}
+
+.href_inText{
+    font-weight: bold;
+}
+
+.goBack{
+    margin: auto;
+    margin-top: 3%;
+    position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    padding: 0.5% 1%;
+    color: white;
+    text-decoration: none !important;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+}
+.goBack:hover{
+    text-decoration: none !important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border: 1px solid black;
 }

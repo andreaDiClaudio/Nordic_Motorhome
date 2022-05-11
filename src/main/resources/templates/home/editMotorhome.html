@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Edit ' + ${motorhome.getLicense_plate()}"></title>
+    <link th:href="@{/editMotorhome.css}" rel="stylesheet">
 </head>
 <body>
-    <h1>Edit</h1>
-    <form action="#" th:action="@{/editMotorhome}" th:object="${motorhome}" method="post">
-        <label class="label" id="label_licensePlate" hidden>License Plate
-            <input type="text" th:field="*{license_plate}" th:value="${motorhome.getLicense_plate()}" hidden>
-        </label>
 
-        <label class="label" id="label_type">Type
-            <input type="text" th:field="*{type}" th:value="${motorhome.getType()}">
-        </label>
+    <div class="navBar">
+        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
+        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
+        <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
+    </div>
 
-        <input type="submit" name="update">
-    </form>
+    <div class="page">
+        <div class="text">
+            <h1 class="title">Edit</h1>
+            <p class="description">
+                Edit the type of your motorhome
+            </p>
+        </div>
+        <form action="#" th:action="@{/editMotorhome}" th:object="${motorhome}" method="post">
+            <label class="label" id="label_licensePlate" hidden>License Plate
+                <input type="text" th:field="*{license_plate}" th:value="${motorhome.getLicense_plate()}" hidden>
+            </label>
+
+            <label class="label" id="label_type">Type
+                <input type="text" th:field="*{type}" th:value="${motorhome.getType()}">
+            </label>
+
+            <input type="submit" name="update">
+        </form>
+    </div>
 </body>
 </html>

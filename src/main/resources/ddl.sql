@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS customer (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                                     email VARCHAR(255) NOT NULL, phone_number VARCHAR(255) NOT NULL);
 
 CREATE TABLE IF NOT EXISTS motorhome_type (id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-                                            number_of_persons INT NOT NULL, brand VARCHAR(255) NOT NULL, is_luxury BOOLEAN NOT NULL,
+                                            number_of_persons INT NOT NULL, brand VARCHAR(255) NOT NULL, is_luxury VARCHAR(5) NOT NULL,
                                             base_price INT NOT NULL);
 
 CREATE TABLE IF NOT EXISTS motorhome (license_plate VARCHAR(255) NOT NULL, type INT NOT NULL, PRIMARY KEY(license_plate),
