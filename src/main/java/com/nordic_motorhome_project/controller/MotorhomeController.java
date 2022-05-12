@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -81,13 +82,16 @@ public class MotorhomeController {
     }
 
     @GetMapping("/deleteMotorhome/{license_plate}")
-    public String deleteMotorhome(@PathVariable("license_plate") String license_plate, Model model ){
+    public RedirectView deleteMotorhome(@PathVariable("license_plate") String license_plate, Model model ){
         motorhomeService.deleteMotorhome(license_plate);
+
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
         model.addAttribute("motorhomesList", motorhomesList);
+
         MotorhomeModel motorhomeModel = new MotorhomeModel();
         model.addAttribute("motorhomeModel", motorhomeModel);
-        return "home/motorhome";
+
+        return new RedirectView("/motorhome");
     }
 
     @GetMapping("/filterTypeDesc")
@@ -98,5 +102,4 @@ public class MotorhomeController {
         model.addAttribute("motorhomeModel", motorhomeModel);
         return "home/motorhome";
     }
-
 }
