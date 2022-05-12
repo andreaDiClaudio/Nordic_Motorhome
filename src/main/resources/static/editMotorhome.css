@@ -72,13 +72,15 @@ body{
     border:  1px solid black;
 }
 
-
 .logo{
-    margin-left: 2%;
+    position: relative;
+    margin-left: 16%;
     margin-top: 0;
     margin-bottom: 0;
-    position: relative;
-    width: 5%;
+    width: 85%;
+}
+#homeLink{
+    width: 6%;
 }
 
 .page{
@@ -207,7 +209,7 @@ body{
     margin-top: 2%;
 }
 .textDiv{
-    padding: 2% 4.5%;
+    padding: 2% 4.25%;
     border: 1px solid rgba(12, 12, 12, 0.84);
     border-radius: 20px;
     display: flex;

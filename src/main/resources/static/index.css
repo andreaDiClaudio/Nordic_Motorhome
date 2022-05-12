@@ -74,10 +74,13 @@ body{
 
 .logo{
     position: relative;
-    margin-left: 2%;
+    margin-left: 16%;
     margin-top: 0;
     margin-bottom: 0;
-    width: 5%;
+    width: 85%;
+}
+#homeLink{
+    width: 6%;
 }
 
 .page{
