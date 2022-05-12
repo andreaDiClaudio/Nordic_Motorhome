@@ -57,7 +57,7 @@ public class MotorhomeController {
         if(result.hasErrors()){
             return "redirect:/editMotorhome/" + lp;
         }
-        motorhomeService.updateMotorhome(motorhomeModel.getLicense_plate(), motorhomeModel);
+        motorhomeService.updateMotorhome(motorhomeModel);
         System.out.println(motorhomeModel.toString());
         return "redirect:/motorhome";
     }
@@ -67,4 +67,12 @@ public class MotorhomeController {
         motorhomeService.deleteMotorhome(license_plate);
         return "redirect:/motorhome";
     }
+
+    @GetMapping("/filterTypeDesc")
+    public String filterTypeDesc(Model model){
+        List<MotorhomeModel> list = motorhomeService.getMotorhomeTypeDesc();
+        model.addAttribute("motorhomesList", list);
+        return "home/motorhome";
+    }
+
 }
