@@ -21,4 +21,9 @@ public class IndexController {
         return "home/index";
     }
 
+    @GetMapping("/error")
+    public String error(){
+        return "/error";
+    }
+
 }
