@@ -41,6 +41,18 @@
                             <a class="FilterButtons_Text">Order:</a>
                             <a class="FilterButtons" id="action_buttonFilterTypeDesc" th:href="@{'/filterTypeDesc'}">Descending</a>
                             <a class="FilterButtons" id="action_buttonFilterOff" th:href="@{'/motorhome'}">Ascending </a>
+                            <a class="FilterButtons" id="action_buttonFilterOff1" th:href="@{'/motorhome'}">Turn off filter </a>
+                            <form action="#" th:action="@{/motorhome}" th:object="${motorhomeModel}" method="post">
+                                <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
+                                <div class="wrap">
+                                    <div class="search">
+                                        <input type="text" class="searchTerm" placeholder="What are you looking for?" th:field="*{license_plate}">
+                                        <button type="submit" class="searchButton"><p id="searchButtonText">Search</p>
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                         <div>

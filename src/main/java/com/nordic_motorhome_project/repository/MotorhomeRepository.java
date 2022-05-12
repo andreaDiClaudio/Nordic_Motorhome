@@ -53,15 +53,4 @@ public class MotorhomeRepository {
          return jdbcTemplate.query(sql, rowMapper);
     }
 
-    public List<MotorhomeModel> getMotorhomeLuxuryAsc(){
-        String sql = "SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury ASC;";
-        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
-         return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    public List<MotorhomeModel> getMotorhomeLuxuryDesc(){
-        String sql = "SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury DESC;";
-        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
-         return jdbcTemplate.query(sql, rowMapper);
-    }
 }

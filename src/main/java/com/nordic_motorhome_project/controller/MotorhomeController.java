@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,9 +23,20 @@ public class MotorhomeController {
     private MotorhomeService motorhomeService;
 
     @GetMapping("/motorhome")
-    public String vehicle(Model model){
+    public String motorhome(Model model){
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        MotorhomeModel motorhomeModel = new MotorhomeModel();
         model.addAttribute("motorhomesList", motorhomesList);
+        model.addAttribute("motorhomeModel", motorhomeModel);
+        return "home/motorhome";
+    }
+
+    @PostMapping("/motorhome")
+    public String motorhomeByLP(String license_plate, Model model){
+        List<MotorhomeModel> motorhomesList = motorhomeService.searchMotorhome(license_plate);
+        MotorhomeModel motorhomeModel = new MotorhomeModel();
+        model.addAttribute("motorhomesList", motorhomesList);
+        model.addAttribute("motorhomeModel", motorhomeModel);
         return "home/motorhome";
     }
 
@@ -36,13 +48,17 @@ public class MotorhomeController {
     }
 
     @PostMapping("/createMotorhome")
-    public String createMotorhomeSubmit(@Valid @ModelAttribute("motorhome") MotorhomeModel motorhomeModel, BindingResult result){
+    public String createMotorhomeSubmit(@Valid @ModelAttribute("motorhome") MotorhomeModel motorhomeModel, BindingResult result, Model model){
         if(result.hasErrors()){
             return "home/createMotorhome";
         }
         motorhomeService.createMotorhome(motorhomeModel);
         System.out.println(motorhomeModel.toString());
-        return "redirect:/motorhome";
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        motorhomeModel = new MotorhomeModel();
+        model.addAttribute("motorhomesList", motorhomesList);
+        model.addAttribute("motorhomeModel", motorhomeModel);
+        return "home/motorhome";
     }
 
     @GetMapping("/editMotorhome/{license_plate}")
@@ -52,26 +68,34 @@ public class MotorhomeController {
     }
 
     @PostMapping("/editMotorhome")
-    public String editMotorhomeSubmit(@Valid @ModelAttribute MotorhomeModel motorhomeModel, BindingResult result){
+    public String editMotorhomeSubmit(@Valid @ModelAttribute MotorhomeModel motorhomeModel, BindingResult result, Model model){
         String lp = motorhomeModel.getLicense_plate();
         if(result.hasErrors()){
             return "redirect:/editMotorhome/" + lp;
         }
         motorhomeService.updateMotorhome(motorhomeModel);
         System.out.println(motorhomeModel.toString());
-        return "redirect:/motorhome";
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomesList", motorhomesList);
+        return "home/motorhome";
     }
 
     @GetMapping("/deleteMotorhome/{license_plate}")
-    public String deleteMotorhome(@PathVariable("license_plate") String license_plate ){
+    public String deleteMotorhome(@PathVariable("license_plate") String license_plate, Model model ){
         motorhomeService.deleteMotorhome(license_plate);
-        return "redirect:/motorhome";
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomesList", motorhomesList);
+        MotorhomeModel motorhomeModel = new MotorhomeModel();
+        model.addAttribute("motorhomeModel", motorhomeModel);
+        return "home/motorhome";
     }
 
     @GetMapping("/filterTypeDesc")
     public String filterTypeDesc(Model model){
         List<MotorhomeModel> list = motorhomeService.getMotorhomeTypeDesc();
         model.addAttribute("motorhomesList", list);
+        MotorhomeModel motorhomeModel = new MotorhomeModel();
+        model.addAttribute("motorhomeModel", motorhomeModel);
         return "home/motorhome";
     }
 
