@@ -1,38 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Nordic Motorhome</title>
+    <link th:href="@{/index.css}" rel="stylesheet">
 </head>
-<style>
-
-    body{
-        margin: 0;
-        padding: 0;
-    }
-
-    .header{
-        padding: 2%;
-        justify-content: space-between;
-        display: flex;
-        flex-direction: row;
-        border-bottom: 1px solid gray;
-    }
-
-    .header_href{
-        margin: auto;
-        position: relative;
-    }
-</style>
-
 <body>
 
-    <div class="header">
-        <a class="header_href" href="booking.html">Booking</a>
-        <a class="header_href" href="vehicle.html">Vehicle</a>
-        <a class="header_href" th:href="@{'/customer'}">Customer</a>
+    <div class="navBar">
+        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
+        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
+        <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">Client</a>
     </div>
 
-    <h1>Nordic Motorhome</h1>
+    <div class="page">
+        <div class="paragraph1">
+
+            <h1 class="title">Nordic Motorhome</h1>
+            <p class="description">
+                Founded in 2019, Nordic Motorhome is a danish company<br>
+                that rents out motorhomes.<br>
+            </p>
+        </div>
+
+
+        <div class="paragraph2">
+
+            <p class="bullet_points">
+
+                <br>
+                <span style="font-weight: bold">•</span> Create the perfect experience for your costumer in the<br>
+                &nbsp;&nbsp;&nbsp;<a class="href" th:href="@{'/booking'}">Booking area</a> where you can choose all the specs for a rent.<br>
+
+                <br>
+                <span style="font-weight: bold">•</span> The <a class="href" id="hrefInText_motorhome" th:href="@{'/motorhome'}">Motorhome area</a> gives you the options to see all the <br>
+                &nbsp;&nbsp;&nbsp;motorhomes saved in the system, save new one in the<br>
+                &nbsp;&nbsp;&nbsp;system, or update information of existing motorhomes.<br>
+
+                <br>
+                    <span style="font-weight: bold">•</span> Save your customer in the system and manage their <br>
+                &nbsp;&nbsp;&nbsp;info with a couple of clicks in the <a class="href" th:href="@{'/client'}">Client area</a>
+            </p>
+            <img class="motorhome_image" th:src="@{images/1.png}">
+        </div>
+    </div>
 </body>
 </html>

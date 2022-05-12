@@ -5,7 +5,8 @@ import com.nordic_motorhome_project.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 @Service
 public class BookingService {
@@ -16,5 +17,6 @@ public class BookingService {
     {
         return bookingRepository.getBookings();
     }
+
 
 }

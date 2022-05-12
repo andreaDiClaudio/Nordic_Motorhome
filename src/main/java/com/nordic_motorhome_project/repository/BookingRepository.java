@@ -24,6 +24,14 @@ public class BookingRepository {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
+
+    public List<Booking> getAvailable()
+    {
+        String sql = "SELECT * FROM booking WHERE ";
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+        return jdbcTemplate.query(sql, rowMapper);
+    }
+
     public void addBooking (String motorhome_id, int customer_id, LocalDate start, LocalDate end)
     {
 
