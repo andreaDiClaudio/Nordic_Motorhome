@@ -1,14 +1,18 @@
 <!-- Declaration to "inform" the browser to expect an html file-->
 <!DOCTYPE html>
-<!-- xmlns to link html file to css file via thymeleaf-->
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
+<!-- Container for metadata -->
 <head>
     <meta charset="UTF-8">
+    <!-- Title for the Tab -->
     <title>Motorhome Area</title>
+    <!-- Link to the css file -->
+    <!-- CSS File has to be inside src/main/resources/static -->
     <link th:href="@{/motorhome.css}" rel="stylesheet">
 </head>
 <body>
 
+<!--Nav bar-->
     <div class="navBar">
         <a th:href="@{'/'}" id="homeLink">
             <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
@@ -17,10 +21,12 @@
         <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
         <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
     </div>
+<!--Nav bar end-->
 
     <div class="page">
-
+        <!--Title&Description-->
         <div class="text">
+
             <h1 class="title">Motorhome</h1>
             <p class="description">
                 The following table shows all the motorhomes saved in the system.<br>
@@ -28,36 +34,49 @@
                 through the buttons in the column "Actions". <br>
                 <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "+" button.
             </p>
+
         </div>
+        <!--Title&Description end-->
 
         <div class="column_div(outer)">
+            <!--Create new motorhome button-->
             <div class="action_buttonCreatePosition">
                 <a id="action_buttonCreate" th:href="@{'/createMotorhome'}">+</a>
             </div>
-
+            <!-- Create new motorhome button end-->
             <div class="row_div">
-                    <div class="column_div">
-                        <div class="filterButtonPosition">
-                            <a class="FilterButtons_Text">Type order:</a>
-                            <a class="FilterButtons" id="action_buttonFilterTypeDesc" th:href="@{'/filterTypeDesc'}">Descending</a>
-                            <a class="FilterButtons" id="action_buttonFilterOff" th:href="@{'/motorhome'}">Ascending </a>
-                            <a class="FilterButtons" id="action_buttonFilterOff1" th:href="@{'/motorhome'}">Turn off filter </a>
-                            <form action="#" th:action="@{/motorhome}" th:object="${motorhomeModel}" method="post">
-                                <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
-                                <div class="wrap">
-                                    <div class="search">
-                                        <input type="text" class="searchTerm" placeholder="What are you looking for?" th:field="*{license_plate}">
-                                        <button type="submit" class="searchButton"><p id="searchButtonText">Search</p>
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                <div class="column_div">
+                        <!--Filter&SearchBar-->
+                    <div class="filterButtonPosition">
 
-                        <div>
-                            <table class="motorhome_table">
+                        <a class="FilterButtons_Text">Type order:</a>
+                        <a class="FilterButtons" id="action_buttonFilterTypeDesc" th:href="@{'/filterTypeDesc'}">Descending</a>
+                        <a class="FilterButtons" id="action_buttonFilterOff" th:href="@{'/motorhome'}">Ascending </a>
+                        <a class="FilterButtons" id="action_buttonFilterOff1" th:href="@{'/motorhome'}">Turn off filter </a>
+                        <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/motorhome")-->
+                        <!-- th:object = Specifies the object to which the submitted form data will be bound. It has to match the "attributeName" in "model.addAttribute"-->
+                        <form action="#" th:action="@{/motorhome}" th:object="${motorhomeModel}" method="post">
+
+                            <div class="wrap">
+                                <div class="search">
+                                    <!-- th:field = For mapping the individual fields of the object-->
+                                    <input type="text" class="searchTerm" placeholder="What are you looking for?" th:field="*{license_plate}">
+                                    <button type="submit" class="searchButton"><p id="searchButtonText">Search</p>
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--Filter&SearchBar end-->
+                    <div>
+                        <!--Table-->
+                        <table class="motorhome_table">
+                            <!-- thead: Element that defines a set of rows that defining the head of the columns in a table-->
+                            <thead>
+                            <!-- tr: Element that defines a row of cells in a table-->
                                 <tr>
+                                    <!-- th: Element that defines a cell as header in a table-->
                                     <th>License Plate</th>
                                     <th>Type</th>
                                     <th>Capacity</th>
@@ -66,24 +85,29 @@
                                     <th>Price</th>
                                     <th class="buttons_column">Actions</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="motorhome : ${motorhomesList}">
-                                    <td th:text="${motorhome.getLicense_plate()}"></td>
-                                    <td th:text="${motorhome.getType()}"></td>
-                                    <td th:text="${motorhome.getNumber_of_persons()}"></td>
-                                    <td th:text="${motorhome.getBrand()}"></td>
-                                    <td th:text="${motorhome.getIsLuxury()}"></td>
-                                    <td th:text="${motorhome.getBase_price()}"></td>
-                                    <td class="buttons_column" id="actions_cell">
-                                        <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
-                                        <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">Delete</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            </thead>
+                            <!-- tbody: element encapsulates a set of table rows -->
+                            <tbody>
+                            <!-- It may underline the "motorhome.get..." (lines 73 to 81) with "cannot resolve", but it works (tested: ran the application with red underlines)-->
+                            <tr th:each="motorhome : ${motorhomesList}">
+                                <!-- td: element defines a cell of a table that contains data.-->
+                                <!-- td: element defines a cell of a table that contains data.-->
+                                <td th:text="${motorhome.getLicense_plate()}"></td>
+                                <td th:text="${motorhome.getType()}"></td>
+                                <td th:text="${motorhome.getNumber_of_persons()}"></td>
+                                <td th:text="${motorhome.getBrand()}"></td>
+                                <td th:text="${motorhome.getIsLuxury()}"></td>
+                                <td th:text="${motorhome.getBase_price()}"></td>
+                                <td class="buttons_column" id="actions_cell">
+                                    <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
+                                    <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--table end-->
                     </div>
+                </div>
             </div>
         </div>
         <a class="goBack" th:href="@{'/'}">Home Page</a>

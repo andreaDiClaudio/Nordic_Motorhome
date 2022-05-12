@@ -9,9 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 //@Service annotation is used with classes that proved business functionalities.
+//The service layer is a layer in an application that facilitates communication between the controller
+// and the persistence layer (layer that has entities for example).
 @Service
 public class MotorhomeService {
 
+    //@Autowired annotation is used for dependency injection, and it is used to auto-wire a bean into another bean.
+    //A bean is a Java object that is created by Spring framework when the application starts.
     @Autowired
     private MotorhomeRepository motorhomeRepository;
 
@@ -27,6 +31,9 @@ public class MotorhomeService {
 
     public List<MotorhomeModel> getMotorhomeTypeDesc(){ return motorhomeRepository.getMotorhomeTypeDesc();}
 
+    //This method is returning an ArrayList because the view "motorhome.html" has a table which is looping through
+    //a list,provided by the model ("motorhome.html" - Line 71), to fill the table cell. In this way the method "motorhomeByLP" can reuse the
+    //same view that has as model a list.
     public ArrayList<MotorhomeModel> searchMotorhome(String license_plate){
         ArrayList<MotorhomeModel> list=new ArrayList<>();
         list.add(findMotorhomeByLicensePlate(license_plate));
