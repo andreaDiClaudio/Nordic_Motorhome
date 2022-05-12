@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -43,8 +44,34 @@ public class BookingController {
     @PostMapping("/booking")
     public String addBooking(Model model, @RequestParam String brand, @RequestParam String client,
                              @RequestParam String dateStart, @RequestParam String dateEnd,
-                             @RequestParam int numberOfPpl, @RequestParam boolean type)
+                             @RequestParam int numberOfPpl, @RequestParam boolean type) {
+        //bookings
+        List<Booking> bookings = bookingService.getBookings();
+        model.addAttribute("bookings", bookings);
+        //motorhomes
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomes", motorhomesList);
+        //customers
+        List<Customer> customerList = customerService.getCustomers();
+        model.addAttribute("customers", customerList);
+        return "home/addBooking";
+    }
+
+
+    public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd)
     {
-        return "redirect:/booking";
+        ArrayList<String> motorhomeId = new ArrayList<>();
+        LocalDate start = LocalDate.parse(dateStart);
+        LocalDate end = LocalDate.parse(dateEnd);
+        List<Booking> bookings = bookingService.getBookings();
+        for(int i=0;i<bookings.size();i++)
+        {
+            if(end.isBefore(bookings.get(i).getDate_start())||start.isAfter(bookings.get(i).getDate_end()))
+            {
+                motorhomeId.add(bookings.get(i).getMotorhome_id());
+            }
+        }
+
+        return motorhomeId;
     }
 }

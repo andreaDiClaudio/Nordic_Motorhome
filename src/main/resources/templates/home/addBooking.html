@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Booking</title>
+    <title> Add booking</title>
     <link th:href="@{/motorhome.css}" rel="stylesheet">
 
     <style>
@@ -25,10 +25,10 @@
     <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
     <a class="navBar_href" href="booking">Booking</a>
     <a class="navBar_href" href="motorhome">Motorhome</a>
-    <a class="navBar_href" href="customer">Client</a>
+    <a class="navBar_href" href="client.html">Client</a>
 </nav>
 
-<h1>Bookings</h1>
+<h1>Create booking</h1>
 <table>
     <tr>
         <th></th>
@@ -69,31 +69,31 @@
 </table>
 <div id="footer">
     <form action="/booking" method="post">
-            <select name="brand">
-                <option value="ford">Ford</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="fiat">Fiat</option>
-            </select>
-            <select name="client">
-                <option th:each="customer:${customers}"
-                        th:value="${customer.id}"
-                        th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
-                </option>
-            </select>
-    <input name="dateStart" type="date">
-    <input name="dateEnd" type="date">
-<select name="numberOfPpl">
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-    <option value="4">Four</option>
-    <option value="6">Six</option>
-</select>
-<select name="type">
-    <option value="true">Luxury</option>
-    <option value="false">Economy</option>
-</select>
-<button type="submit" name="btn">Submit</button>
-</form>
+        <select name="brand">
+            <option value="ford">Ford</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="fiat">Fiat</option>
+        </select>
+        <select name="client">
+            <option th:each="customer:${customers}"
+                    th:value="${customer.id}"
+                    th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+            </option>
+        </select>
+        <input name="dateStart" type="date">
+        <input name="dateEnd" type="date">
+        <select name="numberOfPpl">
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+            <option value="6">Six</option>
+        </select>
+        <select name="type">
+            <option value="true">Luxury</option>
+            <option value="false">Economy</option>
+        </select>
+        <button type="submit" name="btn">Submit</button>
+    </form>
 </div>
 </body>
 </html>
