@@ -37,7 +37,7 @@ public class MotorhomeRepository {
         return motorhomeModel;
     }
 
-    public void updateMotorhome(String license_plate, MotorhomeModel motorhomeModel){
+    public void updateMotorhome(MotorhomeModel motorhomeModel){
         String sql = "UPDATE motorhome SET license_plate = ?, type = ? WHERE license_plate = ?";
         jdbcTemplate.update(sql, motorhomeModel.getLicense_plate(), motorhomeModel.getType(), motorhomeModel.getLicense_plate());
     }
@@ -45,5 +45,23 @@ public class MotorhomeRepository {
     public void deleteMotorhome(String license_plate){
         String sql ="DELETE FROM motorhome WHERE license_plate = ?";
         jdbcTemplate.update(sql, license_plate);
+    }
+
+    public List<MotorhomeModel> getMotorhomeTypeDesc(){
+        String sql = "SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY type DESC;";
+        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
+         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<MotorhomeModel> getMotorhomeLuxuryAsc(){
+        String sql = "SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury ASC;";
+        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
+         return jdbcTemplate.query(sql, rowMapper);
+    }
+
+    public List<MotorhomeModel> getMotorhomeLuxuryDesc(){
+        String sql = "SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury DESC;";
+        RowMapper<MotorhomeModel> rowMapper = new BeanPropertyRowMapper<>(MotorhomeModel.class);
+         return jdbcTemplate.query(sql, rowMapper);
     }
 }

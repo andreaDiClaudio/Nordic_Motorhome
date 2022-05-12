@@ -20,8 +20,10 @@ public class MotorhomeService {
 
     public MotorhomeModel findMotorhomeByLicensePlate(String license_plate){ return motorhomeRepository.findMotorhomeByLicensePlate(license_plate); }
 
-    public void updateMotorhome(String license_plate, MotorhomeModel motorhomeModel){motorhomeRepository.updateMotorhome(license_plate,motorhomeModel);}
+    public void updateMotorhome(MotorhomeModel motorhomeModel){motorhomeRepository.updateMotorhome(motorhomeModel);}
 
     public void deleteMotorhome(String license_plate){motorhomeRepository.deleteMotorhome(license_plate);}
+
+    public List<MotorhomeModel> getMotorhomeTypeDesc(){ return motorhomeRepository.getMotorhomeTypeDesc();}
 }
 

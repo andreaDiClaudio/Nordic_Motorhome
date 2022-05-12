@@ -130,6 +130,51 @@ body{
     color: rgba(76, 197, 81, 0.77);
 }
 
+.column_div\(outer\){
+    display: flex;
+    flex-direction: column;
+}
+.row_div{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.action_buttonCreatePosition{
+    padding-left: 12%;
+}
+
+#action_buttonCreate{
+    position: fixed;
+    font-weight: normal;
+    font-size: larger;
+    cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none!important;
+    border-radius: 20px;
+    padding: 0.25% 1% 0.35%;
+    font-family: "Arial Rounded", system-ui;
+    background-color: rgba(76, 197, 81, 0.77);
+    margin-top: 3%;
+}
+#action_buttonCreate:hover{
+    text-decoration: none!important;
+    color: rgba(76, 197, 81, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: larger;
+    background-color: transparent;
+    border:  1px solid rgba(76, 197, 81, 0.77);
+}
+
+
+.column_div{
+    display: flex;
+    flex-direction: column;
+}
+
 .motorhome_table{
     margin: auto;
 }
@@ -144,13 +189,13 @@ th{
     font-family: "Arial Rounded MT Bold";
     color: #ffffff;
     background-color: rgba(0, 81, 255, 0.77);
-    padding: 20px;
+    padding: 15px 35px;
 }
 
 td{
     text-align: left;
     font-family: "Arial Rounded", system-ui;
-    padding: 20px;
+    padding: 25px 10px;
 }
 
 tr:nth-child(even){
@@ -202,31 +247,43 @@ tr:nth-child(even){
     background-color: rgba(255, 60, 0, 0.77);
 }
 
-#action_buttonCreate{
-    margin-left: 17%;
-    margin-top: 0.5%;
-    position: fixed;
+.filterButtonPosition{
+    position: relative;
+    padding-bottom: 1%;
+}
+
+.FilterButtons{
     font-weight: normal;
-    font-size: larger;
+    font-size: small;
     cursor: pointer;
     border: none;
+    padding: 0.5% 2%;
     color: white;
     text-decoration: none!important;
+    background-color: rgba(12, 12, 12, 0.84);
     border-radius: 20px;
-    padding: 0.25% 1% 0.35%;
     font-family: "Arial Rounded", system-ui;
-    background-color: rgba(76, 197, 81, 0.77);
 }
-#action_buttonCreate:hover{
+
+.FilterButtons:hover{
     text-decoration: none!important;
-    color: rgba(76, 197, 81, 0.77);
+    color: black;
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
-    font-size: larger;
+    font-size: medium;
     background-color: transparent;
-    border:  1px solid rgba(76, 197, 81, 0.77);
+    border:  1px solid black;
 }
+
+.FilterButtons_Text{
+    font-weight: normal;
+    font-size: medium;
+    text-decoration: none!important;
+    color: rgba(12, 12, 12, 0.84);
+    font-family: "Arial Rounded", system-ui;
+}
+
 
 .buttons_column{
     table-layout: auto;

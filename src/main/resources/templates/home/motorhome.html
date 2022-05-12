@@ -28,35 +28,50 @@
                 through the buttons in the column "Actions". <br>
                 <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "+" button.
             </p>
-            <a id="action_buttonCreate" th:href="@{'/createMotorhome'}">+</a>
+        </div>
 
-            <div>
-                <table class="motorhome_table">
-                    <tr>
-                        <th>License Plate</th>
-                        <th>Type</th>
-                        <th>Capacity</th>
-                        <th>Brand</th>
-                        <th>Luxury</th>
-                        <th>Price</th>
-                        <th class="buttons_column">Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="motorhome : ${motorhomesList}">
-                        <td th:text="${motorhome.getLicense_plate()}"></td>
-                        <td th:text="${motorhome.getType()}"></td>
-                        <td th:text="${motorhome.getNumber_of_persons()}"></td>
-                        <td th:text="${motorhome.getBrand()}"></td>
-                        <td th:text="${motorhome.getIsLuxury()}"></td>
-                        <td th:text="${motorhome.getBase_price()}"></td>
-                        <td class="buttons_column">
-                            <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
-                            <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">Delete</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="column_div(outer)">
+            <div class="action_buttonCreatePosition">
+                <a id="action_buttonCreate" th:href="@{'/createMotorhome'}">+</a>
+            </div>
+
+            <div class="row_div">
+                    <div class="column_div">
+                        <div class="filterButtonPosition">
+                            <a class="FilterButtons_Text">Order:</a>
+                            <a class="FilterButtons" id="action_buttonFilterTypeDesc" th:href="@{'/filterTypeDesc'}">Descending</a>
+                            <a class="FilterButtons" id="action_buttonFilterOff" th:href="@{'/motorhome'}">Ascending </a>
+                        </div>
+
+                        <div>
+                            <table class="motorhome_table">
+                                <tr>
+                                    <th>License Plate</th>
+                                    <th>Type</th>
+                                    <th>Capacity</th>
+                                    <th>Brand</th>
+                                    <th>Luxury</th>
+                                    <th>Price</th>
+                                    <th class="buttons_column">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="motorhome : ${motorhomesList}">
+                                    <td th:text="${motorhome.getLicense_plate()}"></td>
+                                    <td th:text="${motorhome.getType()}"></td>
+                                    <td th:text="${motorhome.getNumber_of_persons()}"></td>
+                                    <td th:text="${motorhome.getBrand()}"></td>
+                                    <td th:text="${motorhome.getIsLuxury()}"></td>
+                                    <td th:text="${motorhome.getBase_price()}"></td>
+                                    <td class="buttons_column" id="actions_cell">
+                                        <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
+                                        <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
         </div>
         <a class="goBack" th:href="@{'/'}">Home Page</a>
