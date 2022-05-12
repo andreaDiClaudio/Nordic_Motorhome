@@ -1,121 +1,133 @@
+<!-- Declaration to "inform" the browser to expect an html file-->
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="https://www.thymeleaf.org">
+<!-- Container for metadata -->
 <head>
     <meta charset="UTF-8">
+    <!-- Title for the Tab -->
     <title>Create Motorhome</title>
+    <!-- Link to the css file -->
+    <!-- CSS File has to be inside src/main/resources/static -->
     <link th:href="@{/createMotorhome.css}" rel="stylesheet">
 </head>
 <body>
 
-<div class="navBar">
-    <a th:href="@{'/'}" id="homeLink">
-        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
-    </a>
-    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
-    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
-    <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
-</div>
-
-<div class="page">
-    <div class="text">
-        <h1 class="title">Create</h1>
-        <p class="description">
-            Fill all the fields and press submit to create and save a new motorhome in the system
-        </p>
+<!--Nav bar-->
+    <div class="navBar">
+        <a th:href="@{'/'}" id="homeLink">
+            <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        </a>
+        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
+        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
+        <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">Client</a>
     </div>
+<!--Nav bar end-->
 
-    <div class="horizontalContainer(outer)">
+    <!-- Title&Description-->
+    <div class="page">
+        <div class="text">
+            <h1 class="title">Create</h1>
+            <p class="description">
+                Fill all the fields and press submit to create and save a new motorhome in the system
+            </p>
+        </div>
+        <!--Title&Description end-->
 
-        <form class="form" action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
+        <div class="horizontalContainer(outer)">
+            <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/createMotorhome")-->
+            <!-- th:object = Specifies the object to which the submitted form data will be bound. It has to match the "attributeName" in "model.addAttribute"-->
+            <form class="form" action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
 
-            <label class="label" id="label_licensePlate" th:placeholder="'AA00000'" th:name="input_licensePlate">License Plate
-                <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}">
-            </label>
-            <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
+                <label class="label" id="label_licensePlate" th:placeholder="'AA00000'" th:name="input_licensePlate">License Plate
+                    <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}">
+                </label>
+                <!-- th:errors: Setting th:errors to a field will display any validation errors for that field.-->
+                <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
 
-            <label class="label" id="label_type">Type
-                <input class="input" id="input_type" type="text" th:field="*{type}" required>
-            </label>
-            <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
+                <label class="label" id="label_type">Type
+                    <input class="input" id="input_type" type="text" th:field="*{type}" required>
+                </label>
+                <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
-            <input class="create_button" type="submit" name="Create" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">
+                <input class="create_button" type="submit" name="Create" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">
 
-        </form>
+            </form>
 
-        <div class="verticalDiv">
-
-            <div class="horizontalDiv" id="HorizontalDiv1">
-                <div class="textDiv" id="1">
-                    <p class="info"><a class="href_inText">• Type 1</a> <br><br>
-                        Capacity: <a class="href_inText">2</a>
-                        <br>Brand: <a class="href_inText">Ford</a>
-                        <br>Luxury: <a class="href_inText">No</a>
-                        <br>Price: <a class="href_inText">25€</a>
-                    </p>
+            <div class="verticalDiv">
+                <!--Type info-->
+                <div class="horizontalDiv" id="HorizontalDiv1">
+                    <div class="textDiv" id="1">
+                        <p class="info"><a class="href_inText">• Type 1</a> <br><br>
+                            Capacity: <a class="href_inText">2</a>
+                            <br>Brand: <a class="href_inText">Ford</a>
+                            <br>Luxury: <a class="href_inText">No</a>
+                            <br>Price: <a class="href_inText">25€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="2">
+                        <p class="info"><a class="href_inText">• Type 2</a> <br><br>
+                            Capacity: <a class="href_inText">2</a>
+                            <br>Brand: <a class="href_inText">Mercedes</a>
+                            <br>Luxury: <a class="href_inText">Yes</a>
+                            <br>Price: <a class="href_inText">35€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="3">
+                        <p class="info"><a class="href_inText">• Type 3</a> <br><br>
+                            Capacity: <a class="href_inText">3</a>
+                            <br>Brand: <a class="href_inText">Fiat</a>
+                            <br>Luxury: <a class="href_inText">No</a>
+                            <br>Price: <a class="href_inText">35€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="4">
+                        <p class="info"><a class="href_inText">• Type 4</a> <br><br>
+                            Capacity: <a class="href_inText">3</a>
+                            <br>Brand: <a class="href_inText">Mercedes</a>
+                            <br>Luxury: <a class="href_inText">Yes</a>
+                            <br>Price: <a class="href_inText">45€</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="textDiv" id="2">
-                    <p class="info"><a class="href_inText">• Type 2</a> <br><br>
-                        Capacity: <a class="href_inText">2</a>
-                        <br>Brand: <a class="href_inText">Mercedes</a>
-                        <br>Luxury: <a class="href_inText">Yes</a>
-                        <br>Price: <a class="href_inText">35€</a>
-                    </p>
-                </div>
-                <div class="textDiv" id="3">
-                    <p class="info"><a class="href_inText">• Type 3</a> <br><br>
-                        Capacity: <a class="href_inText">3</a>
-                        <br>Brand: <a class="href_inText">Fiat</a>
-                        <br>Luxury: <a class="href_inText">No</a>
-                        <br>Price: <a class="href_inText">35€</a>
-                    </p>
-                </div>
-                <div class="textDiv" id="4">
-                    <p class="info"><a class="href_inText">• Type 4</a> <br><br>
-                        Capacity: <a class="href_inText">3</a>
-                        <br>Brand: <a class="href_inText">Mercedes</a>
-                        <br>Luxury: <a class="href_inText">Yes</a>
-                        <br>Price: <a class="href_inText">45€</a>
-                    </p>
-                </div>
-            </div>
 
-            <div class="horizontalDiv" id="HorizontalDiv2">
-                <div class="textDiv" id="5">
-                    <p class="info"><a class="href_inText">• Type 5</a> <br><br>
-                        Capacity: <a class="href_inText">4</a>
-                        <br>Brand: <a class="href_inText">Ford</a>
-                        <br>Luxury: <a class="href_inText">No</a>
-                        <br>Price: <a class="href_inText">45€</a>
-                    </p>
+                <div class="horizontalDiv" id="HorizontalDiv2">
+                    <div class="textDiv" id="5">
+                        <p class="info"><a class="href_inText">• Type 5</a> <br><br>
+                            Capacity: <a class="href_inText">4</a>
+                            <br>Brand: <a class="href_inText">Ford</a>
+                            <br>Luxury: <a class="href_inText">No</a>
+                            <br>Price: <a class="href_inText">45€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="6">
+                        <p class="info"><a class="href_inText">• Type 6</a> <br><br>
+                            Capacity: <a class="href_inText">4</a>
+                            <br>Brand: <a class="href_inText">Mercedes</a>
+                            <br>Luxury: <a class="href_inText">Yes</a>
+                            <br>Price: <a class="href_inText">55€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="7">
+                        <p class="info"><a class="href_inText">• Type 7</a> <br><br>
+                            Capacity: <a class="href_inText">6</a>
+                            <br>Brand: <a class="href_inText">Fiat</a>
+                            <br>Luxury: <a class="href_inText">No</a>
+                            <br>Price: <a class="href_inText">55€</a>
+                        </p>
+                    </div>
+                    <div class="textDiv" id="8">
+                        <p class="info"><a class="href_inText">• Type 8</a> <br><br>
+                            Capacity: <a class="href_inText">6</a>
+                            <br>Brand: <a class="href_inText">Mercedes</a>
+                            <br>Luxury: <a class="href_inText">Yes</a>
+                            <br>Price: <a class="href_inText">65€</a>
+                        </p>
+                    </div>
                 </div>
-                <div class="textDiv" id="6">
-                    <p class="info"><a class="href_inText">• Type 6</a> <br><br>
-                        Capacity: <a class="href_inText">4</a>
-                        <br>Brand: <a class="href_inText">Mercedes</a>
-                        <br>Luxury: <a class="href_inText">Yes</a>
-                        <br>Price: <a class="href_inText">55€</a>
-                    </p>
-                </div>
-                <div class="textDiv" id="7">
-                    <p class="info"><a class="href_inText">• Type 7</a> <br><br>
-                        Capacity: <a class="href_inText">6</a>
-                        <br>Brand: <a class="href_inText">Fiat</a>
-                        <br>Luxury: <a class="href_inText">No</a>
-                        <br>Price: <a class="href_inText">55€</a>
-                    </p>
-                </div>
-                <div class="textDiv" id="8">
-                    <p class="info"><a class="href_inText">• Type 8</a> <br><br>
-                        Capacity: <a class="href_inText">6</a>
-                        <br>Brand: <a class="href_inText">Mercedes</a>
-                        <br>Luxury: <a class="href_inText">Yes</a>
-                        <br>Price: <a class="href_inText">65€</a>
-                    </p>
-                </div>
+                <!--Type info end-->
             </div>
         </div>
+        <a class="goBack" th:href="@{'/motorhome'}">Go back</a>
     </div>
-    <a class="goBack" th:href="@{'/motorhome'}">Go back</a>
-</div>
 </body>
 </html>
