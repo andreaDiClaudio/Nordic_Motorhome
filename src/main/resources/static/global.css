@@ -79,3 +79,7 @@ body {
     position: relative;
     width: 5%;
 }
+
+.goBackButton {
+    margin: 15px;
+}
