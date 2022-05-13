@@ -41,10 +41,8 @@ public class BookingController {
         return "home/booking";
     }
 
-    @PostMapping("/booking")
-    public String addBooking(Model model, @RequestParam String brand, @RequestParam String client,
-                             @RequestParam String dateStart, @RequestParam String dateEnd,
-                             @RequestParam int numberOfPpl, @RequestParam boolean type) {
+    @GetMapping("/addBooking")
+    public String addBooking(Model model) {
         //bookings
         List<Booking> bookings = bookingService.getBookings();
         model.addAttribute("bookings", bookings);
@@ -57,21 +55,67 @@ public class BookingController {
         return "home/addBooking";
     }
 
+    @PostMapping("/booking")
+    public String addBooking(Model model, @RequestParam String brand, @RequestParam String client,
+                             @RequestParam String dateStart, @RequestParam String dateEnd,
+                             @RequestParam int numberOfPpl, @RequestParam boolean type) {
 
-    public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd)
+        model.addAttribute("am", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
+        return "home/addBooking";
+    }
+
+
+    public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, boolean type)
     {
-        ArrayList<String> motorhomeId = new ArrayList<>();
+        //Lists where we will put unavailable by date motorhomes IDs
+        ArrayList<String> dateId = new ArrayList<>();
+
+        //List from where we will delete all unavailable motorhomes
+        List<MotorhomeModel> motorhomes = motorhomeService.getMotorhomes();
+
+        //List with available motorhomes IDs
+        ArrayList<String> available = new ArrayList<>();
+
+        //Converting date from string to local date
         LocalDate start = LocalDate.parse(dateStart);
         LocalDate end = LocalDate.parse(dateEnd);
+
+        //Adding unavailable by date motorhomes to the list
         List<Booking> bookings = bookingService.getBookings();
         for(int i=0;i<bookings.size();i++)
         {
-            if(end.isBefore(bookings.get(i).getDate_start())||start.isAfter(bookings.get(i).getDate_end()))
+            if(end.isAfter(bookings.get(i).getDate_start())||start.isBefore(bookings.get(i).getDate_end()))
             {
-                motorhomeId.add(bookings.get(i).getMotorhome_id());
+                dateId.add(bookings.get(i).getMotorhome_id());
             }
         }
 
-        return motorhomeId;
+        //Checking by all other parameters
+        for(int i=0;i<=motorhomes.size();i++)
+        {
+            if(!brand.equals(motorhomes.get(i).getBrand())||numberOfPpl!=motorhomes.get(i).getNumber_of_persons()||type!=motorhomes.get(i).getLuxury())
+            {
+                motorhomes.remove(i);
+                i--;
+            }
+        }
+
+        //Deleting unavailable by date from list
+        for(int i=0;i<=motorhomes.size();i++)
+        {
+            if(motorhomes.get(i).getLicense_plate().equals(dateId))
+            {
+                motorhomes.remove(i);
+                i--;
+            }
+        }
+
+        //Converting to only license plate - ID list
+        for(int i=0;i<=motorhomes.size();i++)
+        {
+            available.add(motorhomes.get(i).getLicense_plate());
+        }
+
+        return available;
     }
 }

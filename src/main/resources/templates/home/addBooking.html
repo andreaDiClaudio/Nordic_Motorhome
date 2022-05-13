@@ -80,6 +80,12 @@
                     th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
             </option>
         </select>
+        <select name="client">
+            <option th:each="el:${av}"
+                    th:value="${}"
+                    th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+            </option>
+        </select>
         <input name="dateStart" type="date">
         <input name="dateEnd" type="date">
         <select name="numberOfPpl">
