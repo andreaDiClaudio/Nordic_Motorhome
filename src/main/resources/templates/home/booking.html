@@ -68,11 +68,11 @@
     </div>
 </table>
 <div id="footer">
-    <form action="/booking" method="post">
+    <form action="/addBooking" method="post">
             <select name="brand">
-                <option value="ford">Ford</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="fiat">Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="Fiat">Fiat</option>
             </select>
             <select name="client">
                 <option th:each="customer:${customers}"

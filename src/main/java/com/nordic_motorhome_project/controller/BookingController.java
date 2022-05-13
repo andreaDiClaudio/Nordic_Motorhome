@@ -55,15 +55,35 @@ public class BookingController {
         return "home/addBooking";
     }
 
-    @PostMapping("/booking")
-    public String addBooking(Model model, @RequestParam String brand, @RequestParam String client,
+    @PostMapping("/addBooking")
+    public String addBooking(Model model, @RequestParam String brand, @RequestParam Integer client,
                              @RequestParam String dateStart, @RequestParam String dateEnd,
                              @RequestParam int numberOfPpl, @RequestParam boolean type) {
+        //Passes the list of available motorhomes
+        model.addAttribute("booked", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
+        System.out.println(dateStart+" "+dateEnd+" "+brand+" "+numberOfPpl+" "+type);
 
-        model.addAttribute("am", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
+        //All motorhomes
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomes", motorhomesList);
+
+
+        //All customers
+        List<Customer> customerList = customerService.getCustomers();
+        model.addAttribute("customers", customerList);
+
+        //Pass selected values for footer
+        model.addAttribute("brand", brand);
+        model.addAttribute("client",client);
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        model.addAttribute("numberOfPpl", numberOfPpl);
+        model.addAttribute("type", type);
+
         return "home/addBooking";
     }
 
+    @PostMapping()
 
     public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, boolean type)
     {
@@ -84,24 +104,33 @@ public class BookingController {
         List<Booking> bookings = bookingService.getBookings();
         for(int i=0;i<bookings.size();i++)
         {
-            if(end.isAfter(bookings.get(i).getDate_start())||start.isBefore(bookings.get(i).getDate_end()))
+            if(end.isAfter(bookings.get(i).getDate_start())&&start.isBefore(bookings.get(i).getDate_end()))
+            {
+                dateId.add(bookings.get(i).getMotorhome_id());
+            }
+        }
+
+        for(int i=0;i<bookings.size();i++)
+        {
+            if(end.isBefore(bookings.get(i).getDate_end())&&start.isAfter(bookings.get(i).getDate_start()))
             {
                 dateId.add(bookings.get(i).getMotorhome_id());
             }
         }
 
         //Checking by all other parameters
-        for(int i=0;i<=motorhomes.size();i++)
+        for(int i=0;i<motorhomes.size();i++)
         {
-            if(!brand.equals(motorhomes.get(i).getBrand())||numberOfPpl!=motorhomes.get(i).getNumber_of_persons()||type!=motorhomes.get(i).getLuxury())
+            if(!brand.equals(motorhomes.get(i).getBrand())||numberOfPpl!=motorhomes.get(i).getNumber_of_persons())
             {
+                System.out.println(motorhomes.get(i).getBrand()+" "+motorhomes.get(i).getNumber_of_persons()+" "+motorhomes.get(i).getLuxury());
                 motorhomes.remove(i);
                 i--;
             }
         }
 
         //Deleting unavailable by date from list
-        for(int i=0;i<=motorhomes.size();i++)
+        for(int i=0;i<motorhomes.size();i++)
         {
             if(motorhomes.get(i).getLicense_plate().equals(dateId))
             {
@@ -111,7 +140,7 @@ public class BookingController {
         }
 
         //Converting to only license plate - ID list
-        for(int i=0;i<=motorhomes.size();i++)
+        for(int i=0;i<motorhomes.size();i++)
         {
             available.add(motorhomes.get(i).getLicense_plate());
         }
