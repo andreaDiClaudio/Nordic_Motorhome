@@ -1,21 +1,21 @@
 <!-- Declaration to "inform" the browser to expect an html file-->
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <!-- Container for metadata -->
 <head>
     <meta charset="UTF-8">
     <!-- Title for the Tab -->
-    <title>Create Motorhome</title>
+    <title>Edit Motorhome</title>
     <!-- Link to the css file -->
     <!-- CSS File has to be inside src/main/resources/static -->
-    <link th:href="@{/createMotorhome.css}" rel="stylesheet">
+    <link th:href="@{/editMotorhome.css}" rel="stylesheet">
 </head>
 <body>
-
 <!--Nav bar-->
     <div class="navBar">
         <a th:href="@{'/'}" id="homeLink">
-            <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+            <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
         </a>
         <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
         <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
@@ -23,39 +23,38 @@
     </div>
 <!--Nav bar end-->
 
-    <!-- Title&Description-->
     <div class="page">
+        <!--Title&Description-->
         <div class="text">
-            <h1 class="title">Create</h1>
+            <h1 class="title" th:text="'Edit: ' + ${motorhome.getLicense_plate()}"></h1>
             <p class="description">
-                Fill all the fields and press submit to create and save a new motorhome in the system
+                Edit the type of the selected motorhome
             </p>
         </div>
         <!--Title&Description end-->
 
         <div class="horizontalContainer(outer)">
-            <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/createMotorhome")-->
+            <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/editMotorhome")-->
             <!-- th:object = Specifies the object to which the submitted form data will be bound. It has to match the "attributeName" in "model.addAttribute"-->
-            <form class="form" action="#" th:action="@{/createMotorhome}" th:object="${motorhome}" method="post">
-
-                <label class="label" id="label_licensePlate" th:placeholder="'AA00000'" th:name="input_licensePlate">License Plate
-                    <input class="input" id="input_licensePlate" type="text" th:field="*{license_plate}">
+            <form class="form" action="#" th:action="@{/editMotorhome}" th:object="${motorhome}" method="post">
+                <label class="label" id="label_licensePlate" hidden>License Plate
+                    <input type="text" th:field="*{license_plate}" th:value="${motorhome.getLicense_plate()}" hidden>
                 </label>
-                <!-- th:errors: Setting th:errors to a field will display any validation errors for that field.-->
-                <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
 
                 <label class="label" id="label_type">Type
-                    <input class="input" id="input_type" type="text" th:field="*{type}" required>
+                    <input class="input" type="text" th:field="*{type}" th:value="${motorhome.getType()}">
                 </label>
+                <!-- th:errors: Setting th:errors to a field will display any validation errors for that field.-->
                 <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
-                <input class="create_button" type="submit" name="Create" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">
-
+                <input class="edit_button" type="submit" name="update" th:value="'Edit'">
             </form>
 
+
             <div class="verticalDiv">
-                <!--Type info-->
+
                 <div class="horizontalDiv" id="HorizontalDiv1">
+                    <!--Type info-->
                     <div class="textDiv" id="1">
                         <p class="info"><a class="href_inText">• Type 1</a> <br><br>
                             Capacity: <a class="href_inText">2</a>
@@ -126,6 +125,7 @@
                 </div>
                 <!--Type info end-->
             </div>
+
         </div>
         <a class="goBack" th:href="@{'/motorhome'}">Go back</a>
     </div>

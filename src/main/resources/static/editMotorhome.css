@@ -1,18 +1,20 @@
-body {
+body{
     margin: 0;
     padding: 0;
 }
 
-.navBar {
+.navBar{
+    z-index: 1;
     background-color: white;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid gray;
+    position: fixed;
     width: 100%;
 }
 
-.navBar_href {
+.navBar_href{
     margin: auto;
     position: relative;
     font-weight: normal;
@@ -21,58 +23,54 @@ body {
     border: none;
     padding: 0.5% 1%;
     color: white;
-    text-decoration: none !important;
+    text-decoration: none!important;
     background-color: rgba(12, 12, 12, 0.84);
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
 }
-
-.navBar_href:visited {
-    text-decoration: none !important;
+.navBar_href:visited{
+    text-decoration: none!important;
     color: white;
 }
 
 #navBar_href1:hover {
-    text-decoration: none !important;
+    text-decoration: none!important;
     color: black;
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
     font-size: medium;
     background-color: transparent;
-    border: 1px solid black;
+    border:  1px solid black;
 }
-
-#navBar_href1 {
+#navBar_href1{
     margin-right: -10%;
 }
 
 #navBar_href2:hover {
-    text-decoration: none !important;
+    text-decoration: none!important;
     color: rgba(0, 81, 255, 0.77);
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
     font-size: medium;
     background-color: transparent;
-    border: 1px solid rgba(0, 81, 255, 0.77);
+    border:  1px solid rgba(0, 81, 255, 0.77);
 }
-
-#navBar_href3 {
+#navBar_href3{
     margin-left: -10%;
 }
 
 #navBar_href3:hover {
-    text-decoration: none !important;
+    text-decoration: none!important;
     color: black;
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
     font-size: medium;
     background-color: transparent;
-    border: 1px solid black;
+    border:  1px solid black;
 }
-
 
 .logo{
     position: relative;
@@ -84,12 +82,12 @@ body {
 #homeLink{
     width: 6%;
 }
-.page {
-    margin-top: -2%;
-    margin-left: auto;
-    margin-right: auto;
+
+.page{
+    padding-top: 5%;
     display: flex;
     flex-direction: column;
+    margin: auto;
 }
 
 .title {
@@ -99,12 +97,12 @@ body {
     text-align: center;
 }
 
-.description {
+.description{
     text-align: center;
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     font-size: 140%;
-    margin-top: -2.5%;
+    margin-top: -3%;
     padding-bottom: 2%;
 }
 
@@ -114,15 +112,11 @@ body {
     font-size: 140%;
 }
 
-#label_licensePlate{
-    margin-bottom: 5%;
-}
-
 #label_type{
     margin-top: 5%;
 }
 
-.create_button{
+.edit_button{
     font-weight: normal;
     font-size: medium;
     cursor: pointer;
@@ -130,13 +124,24 @@ body {
     padding: 0.5% 1%;
     color: white;
     text-decoration: none !important;
-    background-color: rgba(76, 197, 81, 0.77);
+    background-color: rgba(255, 140, 0, 0.77);
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     margin-top: 15%;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.edit_button:hover{
+    text-decoration: none!important;
+    color: rgba(255, 140, 0, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid rgba(255, 140, 0, 0.77);
 }
 
 .input{
@@ -147,6 +152,7 @@ body {
     margin-top: 5%;
 }
 
+
 #input_type{
     margin-left: 28%;
 }
@@ -155,9 +161,13 @@ body {
     border-bottom: solid blue 1px;
 }
 
+.input:invalid{
+    border-bottom: 1px solid red;
+}
+
+
 .horizontalContainer\(outer\){
-    padding-top: 3%;
-    padding-right: 10%;
+    padding-right: 15%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -171,7 +181,6 @@ body {
     border: 1px solid rgba(12, 12, 12, 0.84);
     border-radius: 20px;
     margin: auto;
-    margin-top: 3%;
     padding: 4% 2%;
     margin-bottom: 6%;
     box-shadow: 0 0 20px rgb(204, 204, 204);
@@ -225,7 +234,7 @@ body {
 
 .goBack{
     margin: auto;
-    margin-top: 2%;
+    margin-top: 6%;
     position: relative;
     font-weight: normal;
     font-size: medium;

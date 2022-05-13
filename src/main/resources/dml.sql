@@ -8,14 +8,14 @@ INSERT INTO customer (first_name, last_name, dob, email, phone_number)
 
 INSERT INTO motorhome_type (number_of_persons, brand, is_luxury, base_price)
             VALUES
-                   (2, 'Ford', false, 25),
-                   (2, 'Mercedes', true, 35),
-                   (3, 'Fiat', false, 35),
-                   (3, 'Mercedes', true, 45),
-                   (4, 'Ford', false, 45),
-                   (4, 'Mercedes', true, 55),
-                   (6, 'Fiat', false, 55),
-                   (6, 'Mercedes', true, 65);
+                   (2, 'Ford', 'No', 25),
+                   (2, 'Mercedes', 'Yes', 35),
+                   (3, 'Fiat', 'No', 35),
+                   (3, 'Mercedes', 'Yes', 45),
+                   (4, 'Ford', 'No', 45),
+                   (4, 'Mercedes', 'Yes', 55),
+                   (6, 'Fiat', 'No', 55),
+                   (6, 'Mercedes', 'Yes', 65);
 
 INSERT INTO motorhome (license_plate, type)
             VALUES
@@ -51,3 +51,12 @@ INSERT INTO motorhome (license_plate, type)
                     ('AB00030', 5),
                     ('AB00031', 2),
                     ('AB00032', 1);
+
+
+
+
+SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY type ASC;
+SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY type DESC;
+
+SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury ASC;
+SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury DESC;

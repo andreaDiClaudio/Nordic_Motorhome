@@ -8,7 +8,9 @@
 <body>
 
     <div class="navBar">
-        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        <a th:href="@{'/'}" id="homeLink">
+            <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
+        </a>
         <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
         <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
         <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">Client</a>
@@ -35,8 +37,8 @@
 
                 <br>
                 <span style="font-weight: bold">•</span> The <a class="href" id="hrefInText_motorhome" th:href="@{'/motorhome'}">Motorhome area</a> gives you the options to see all the <br>
-                &nbsp;&nbsp;&nbsp;motorhomes saved in the system, save new one in the<br>
-                &nbsp;&nbsp;&nbsp;system, or update information of existing motorhomes.<br>
+                &nbsp;&nbsp;&nbsp;motorhomes saved in the system, save new one, or<br>
+                &nbsp;&nbsp;&nbsp;update information of existing motorhomes.<br>
 
                 <br>
                     <span style="font-weight: bold">•</span> Save your customer in the system and manage their <br>

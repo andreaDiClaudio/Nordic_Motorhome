@@ -1,11 +1,12 @@
 body{
     margin: 0;
     padding: 0;
+    padding-bottom: 5%;
 }
 
 
 .navBar{
-    z-index: 1;
+    z-index: 2;
     background-color: white;
     justify-content: space-between;
     display: flex;
@@ -73,15 +74,16 @@ body{
     border:  1px solid black;
 }
 
-
 .logo{
-    margin-left: 2%;
+    position: relative;
+    margin-left: 16%;
     margin-top: 0;
     margin-bottom: 0;
-    position: relative;
-    width: 5%;
+    width: 85%;
 }
-
+#homeLink{
+    width: 6%;
+}
 .page{
     padding-top: 3%;
     display: flex;
@@ -118,24 +120,65 @@ body{
 
 #edit_hrefInText:hover{
     color: rgba(255, 140, 0, 0.77);
-    cursor: pointer;
 }
 
 #delete_hrefInText:hover{
     color: rgba(255, 60, 0, 0.77);
-    cursor: pointer;
 }
 
 #create_hrefInText:hover{
     color: rgba(76, 197, 81, 0.77);
+}
+
+.column_div\(outer\){
+    display: flex;
+    flex-direction: column;
+}
+.row_div{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.action_buttonCreatePosition{
+    padding-left: 12%;
+}
+
+#action_buttonCreate{
+    position: fixed;
+    font-weight: normal;
+    font-size: larger;
     cursor: pointer;
+    border: none;
+    color: white;
+    text-decoration: none!important;
+    border-radius: 20px;
+    padding: 0.25% 1% 0.35%;
+    font-family: "Arial Rounded", system-ui;
+    background-color: rgba(76, 197, 81, 0.77);
+    margin-top: 3%;
+}
+#action_buttonCreate:hover{
+    text-decoration: none!important;
+    color: rgba(76, 197, 81, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: larger;
+    background-color: transparent;
+    border:  1px solid rgba(76, 197, 81, 0.77);
+}
+
+
+.column_div{
+    display: flex;
+    flex-direction: column;
 }
 
 .motorhome_table{
     margin: auto;
 }
 
-#create_button
 
 table{
     z-index: -1;
@@ -146,13 +189,13 @@ th{
     font-family: "Arial Rounded MT Bold";
     color: #ffffff;
     background-color: rgba(0, 81, 255, 0.77);
-    padding: 20px;
+    padding: 15px 35px;
 }
 
 td{
     text-align: left;
     font-family: "Arial Rounded", system-ui;
-    padding: 20px;
+    padding: 25px 10px;
 }
 
 tr:nth-child(even){
@@ -204,31 +247,44 @@ tr:nth-child(even){
     background-color: rgba(255, 60, 0, 0.77);
 }
 
-#action_buttonCreate{
-    margin-left: 17%;
-    margin-top: 0.5%;
-    position: fixed;
+.filterButtonPosition{
+    z-index: 1;
+    position: relative;
+    padding-bottom: 1%;
+}
+
+.FilterButtons{
     font-weight: normal;
-    font-size: larger;
+    font-size: small;
     cursor: pointer;
     border: none;
+    padding: 0.5% 2%;
     color: white;
     text-decoration: none!important;
+    background-color: rgba(12, 12, 12, 0.84);
     border-radius: 20px;
-    padding: 0.25% 1% 0.35%;
     font-family: "Arial Rounded", system-ui;
-    background-color: rgba(76, 197, 81, 0.77);
 }
-#action_buttonCreate:hover{
+
+.FilterButtons:hover{
     text-decoration: none!important;
-    color: rgba(76, 197, 81, 0.77);
+    color: black;
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
-    font-size: larger;
+    font-size: medium;
     background-color: transparent;
-    border:  1px solid rgba(76, 197, 81, 0.77);
+    border:  1px solid black;
 }
+
+.FilterButtons_Text{
+    font-weight: normal;
+    font-size: medium;
+    text-decoration: none!important;
+    color: rgba(12, 12, 12, 0.84);
+    font-family: "Arial Rounded", system-ui;
+}
+
 
 .buttons_column{
     table-layout: auto;
@@ -236,3 +292,80 @@ tr:nth-child(even){
     width: 25%;
 }
 
+.goBack{
+    margin: auto;
+    margin-top: 2%;
+    position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: none;
+    padding: 0.5% 1%;
+    color: white;
+    text-decoration: none !important;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+}
+.goBack:hover{
+    text-decoration: none !important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchTerm {
+    width: 100%;
+    border: 3px solid rgba(12, 12, 12, 0.84);
+    border-right: none;
+    padding: 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: rgba(12, 12, 12, 0.84);
+}
+
+.searchTerm:focus{
+    color: rgba(12, 12, 12, 0.84);
+}
+
+.searchButton {
+    width: 80px;
+    height: 36px;
+    border: 1px solid rgba(12, 12, 12, 0.84);
+    background: rgba(12, 12, 12, 0.84);
+    text-align: center;
+    color: #fff;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.wrap{
+    margin-left: 35%;
+    padding-bottom: 1%;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#searchButtonText{
+    font-weight: normal;
+    font-size: small;
+    color: white;
+    font-family: "Arial Rounded", system-ui;
+    margin-bottom: 21%;
+    margin-top: 17%;
+}
