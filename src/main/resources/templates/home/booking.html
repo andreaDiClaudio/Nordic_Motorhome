@@ -56,11 +56,11 @@
                     <td th:text="${booking.date_start}"/>
                     <td th:text="${booking.date_end}"/>
                     <td th:text="${booking.motorhome_id}"/>
-                    <td th:text="${motorhome.luxury}"/>
-                    <td th:if="${motorhome.luxury eq 'false'} " th:text="Crap"/>
+                    <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
+                    <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
                     <td class="buttons_column">
-                        <a class="action_button" id="action_buttonEdit">Edit</a>
-                        <a class="action_button" id="action_buttonDelete">Delete</a>
+                        <a th:href="@{'/editBooking/'+${booking.id}}" class="action_button" id="action_buttonEdit">Edit</a>
+                        <a th:href="@{'/deleteBooking/'+${booking.id}}" onclick="return confirm('Are you sure you want to Delete?')" class="action_button" id="action_buttonDelete">Delete</a>
                     </td>
                 </tr>
             </div>
@@ -89,10 +89,10 @@
     <option value="6">Six</option>
 </select>
 <select name="type">
-    <option value="true">Luxury</option>
-    <option value="false">Economy</option>
+    <option value="Yes">Luxury</option>
+    <option value="No">Economy</option>
 </select>
-<button type="submit" name="btn" th:href="@{'/addBooking'}">Submit</button>
+<button th:href="@{'/addBooking'}">Submit</button>
 </form>
 </div>
 </body>

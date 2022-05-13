@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,10 +59,9 @@ public class BookingController {
     @PostMapping("/addBooking")
     public String addBooking(Model model, @RequestParam String brand, @RequestParam Integer client,
                              @RequestParam String dateStart, @RequestParam String dateEnd,
-                             @RequestParam int numberOfPpl, @RequestParam boolean type) {
+                             @RequestParam int numberOfPpl, @RequestParam String type) {
         //Passes the list of available motorhomes
         model.addAttribute("booked", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
-        System.out.println(dateStart+" "+dateEnd+" "+brand+" "+numberOfPpl+" "+type);
 
         //All motorhomes
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
@@ -83,9 +83,33 @@ public class BookingController {
         return "home/addBooking";
     }
 
-    @PostMapping()
 
-    public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, boolean type)
+    //TODO ask Nico where u get int variable from
+    @GetMapping("/deleteBooking/{id}")
+    public String deleteBooking(@PathVariable("id") int id){
+        bookingService.deleteBooking(id);
+        return "redirect:/booking";
+    }
+
+    //TODO finish
+    @GetMapping("/editBooking/{id}")
+    public String editBooking(@PathVariable("id") int id, Model model){
+        //passing id of booking we will edit
+        model.addAttribute("editId", id);
+
+        //bookings
+        List<Booking> bookings = bookingService.getBookings();
+        model.addAttribute("bookings", bookings);
+        //motorhomes
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomes", motorhomesList);
+        //customers
+        List<Customer> customerList = customerService.getCustomers();
+        model.addAttribute("customers", customerList);
+        return "home/editBooking";
+    }
+
+    public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, String type)
     {
         //Lists where we will put unavailable by date motorhomes IDs
         ArrayList<String> dateId = new ArrayList<>();
@@ -121,9 +145,8 @@ public class BookingController {
         //Checking by all other parameters
         for(int i=0;i<motorhomes.size();i++)
         {
-            if(!brand.equals(motorhomes.get(i).getBrand())||numberOfPpl!=motorhomes.get(i).getNumber_of_persons())
+            if(!brand.equals(motorhomes.get(i).getBrand())||numberOfPpl!=motorhomes.get(i).getNumber_of_persons()||!type.equals(motorhomes.get(i).getIsLuxury()))
             {
-                System.out.println(motorhomes.get(i).getBrand()+" "+motorhomes.get(i).getNumber_of_persons()+" "+motorhomes.get(i).getLuxury());
                 motorhomes.remove(i);
                 i--;
             }

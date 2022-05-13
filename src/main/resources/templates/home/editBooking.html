@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    <link th:href="@{/motorhome.css}" rel="stylesheet">
+
+    <style>
+        #footer {
+            position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            /* Height of the footer*/
+            height: 55px;
+            background: grey;
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navBar">
+    <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
+    <a class="navBar_href" href="booking">Booking</a>
+    <a class="navBar_href" href="motorhome">Motorhome</a>
+    <a class="navBar_href" href="customer">Client</a>
+</nav>
+
+<h1>Bookings</h1>
+<table>
+    <tr>
+        <th></th>
+        <th width="150">Name</th>
+        <th width="120">Phone</th>
+        <th width="25">Num. of people</th>
+        <th width="50">Date in</th>
+        <th width="50">Date out</th>
+        <th width="100">Plate</th>
+        <th width="50">Type</th>
+        <th class="buttons_column">Actions</th>
+    </tr>
+    <div th:each="booking:${bookings}">
+        <div th:each="motorhome:${motorhomes}">
+            <div th:each="customer:${customers}"
+                 th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
+                <tr>
+                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{/images/mercedes.png}" width="50">
+                    </td>
+                    <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{/images/ford.png}" width="50"></td>
+                    <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{/images/fiat.png}" width="50"></td>
+                    <td th:if="${booking.id} != ${editId}" th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
+                    <td th:if="${booking.id} eq ${editId}"><select name="client">
+                        <option th:each="customer:${customers}"
+                                th:value="${customer.id}"
+                                th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+                        </option>
+                    </select></td>
+                    <td th:text="${customer.phone_number}"/>
+                    <td th:text="${motorhome.number_of_persons}"/>
+                    <td th:if="${booking.id} != ${editId}" th:text="${booking.date_start}"/>
+                    <td th:if="${booking.id} eq ${editId}"><input name="dateStart" type="date"></td>
+                    <td th:if="${booking.id} != ${editId}" th:text="${booking.date_end}"/>
+                    <td th:if="${booking.id} eq ${editId}"><input name="dateEnd" type="date"></td>
+                    <td th:text="${booking.motorhome_id}"/>
+                    <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
+                    <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
+                    <td class="buttons_column">
+                        <a th:if="${booking.id} != ${editId}" th:href="@{'/editBooking/'+${booking.id}}" onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')" class="action_button" id="action_buttonEdit">Edit</a>
+                        <a th:if="${booking.id} != ${editId}" th:href="@{'/deleteBooking/'+${booking.id}}" onclick="return confirm('Are you sure you want to Delete?')" class="action_button" id="action_buttonDelete">Delete</a>
+                        <a th:if="${booking.id} eq ${editId}" th:href="@{'/changeBooking'}" onclick="return confirm('Are you sure you want to Edit this booking?')" class="action_button">Save</a>
+                        <a th:if="${booking.id} eq ${editId}" th:href="@{'/booking'}" onclick="return confirm('Your changes will be discarded')" class="action_button">Delete</a>
+                    </td>
+                </tr>
+            </div>
+        </div>
+    </div>
+</table>
+<div id="footer">
+    <form action="/addBooking" method="post">
+        <select name="brand">
+            <option value="Ford">Ford</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Fiat">Fiat</option>
+        </select>
+        <select name="client">
+            <option th:each="customer:${customers}"
+                    th:value="${customer.id}"
+                    th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+            </option>
+        </select>
+        <input name="dateStart" type="date">
+        <input name="dateEnd" type="date">
+        <select name="numberOfPpl">
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="4">Four</option>
+            <option value="6">Six</option>
+        </select>
+        <select name="type">
+            <option value="Yes">Luxury</option>
+            <option value="No">Economy</option>
+        </select>
+        <button th:href="@{'/addBooking'}">Submit</button>
+    </form>
+</div>
+</body>
+</html>

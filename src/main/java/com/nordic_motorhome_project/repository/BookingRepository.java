@@ -36,4 +36,10 @@ public class BookingRepository {
     {
 
     }
+
+    public void deleteBooking(int id)
+    {
+        String sql = "DELETE FROM nordic_motorhome.booking WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }

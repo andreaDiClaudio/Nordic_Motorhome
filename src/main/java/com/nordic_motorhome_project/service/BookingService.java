@@ -18,5 +18,11 @@ public class BookingService {
         return bookingRepository.getBookings();
     }
 
+    public void deleteBooking(int id)
+    {
+        bookingRepository.deleteBooking(id);
+    }
+
+
 
 }
