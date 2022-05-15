@@ -30,6 +30,8 @@
 </nav>
 
 <h1>Create booking</h1>
+
+<form action="createBooking" method="post">
 <table>
     <tr>
         <th></th>
@@ -39,11 +41,12 @@
         <th width="Price per day">Date in</th>
         <th class="buttons_column">Select</th>
     </tr>
-        <div th:each="motorhome:${motorhomes}">
-            <div th:each="motorhomeId:${booked}"
-                 th:if="${motorhome.getLicense_plate()} eq ${motorhomeId}">
-                <tr>
-                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
+    <div th:each="motorhome:${motorhomes}">
+        <div th:each="motorhomeId:${booked}"
+             th:if="${motorhome.getLicense_plate()} eq ${motorhomeId}">
+            <tr>
+                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50">
+                    </td>
                     <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
                     <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
                     <td th:text="${motorhome.license_plate}"/>
@@ -52,15 +55,15 @@
                     <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
                     <td th:text="${motorhome.base_price}"/>
                     <td class="buttons_column">
-                        <a class="action_button" id="action_buttonEdit" >Select</a>
+                        <a class="action_button" id="action_buttonEdit" th:href="@{'/createBooking'}">Select</a>
                     </td>
-                </tr>
-            </div>
+            </tr>
         </div>
+    </div>
 </table>
 <div id="footer">
     <form action="/booking" method="post">
-        <select name="brand" >
+        <select name="brand">
             <option value="ford">Ford</option>
             <option value="mercedes">Mercedes</option>
             <option value="fiat">Fiat</option>
@@ -85,8 +88,11 @@
             <option value="true">Luxury</option>
             <option value="false">Economy</option>
         </select>
-        <button type="submit" name="btn">Submit</button>
+        <button>Submit</button>
     </form>
+
 </div>
+
+</form>
 </body>
 </html>

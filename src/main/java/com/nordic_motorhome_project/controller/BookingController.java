@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,10 @@ public class BookingController {
     private MotorhomeService motorhomeService;
     @Autowired
     private CustomerService customerService;
+
+//      TODO delete
+//    private Booking bookingModel;
+//    private MotorhomeModel motorhomeModel;
 
     @GetMapping("/booking")
     public String booking(Model model){
@@ -53,6 +58,11 @@ public class BookingController {
         //customers
         List<Customer> customerList = customerService.getCustomers();
         model.addAttribute("customers", customerList);
+
+        //TODO delete
+//        //Passing parameters that should be displayed in footer
+//        model.addAttribute("bookingNow", bookingModel);
+//        model.addAttribute("motorhomeNow", motorhomeModel);
         return "home/addBooking";
     }
 
@@ -79,6 +89,18 @@ public class BookingController {
         model.addAttribute("dateEnd", dateEnd);
         model.addAttribute("numberOfPpl", numberOfPpl);
         model.addAttribute("type", type);
+
+//        TODO delete
+//        motorhomeModel.setBrand(brand);
+//        motorhomeModel.setNumber_of_persons(numberOfPpl);
+//        motorhomeModel.setIsLuxury(type);
+//        bookingModel.setCustomer_id(client);
+//
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+//        LocalDate localDate = LocalDate.parse(dateStart, formatter);
+//        bookingModel.setDate_start(localDate);
+//        localDate = LocalDate.parse(dateEnd, formatter);
+//        bookingModel.setDate_end(localDate);
 
         return "home/addBooking";
     }
