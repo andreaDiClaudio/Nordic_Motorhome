@@ -3,6 +3,14 @@ body {
     padding: 0;
 }
 
+.page {
+    padding-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
 .navBar {
     background-color: white;
     justify-content: space-between;
@@ -17,13 +25,7 @@ body {
     position: relative;
     font-weight: normal;
     font-size: medium;
-    cursor: pointer;
-    border: none;
     padding: 0.5% 1%;
-    color: white;
-    text-decoration: none !important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
 }
 
@@ -32,47 +34,21 @@ body {
     color: white;
 }
 
-#navBar_href1:hover {
-    text-decoration: none !important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid black;
-}
 
 #navBar_href1 {
     margin-right: -10%;
 }
 
-#navBar_href2:hover {
-    text-decoration: none !important;
-    color: rgba(0, 81, 255, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid rgba(0, 81, 255, 0.77);
+#motorhomeNavBar:hover{
+    outline: rgba(0, 81, 255, 0.77);
+    border: rgba(0, 81, 255, 0.77);
+    color: white;
+    background-color: rgba(0, 81, 255, 0.77);
 }
 
 #navBar_href3 {
     margin-left: -10%;
 }
-
-#navBar_href3:hover {
-    text-decoration: none !important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid black;
-}
-
 
 .logo{
     position: relative;
@@ -83,13 +59,6 @@ body {
 }
 #homeLink{
     width: 6%;
-}
-.page {
-    margin-top: -2%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
 }
 
 .title {
@@ -104,37 +73,39 @@ body {
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     font-size: 140%;
-    margin-top: -2.5%;
     padding-bottom: 2%;
+}
+
+
+.form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    margin: auto;
+    padding: 4% 2%;
+    box-shadow: 0 0 20px rgb(204, 204, 204);
 }
 
 .label{
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
-    font-size: 140%;
 }
 
 #label_licensePlate{
+    font-size: 140%;
     margin-bottom: 5%;
 }
 
 #label_type{
+    font-size: 140%;
     margin-top: 5%;
 }
 
-.create_button{
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
-    color: white;
-    text-decoration: none !important;
-    background-color: rgba(76, 197, 81, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    margin-top: 15%;
+#submit{
+    position: relative;
     width: 50%;
+    margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -145,10 +116,11 @@ body {
     border-bottom: 1px solid red;
     text-align: center;
     margin-top: 5%;
+    font-size: 70%;
 }
 
 #input_type{
-    margin-left: 28%;
+    margin-left: 24%;
 }
 
 .input:valid{
@@ -156,25 +128,13 @@ body {
 }
 
 .horizontalContainer\(outer\){
-    padding-top: 3%;
+    padding-top: 1%;
     padding-right: 10%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     flex-flow: wrap;
     justify-content: center;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    margin: auto;
-    margin-top: 3%;
-    padding: 4% 2%;
-    margin-bottom: 6%;
-    box-shadow: 0 0 20px rgb(204, 204, 204);
 }
 
 .verticalDiv{
@@ -221,32 +181,23 @@ body {
 
 .href_inText{
     font-weight: bold;
+    text-decoration: none!important;
+    color: black;
+}
+.href_inText:hover{
+    text-decoration: none!important;
+    color: black;
 }
 
-.goBack{
+#goBack{
+    font-family: "Arial Rounded", system-ui;
     margin: auto;
-    margin-top: 2%;
-    position: relative;
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
-    color: white;
-    text-decoration: none !important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
 }
-.goBack:hover{
-    text-decoration: none !important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid black;
+
+#goBackPosition{
+   display: flex;
+    justify-content: center;
+    padding-top: 5%;
 }
 
 .alert_error{

@@ -21,57 +21,21 @@ body{
     position: relative;
     font-weight: normal;
     font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
-    color: white;
-    text-decoration: none!important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
-}
-.navBar_href:visited{
-    text-decoration: none!important;
-    color: white;
 }
 
-#navBar_href1:hover {
-    text-decoration: none!important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid black;
-}
 #navBar_href1{
     margin-right: -10%;
 }
-
-#navBar_href2:hover {
-    text-decoration: none!important;
-    color: rgba(0, 81, 255, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid rgba(0, 81, 255, 0.77);
+#motorhomeNavBar:hover{
+    outline: rgba(0, 81, 255, 0.77);
+    border: rgba(0, 81, 255, 0.77);
+    color: white;
+    background-color: rgba(0, 81, 255, 0.77);
 }
+
 #navBar_href3{
     margin-left: -10%;
-}
-
-#navBar_href3:hover {
-    text-decoration: none!important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid black;
 }
 
 .logo{
@@ -84,14 +48,16 @@ body{
 #homeLink{
     width: 6%;
 }
+
 .page{
-    padding-top: 3%;
+    padding-top: 7%;
     display: flex;
     flex-direction: column;
     margin: auto;
 }
 
 .title {
+    padding-left: 2%;
     font-size: 480%;
     font-family: lucida, sans-serif;
     font-weight: bold;
@@ -103,8 +69,8 @@ body{
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     font-size: 140%;
-    margin-top: -2%;
     padding-bottom: 2%;
+    padding-left: 2%;
 }
 
 .href_inText{
@@ -133,6 +99,7 @@ body{
 .column_div\(outer\){
     display: flex;
     flex-direction: column;
+    padding-left: 2%;
 }
 .row_div{
     display: flex;
@@ -141,34 +108,16 @@ body{
 }
 
 .action_buttonCreatePosition{
-    padding-left: 12%;
-}
-
-#action_buttonCreate{
+    z-index: 2;
+    padding-left: 14.75%;
+    padding-top: 2.85%;
     position: fixed;
-    font-weight: normal;
-    font-size: larger;
-    cursor: pointer;
-    border: none;
-    color: white;
-    text-decoration: none!important;
-    border-radius: 20px;
-    padding: 0.25% 1% 0.35%;
-    font-family: "Arial Rounded", system-ui;
-    background-color: rgba(76, 197, 81, 0.77);
-    margin-top: 3%;
 }
-#action_buttonCreate:hover{
-    text-decoration: none!important;
-    color: rgba(76, 197, 81, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: larger;
+#create:hover{
     background-color: transparent;
-    border:  1px solid rgba(76, 197, 81, 0.77);
+    color: green;
+    border: 1px solid green;
 }
-
 
 .column_div{
     display: flex;
@@ -193,7 +142,7 @@ th{
 }
 
 td{
-    text-align: left;
+    text-align: center;
     font-family: "Arial Rounded", system-ui;
     padding: 25px 10px;
 }
@@ -202,49 +151,17 @@ tr:nth-child(even){
     background-color: lightgrey;
 }
 
+
 .action_button{
-    margin: auto;
-    position: relative;
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    color: white;
+    background-color: transparent;
     text-decoration: none!important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    padding: 3% 10%;
 }
 .action_button:visited{
     text-decoration: none!important;
+}
+
+#action_buttonEdit:hover{
     color: white;
-}
-#action_buttonEdit:hover {
-    text-decoration: none!important;
-    color: rgba(255, 140, 0, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid rgba(255, 140, 0, 0.77);
-}
-#action_buttonEdit{
-    background-color: rgba(255, 140, 0, 0.77);
-}
-#action_buttonDelete:hover{
-    text-decoration: none!important;
-    color: rgba(255, 60, 0, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid rgba(255, 60, 0, 0.77);;
-}
-#action_buttonDelete{
-    background-color: rgba(255, 60, 0, 0.77);
 }
 
 .filterButtonPosition{
@@ -253,38 +170,18 @@ tr:nth-child(even){
     padding-bottom: 1%;
 }
 
-.FilterButtons{
-    font-weight: normal;
-    font-size: small;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 2%;
+.a_filter{
     color: white;
-    text-decoration: none!important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-}
-
-.FilterButtons:hover{
-    text-decoration: none!important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
     background-color: transparent;
-    border:  1px solid black;
 }
 
-.FilterButtons_Text{
-    font-weight: normal;
-    font-size: medium;
+.a_filter:visited{
     text-decoration: none!important;
-    color: rgba(12, 12, 12, 0.84);
-    font-family: "Arial Rounded", system-ui;
 }
 
+.a_filter:hover{
+    text-decoration: none!important;
+}
 
 .buttons_column{
     table-layout: auto;
@@ -292,31 +189,13 @@ tr:nth-child(even){
     width: 25%;
 }
 
-.goBack{
+#goBack{
     margin: auto;
     margin-top: 2%;
     position: relative;
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
-    color: white;
-    text-decoration: none !important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
 }
-.goBack:hover{
-    text-decoration: none !important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid black;
-}
+
 
 .search {
     width: 100%;
@@ -326,29 +205,34 @@ tr:nth-child(even){
 
 .searchTerm {
     width: 100%;
-    border: 3px solid rgba(12, 12, 12, 0.84);
+    border: 2px solid rgb(183, 186, 190);
     border-right: none;
-    padding: 5px;
+    padding: 6.4% 5px 5.25%;
     height: 20px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: rgba(12, 12, 12, 0.84);
+    color: rgb(0, 0, 0);
 }
 
 .searchTerm:focus{
-    color: rgba(12, 12, 12, 0.84);
+    color: rgb(0, 0, 0);
 }
 
 .searchButton {
     width: 80px;
     height: 36px;
-    border: 1px solid rgba(12, 12, 12, 0.84);
-    background: rgba(12, 12, 12, 0.84);
+    border: 2px solid rgb(183, 186, 190);
+    background: rgb(183, 186, 190);
     text-align: center;
     color: #fff;
-    border-radius: 0 15px 15px 0;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+}
+
+.searchButton:hover{
+    background-color: #a8a9ad;
+    border: 2px solid rgb(183, 186, 190);;
 }
 
 .wrap{
@@ -366,6 +250,9 @@ tr:nth-child(even){
     font-size: small;
     color: white;
     font-family: "Arial Rounded", system-ui;
-    margin-bottom: 21%;
-    margin-top: 17%;
+    margin-bottom: 22%;
+    margin-top: 13%;
+    padding-right: 1%;
 }
+
+
