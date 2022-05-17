@@ -9,13 +9,9 @@ import com.nordic_motorhome_project.service.MotorhomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +24,6 @@ public class BookingController {
     private MotorhomeService motorhomeService;
     @Autowired
     private CustomerService customerService;
-
-//      TODO delete
-//    private Booking bookingModel;
-//    private MotorhomeModel motorhomeModel;
 
     @GetMapping("/booking")
     public String booking(Model model){
@@ -59,10 +51,6 @@ public class BookingController {
         List<Customer> customerList = customerService.getCustomers();
         model.addAttribute("customers", customerList);
 
-        //TODO delete
-//        //Passing parameters that should be displayed in footer
-//        model.addAttribute("bookingNow", bookingModel);
-//        model.addAttribute("motorhomeNow", motorhomeModel);
         return "home/addBooking";
     }
 
@@ -72,11 +60,12 @@ public class BookingController {
                              @RequestParam int numberOfPpl, @RequestParam String type) {
         //Passes the list of available motorhomes
         model.addAttribute("booked", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
+        //Passes if list of motorhomes is empty
+        model.addAttribute("isEmpty", availableExist(bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type)));
 
         //All motorhomes
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
         model.addAttribute("motorhomes", motorhomesList);
-
 
         //All customers
         List<Customer> customerList = customerService.getCustomers();
@@ -90,30 +79,25 @@ public class BookingController {
         model.addAttribute("numberOfPpl", numberOfPpl);
         model.addAttribute("type", type);
 
-//        TODO delete
-//        motorhomeModel.setBrand(brand);
-//        motorhomeModel.setNumber_of_persons(numberOfPpl);
-//        motorhomeModel.setIsLuxury(type);
-//        bookingModel.setCustomer_id(client);
-//
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-//        LocalDate localDate = LocalDate.parse(dateStart, formatter);
-//        bookingModel.setDate_start(localDate);
-//        localDate = LocalDate.parse(dateEnd, formatter);
-//        bookingModel.setDate_end(localDate);
-
         return "home/addBooking";
     }
 
 
-    //TODO ask Nico where u get int variable from
+    @PostMapping("/createBooking")
+    public String createBooking(@RequestParam String motorhomeId,@RequestParam Integer client, @RequestParam String dateStart, @RequestParam String dateEnd){
+        bookingService.addBooking(motorhomeId, client, dateStart, dateEnd);
+        System.out.println(motorhomeId+" "+client+" "+dateStart+" "+dateStart);
+        return "redirect:/booking";
+    }
+
+
+
     @GetMapping("/deleteBooking/{id}")
     public String deleteBooking(@PathVariable("id") int id){
         bookingService.deleteBooking(id);
         return "redirect:/booking";
     }
 
-    //TODO finish
     @GetMapping("/editBooking/{id}")
     public String editBooking(@PathVariable("id") int id, Model model){
         //passing id of booking we will edit
@@ -129,6 +113,25 @@ public class BookingController {
         List<Customer> customerList = customerService.getCustomers();
         model.addAttribute("customers", customerList);
         return "home/editBooking";
+    }
+
+    @PostMapping("/changeBooking")
+    public String changeBooking(@RequestParam int client, @RequestParam String dateStart, @RequestParam String dateEnd, Model model)
+    {
+        System.out.println(client+" "+dateStart+" "+dateEnd);
+
+        model.addAttribute("model", model);
+
+        List<Booking> bookings = bookingService.getBookings();
+        model.addAttribute("bookings", bookings);
+        //motorhomes
+        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+        model.addAttribute("motorhomes", motorhomesList);
+        //customers
+        List<Customer> customerList = customerService.getCustomers();
+        model.addAttribute("customers", customerList);
+
+        return "home/booking";
     }
 
     public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, String type)
@@ -152,6 +155,7 @@ public class BookingController {
         {
             if(end.isAfter(bookings.get(i).getDate_start())&&start.isBefore(bookings.get(i).getDate_end()))
             {
+                System.out.println(bookings.get(i).getDate_start()+" "+bookings.get(i).getDate_end()+" "+start+" "+end);
                 dateId.add(bookings.get(i).getMotorhome_id());
             }
         }
@@ -175,11 +179,19 @@ public class BookingController {
         }
 
         //Deleting unavailable by date from list
+        boolean found = false;
         for(int i=0;i<motorhomes.size();i++)
         {
-            if(motorhomes.get(i).getLicense_plate().equals(dateId))
+            found = false;
+            for(int j=0;j<dateId.size();j++) {
+                if (motorhomes.get(i).getLicense_plate().equals(dateId.get(j)))
+                {
+                    motorhomes.remove(i);
+                    found=true;
+                }
+            }
+            if(found==true)
             {
-                motorhomes.remove(i);
                 i--;
             }
         }
@@ -191,5 +203,10 @@ public class BookingController {
         }
 
         return available;
+    }
+
+    public boolean availableExist (ArrayList<String> bookedMotorhomes)
+    {
+        return bookedMotorhomes.isEmpty();
     }
 }

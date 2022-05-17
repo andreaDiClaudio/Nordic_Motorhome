@@ -31,7 +31,6 @@
 
 <h1>Create booking</h1>
 
-<form action="createBooking" method="post">
 <table>
     <tr>
         <th></th>
@@ -41,58 +40,68 @@
         <th width="Price per day">Date in</th>
         <th class="buttons_column">Select</th>
     </tr>
+
+
     <div th:each="motorhome:${motorhomes}">
         <div th:each="motorhomeId:${booked}"
              th:if="${motorhome.getLicense_plate()} eq ${motorhomeId}">
+
+            <form action="/createBooking" method="post">
             <tr>
-                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50">
-                    </td>
+                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50"></td>
                     <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
                     <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
-                    <td th:text="${motorhome.license_plate}"/>
+                    <td th:value="${motorhome.license_plate}" th:text="${motorhome.license_plate}"/>
+                    <input hidden name="motorhomeId" th:value="${motorhome.license_plate}">
                     <td th:text="${motorhome.number_of_persons}"/>
                     <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
                     <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
                     <td th:text="${motorhome.base_price}"/>
+
+                    <input hidden name="client" th:value="${client}">
+                    <input hidden name="dateStart" th:value="${dateStart}">
+                    <input hidden name="dateEnd" th:value="${dateEnd}">
                     <td class="buttons_column">
-                        <a class="action_button" id="action_buttonEdit" th:href="@{'/createBooking'}">Select</a>
+                        <button class="action_button" id="action_buttonEdit" th:href="@{'/createBooking'}">Select</button>
                     </td>
             </tr>
+
+            </form>
         </div>
     </div>
 </table>
+<h1 th:if="${isEmpty==true}"> There are no available motorhomes of this type!</h1>
+<h3 th:if="${isEmpty==true}"> Try search for different dates or type of motorhome</h3>
 <div id="footer">
     <form action="/booking" method="post">
         <select name="brand">
-            <option value="ford">Ford</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="fiat">Fiat</option>
+            <option value="Ford" th:if="${brand}==Ford" selected>Ford</option>
+            <option value="Mercedes" th:if="${brand}==Mercedes" selected>Mercedes</option>
+            <option value="Fiat" th:if="${brand}==Fiat" selected>Fiat</option>
+
         </select>
         <select name="client">
             <option th:each="customer:${customers}"
                     th:value="${customer.id}"
                     th:text="${customer.first_name} +' '+ ${customer.last_name}"
-                    th:selected="${customer.id==client}"
-                    selected>Name
+                    th:selected="${customer.id==client}">Name
             </option>
         </select>
-        <input name="dateStart" type="date">
-        <input name="dateEnd" type="date">
+        <input name="dateStart" type="date" th:value="${dateStart}">
+        <input name="dateEnd" type="date" th:value="${dateEnd}">
         <select name="numberOfPpl">
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-            <option value="6">Six</option>
+            <option value="2" th:if="${numberOfPpl}==2" selected>Two</option>
+            <option value="3" th:if="${numberOfPpl}==3" selected>Three</option>
+            <option value="4" th:if="${numberOfPpl}==4" selected>Four</option>
+            <option value="6" th:if="${numberOfPpl}==6" selected>Six</option>
         </select>
-        <select name="type">
-            <option value="true">Luxury</option>
-            <option value="false">Economy</option>
+        <select name="type" th:selected="${type}">
+            <option value="Yes" >Luxury</option>
+            <option value="No" >Economy</option>
         </select>
-        <button>Submit</button>
+        <button th:href="@{'/addBooking'}">Submit</button>
     </form>
 
 </div>
-
-</form>
 </body>
 </html>

@@ -59,7 +59,7 @@
                     <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
                     <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
                     <td class="buttons_column">
-                        <a th:href="@{'/editBooking/'+${booking.id}}" class="action_button" id="action_buttonEdit">Edit</a>
+                        <a th:href="@{'/editBooking/'+${booking.id}}" class="action_button" id="action_buttonEdit" onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')">Edit</a>
                         <a th:href="@{'/deleteBooking/'+${booking.id}}" onclick="return confirm('Are you sure you want to Delete?')" class="action_button" id="action_buttonDelete">Delete</a>
                     </td>
                 </tr>

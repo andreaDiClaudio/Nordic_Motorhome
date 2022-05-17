@@ -24,17 +24,10 @@ public class BookingRepository {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-
-    public List<Booking> getAvailable()
+    public void addBooking (String motorhome_id, int customer_id, String start, String end)
     {
-        String sql = "SELECT * FROM booking WHERE ";
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        return jdbcTemplate.query(sql, rowMapper);
-    }
-
-    public void addBooking (String motorhome_id, int customer_id, LocalDate start, LocalDate end)
-    {
-
+        String sql = "INSERT INTO nordic_motorhome.booking (motorhome_id, customer_id, date_start, date_end) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, motorhome_id, customer_id, start, end);
     }
 
     public void deleteBooking(int id)
