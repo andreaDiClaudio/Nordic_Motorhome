@@ -35,4 +35,10 @@ public class BookingRepository {
         String sql = "DELETE FROM nordic_motorhome.booking WHERE id = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public void editBooking(int customerId, String dateStart, String dateEnd, int bookingId)
+    {
+        String sql = "UPDATE nordic_motorhome.booking t SET t.customer_id = ?, t.date_start = ?, t.date_end = ? WHERE t.id = ?";
+        jdbcTemplate.update(sql, customerId, dateStart, dateEnd, bookingId);
+    }
 }

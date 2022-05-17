@@ -72,12 +72,13 @@
 </table>
 <h1 th:if="${isEmpty==true}"> There are no available motorhomes of this type!</h1>
 <h3 th:if="${isEmpty==true}"> Try search for different dates or type of motorhome</h3>
+<h1 th:if="${dateError}">Entered dates are not valid: End date supposed to be after Start date!</h1>
 <div id="footer">
-    <form action="/booking" method="post">
-        <select name="brand">
-            <option value="Ford" th:if="${brand}==Ford" selected>Ford</option>
-            <option value="Mercedes" th:if="${brand}==Mercedes" selected>Mercedes</option>
-            <option value="Fiat" th:if="${brand}==Fiat" selected>Fiat</option>
+    <form action="/addBooking" method="post">
+        <select name="brand" >
+            <option value="Ford" th:if="${brand}==Ford" th:selected>Ford</option>
+            <option value="Mercedes" th:if="${brand}==Mercedes" th:selected>Mercedes</option>
+            <option value="Fiat" th:if="${brand}==Fiat" th:selected>Fiat</option>
 
         </select>
         <select name="client">
@@ -87,8 +88,9 @@
                     th:selected="${customer.id==client}">Name
             </option>
         </select>
-        <input name="dateStart" type="date" th:value="${dateStart}">
-        <input name="dateEnd" type="date" th:value="${dateEnd}">
+        <input name="dateStart" type="date" th:value="${dateStart1}" required>
+        <input name="dateEnd" type="date" th:value="${dateEnd1}" required>
+        <small th:if="${dateError}">End date need to be after Start date</small>
         <select name="numberOfPpl">
             <option value="2" th:if="${numberOfPpl}==2" selected>Two</option>
             <option value="3" th:if="${numberOfPpl}==3" selected>Three</option>
@@ -99,7 +101,8 @@
             <option value="Yes" >Luxury</option>
             <option value="No" >Economy</option>
         </select>
-        <button th:href="@{'/addBooking'}">Submit</button>
+        <input hidden value="addBooking" name="page">
+        <button>Search again</button>
     </form>
 
 </div>
