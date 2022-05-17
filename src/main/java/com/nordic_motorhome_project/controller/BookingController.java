@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -57,7 +58,7 @@ public class BookingController {
     @PostMapping("/addBooking")
     public String addBooking(Model model, @RequestParam String brand, @RequestParam Integer client,
                              @RequestParam String dateStart, @RequestParam String dateEnd,
-                             @RequestParam int numberOfPpl, @RequestParam String type) {
+                             @RequestParam int numberOfPpl, @RequestParam String type, @RequestParam String page) {
         //Passes the list of available motorhomes
         model.addAttribute("booked", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
         //Passes if list of motorhomes is empty
@@ -71,14 +72,45 @@ public class BookingController {
         List<Customer> customerList = customerService.getCustomers();
         model.addAttribute("customers", customerList);
 
+        boolean wrongDate = false;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dStart = sdf.parse(dateStart);
+            Date dEnd = sdf.parse(dateEnd);
+            if(dStart.after(dEnd))
+            {
+                wrongDate = true;
+            }
+        }catch (java.text.ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+
         //Pass selected values for footer
         model.addAttribute("brand", brand);
         model.addAttribute("client",client);
-        model.addAttribute("dateStart", dateStart);
-        model.addAttribute("dateEnd", dateEnd);
+        model.addAttribute("dateStart1", dateStart);
+        model.addAttribute("dateEnd1", dateEnd);
         model.addAttribute("numberOfPpl", numberOfPpl);
         model.addAttribute("type", type);
+        model.addAttribute("dateError", wrongDate);
 
+        //TODO try to make redirect back to page
+        if(wrongDate==true)
+        {
+            if(page.equals("booking"))
+            {
+                return "home/booking";
+            }else if(page.equals("addBooking"))
+            {
+                return "home/addBooking";
+            }else if(page.equals("editBooking"))
+            {
+                return "home/editBooking";
+            }
+        }
         return "home/addBooking";
     }
 
@@ -86,7 +118,6 @@ public class BookingController {
     @PostMapping("/createBooking")
     public String createBooking(@RequestParam String motorhomeId,@RequestParam Integer client, @RequestParam String dateStart, @RequestParam String dateEnd){
         bookingService.addBooking(motorhomeId, client, dateStart, dateEnd);
-        System.out.println(motorhomeId+" "+client+" "+dateStart+" "+dateStart);
         return "redirect:/booking";
     }
 
@@ -115,23 +146,40 @@ public class BookingController {
         return "home/editBooking";
     }
 
+
     @PostMapping("/changeBooking")
-    public String changeBooking(@RequestParam int client, @RequestParam String dateStart, @RequestParam String dateEnd, Model model)
+    public String changeBooking(@RequestParam int client, @RequestParam String dateStart, @RequestParam String dateEnd,@RequestParam String motorhome, @RequestParam int booking, Model model)
     {
-        System.out.println(client+" "+dateStart+" "+dateEnd);
 
-        model.addAttribute("model", model);
+        boolean wrongDate = false;
 
-        List<Booking> bookings = bookingService.getBookings();
-        model.addAttribute("bookings", bookings);
-        //motorhomes
-        List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
-        model.addAttribute("motorhomes", motorhomesList);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dStart = sdf.parse(dateStart);
+            Date dEnd = sdf.parse(dateEnd);
+            if(dStart.after(dEnd))
+            {
+                wrongDate = true;
+            }
+        }catch (java.text.ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("client", client);
+        model.addAttribute("dateStart", dateStart);
+        model.addAttribute("dateEnd", dateEnd);
+        model.addAttribute("motorhome", motorhome);
+        model.addAttribute("dateError", wrongDate);
+
+        if(wrongDate==false) {
+            bookingService.editBooking(client, dateStart, dateEnd, booking);
+        }
         //customers
         List<Customer> customerList = customerService.getCustomers();
         model.addAttribute("customers", customerList);
 
-        return "home/booking";
+        return "home/changeBooking";
     }
 
     public ArrayList<String> bookedMotorhomes (String dateStart, String dateEnd, String brand, int numberOfPpl, String type)
@@ -155,7 +203,6 @@ public class BookingController {
         {
             if(end.isAfter(bookings.get(i).getDate_start())&&start.isBefore(bookings.get(i).getDate_end()))
             {
-                System.out.println(bookings.get(i).getDate_start()+" "+bookings.get(i).getDate_end()+" "+start+" "+end);
                 dateId.add(bookings.get(i).getMotorhome_id());
             }
         }

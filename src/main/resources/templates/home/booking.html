@@ -80,8 +80,9 @@
                         th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
                 </option>
             </select>
-    <input name="dateStart" type="date">
-    <input name="dateEnd" type="date">
+    <input name="dateStart" type="date" required>
+    <input name="dateEnd" type="date" required>
+        <small th:if="${dateError}">End date need to be after Start date</small>
 <select name="numberOfPpl">
     <option value="2">Two</option>
     <option value="3">Three</option>
@@ -92,7 +93,8 @@
     <option value="Yes">Luxury</option>
     <option value="No">Economy</option>
 </select>
-<button th:href="@{'/addBooking'}">Submit</button>
+        <input hidden value="booking" name="page">
+<button>Search</button>
 </form>
 </div>
 </body>

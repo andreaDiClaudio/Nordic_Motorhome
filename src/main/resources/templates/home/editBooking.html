@@ -46,39 +46,42 @@
             <div th:each="customer:${customers}"
                  th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
                 <tr>
-                    <form action="#" th:action="@{'/changeBooking'}" method="post">
+                    <form action="/changeBooking" method="post">
                         <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{/images/mercedes.png}" width="50"></td>
                         <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{/images/ford.png}" width="50"></td>
                         <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{/images/fiat.png}" width="50"></td>
                         <td th:if="${booking.id} != ${editId}" th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
-                        <td th:if="${booking.id} eq ${editId}"><select name="client" th:value="${customer.id}">
+                        <td th:if="${booking.id} eq ${editId}"><select name="client">
                             <option th:each="customer:${customers}"
+                                    th:value="${customer.id}"
                                     th:text="${customer.first_name} +' '+ ${customer.last_name}"
-                                    th:selected="${customer.id==editId}">Name
+                                    th:selected="${customer.id}==${booking.customer_id}">Name
                             </option>
                         </select></td>
                         <td th:text="${customer.phone_number}"/>
                         <td th:text="${motorhome.number_of_persons}"/>
                         <td th:if="${booking.id} != ${editId}" th:text="${booking.date_start}"/>
-                        <td th:if="${booking.id} eq ${editId}"><input name="dateStart" type="date"></td>
+                        <td th:if="${booking.id} eq ${editId}"><input name="dateStart" type="date" th:value="${booking.date_start}"></td>
                         <td th:if="${booking.id} != ${editId}" th:text="${booking.date_end}"/>
-                        <td th:if="${booking.id} eq ${editId}"><input name="dateEnd" type="date"></td>
+                        <td th:if="${booking.id} eq ${editId}"><input name="dateEnd" type="date" th:value="${booking.date_end}"></td>
                         <td th:text="${booking.motorhome_id}"/>
                         <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
                         <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
+                        <input hidden name="motorhome" th:value="${motorhome.license_plate}">
+                        <input hidden name="booking" th:value="${booking.id}">
                         <td class="buttons_column">
-<!--                            <a th:if="${booking.id} != ${editId}" th:href="@{'/editBooking/'+${booking.id}}"-->
-<!--                               onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')"-->
-<!--                               class="action_button" id="action_buttonEdit">Edit</a>-->
-<!--                            <a th:if="${booking.id} != ${editId}" th:href="@{'/deleteBooking/'+${booking.id}}"-->
-<!--                               onclick="return confirm('Are you sure you want to Delete?')" class="action_button"-->
-<!--                               id="action_buttonDelete">Delete</a>-->
-                            <a  th:if="${booking.id} eq ${editId}" th:href="@{'/changeBooking'}"
+                            <a th:if="${booking.id} != ${editId}" th:href="@{'/editBooking/'+${booking.id}}"
+                               onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')"
+                               class="action_button" id="action_buttonEdit">Edit</a>
+                            <a th:if="${booking.id} != ${editId}" th:href="@{'/deleteBooking/'+${booking.id}}"
+                               onclick="return confirm('Are you sure you want to Delete?')" class="action_button"
+                               id="action_buttonDelete">Delete</a>
+                            <button th:if="${booking.id} eq ${editId}"
                                onclick="return confirm('Are you sure you want to Edit this booking?')"
-                               class="action_button">Save</a>
-<!--                            <a th:if="${booking.id} eq ${editId}" th:href="@{'/booking'}"-->
-<!--                               onclick="return confirm('Your changes will be discarded')"-->
-<!--                               class="action_button">Cancel</a>-->
+                               class="action_button">Save</button>
+                            <a th:if="${booking.id} eq ${editId}" th:href="@{'/booking'}"
+                               onclick="return confirm('Your changes will be discarded')"
+                               class="action_button">Cancel</a>
                         </td>
                     </form>
                 </tr>
@@ -99,8 +102,9 @@
                     th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
             </option>
         </select>
-        <input name="dateStart" type="date">
-        <input name="dateEnd" type="date">
+        <input name="dateStart" type="date" required>
+        <input name="dateEnd" type="date" required>
+        <small th:if="${dateError}">End date need to be after Start date</small>
         <select name="numberOfPpl">
             <option value="2">Two</option>
             <option value="3">Three</option>
@@ -111,7 +115,8 @@
             <option value="Yes">Luxury</option>
             <option value="No">Economy</option>
         </select>
-        <button th:href="@{'/addBooking'}">Submit</button>
+        <input hidden value="editBooking" name="page">
+        <button>Submit</button>
     </form>
 </div>
 </body>

@@ -28,4 +28,8 @@ public class BookingService {
         bookingRepository.addBooking(motorhome_id, customer_id, start, end);
     }
 
+    public void editBooking(int customerId, String dateStart, String dateEnd, int bookingId)
+    {
+        bookingRepository.editBooking(customerId, dateStart, dateEnd, bookingId);
+    }
 }
