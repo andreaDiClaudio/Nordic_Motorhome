@@ -35,7 +35,7 @@
 </div>
 
 <h1 id="pageHeader">Create booking</h1>
-<div th:if="${!dateError}">
+<div th:if="${!dateError} and ${!isEmpty}">
     <table class="table">
         <thead>
             <tr>
@@ -80,8 +80,8 @@
     </table>
 </div>
 <div class="text">
-    <h4 class="title" th:if="${isEmpty==true}"> There are no available motorhomes of this type!</h4>
-    <h6 class="description" th:if="${isEmpty==true}"> Try search for different dates or type of motorhome</h6>
+    <h4 class="title" th:if="${isEmpty} and ${!dateError}"> There are no available motorhomes of this type!</h4>
+    <h6 class="description" th:if="${isEmpty} and ${!dateError}"> Try search for different dates or type of motorhome</h6>
 
     <h4 class="title" th:if="${dateError}">Entered dates are not valid: End date supposed to be after Start date!</h4>
 </div>
@@ -113,6 +113,9 @@
             </select>
         </div>
         <div class="form-check-inline">
+            <a th:href="@{'/addCustomer'}" class="btn btn-outline-warning" >New customer</a>
+        </div>
+        <div class="form-check-inline">
             <label class="mr-sm-2">Start date</label>
             <input name="dateStart" type="date" class="input-group date" th:value="${dateStart1}" required>
         </div>
@@ -136,7 +139,6 @@
                 <option value="No">Economy</option>
             </select>
         </div>
-        <input hidden value="addBooking" name="page">
         <div class="form-check-inline">
             <button class="btn btn-success">Search again</button>
         </div>

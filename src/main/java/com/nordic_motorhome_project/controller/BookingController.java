@@ -58,7 +58,9 @@ public class BookingController {
     @PostMapping("/addBooking")
     public String addBooking(Model model, @RequestParam String brand, @RequestParam Integer client,
                              @RequestParam String dateStart, @RequestParam String dateEnd,
-                             @RequestParam int numberOfPpl, @RequestParam String type, @RequestParam String page) {
+                             @RequestParam int numberOfPpl, @RequestParam String type) {
+
+
         //Passes the list of available motorhomes
         model.addAttribute("booked", bookedMotorhomes(dateStart,dateEnd,brand,numberOfPpl,type));
         //Passes if list of motorhomes is empty
@@ -73,7 +75,6 @@ public class BookingController {
         model.addAttribute("customers", customerList);
 
         boolean wrongDate = false;
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date dStart = sdf.parse(dateStart);
@@ -97,20 +98,7 @@ public class BookingController {
         model.addAttribute("type", type);
         model.addAttribute("dateError", wrongDate);
 
-        //TODO try to make redirect back to page
-        if(wrongDate==true)
-        {
-            if(page.equals("booking"))
-            {
-                return "home/booking";
-            }else if(page.equals("addBooking"))
-            {
-                return "home/addBooking";
-            }else if(page.equals("editBooking"))
-            {
-                return "home/editBooking";
-            }
-        }
+
         return "home/addBooking";
     }
 

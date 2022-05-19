@@ -88,6 +88,9 @@
             </select>
         </div>
         <div class="form-check-inline">
+        <a th:href="@{'/addCustomer'}" class="btn btn-outline-warning" >New customer</a>
+        </div>
+        <div class="form-check-inline">
             <label class="mr-sm-2">Start date</label>
             <input name="dateStart" type="date" class="input-group date" required>
         </div>
@@ -111,7 +114,6 @@
                 <option value="No">Economy</option>
             </select>
         </div>
-        <input hidden value="booking" name="page">
         <div class="form-check-inline">
             <button class="btn btn-success">Search</button>
         </div>
