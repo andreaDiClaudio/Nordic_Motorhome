@@ -26,13 +26,21 @@
 </head>
 
 <body>
-<nav class="navBar">
-    <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
-    <a class="navBar_href" href="booking">Booking</a>
-    <a class="navBar_href" href="motorhome">Motorhome</a>
-    <a class="navBar_href" href="customer">Client</a>
-</nav>
-
+<!--TODO edit references-->
+<div class="navBar">
+    <a th:href="@{'/'}" id="homeLink">
+        <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
+    </a>
+    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
+        <button type="button" class="btn btn-outline-secondary">Booking</button>
+    </a>
+    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
+        <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
+    </a>
+    <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">
+        <button type="button" class="btn btn-outline-secondary">Customer</button>
+    </a>
+</div>
 <h1 id="pageHeader">Edit Booking</h1>
 <table class="table">
     <thead>
@@ -147,7 +155,7 @@
             </select>
         </div>
         <div class="form-check-inline">
-            <a th:href="@{'/addCustomer'}" class="btn btn-outline-warning" >New customer</a>
+            <a th:href="@{'/addCustomer'}" class="btn btn-success" >New customer</a>
         </div>
         <div class="form-check-inline">
             <label class="mr-sm-2">Type</label>
