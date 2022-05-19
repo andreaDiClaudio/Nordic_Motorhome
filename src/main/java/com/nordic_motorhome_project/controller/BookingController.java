@@ -75,19 +75,14 @@ public class BookingController {
         model.addAttribute("customers", customerList);
 
         boolean wrongDate = false;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date dStart = sdf.parse(dateStart);
-            Date dEnd = sdf.parse(dateEnd);
-            if(dStart.after(dEnd))
-            {
-                wrongDate = true;
-            }
-        }catch (java.text.ParseException e)
-        {
-            e.printStackTrace();
-        }
 
+        LocalDate dStart = LocalDate.parse(dateStart);
+        LocalDate dEnd = LocalDate.parse(dateEnd);
+
+        if(dStart.isAfter(dEnd))
+        {
+            wrongDate = true;
+        }
 
         //Pass selected values for footer
         model.addAttribute("brand", brand);
@@ -145,7 +140,7 @@ public class BookingController {
         boolean dateTaken = false;
 
         LocalDate dStart = LocalDate.parse(dateStart);
-        LocalDate dEnd = LocalDate.parse(dateStart);
+        LocalDate dEnd = LocalDate.parse(dateEnd);
 
         if(dStart.isAfter(dEnd))
         {
@@ -154,7 +149,15 @@ public class BookingController {
 
         for(int i=0;i<bookings.size();i++)
         {
-            if(dEnd.isAfter(bookings.get(i).getDate_start())&&dStart.isBefore(bookings.get(i).getDate_end())&&bookings.get(i).getId()==booking)
+            if(dEnd.isAfter(bookings.get(i).getDate_start())&&dStart.isBefore(bookings.get(i).getDate_end())&&bookings.get(i).getId()!=booking&&bookings.get(i).getMotorhome_id().equals(motorhome))
+            {
+                dateTaken = true;
+            }
+            if(dEnd.isAfter(bookings.get(i).getDate_start())&&dEnd.isBefore(bookings.get(i).getDate_end())&&bookings.get(i).getId()!=booking&&bookings.get(i).getMotorhome_id().equals(motorhome))
+            {
+                dateTaken = true;
+            }
+            if(dStart.isAfter(bookings.get(i).getDate_start())&&dStart.isBefore(bookings.get(i).getDate_end())&&bookings.get(i).getId()!=booking&&bookings.get(i).getMotorhome_id().equals(motorhome))
             {
                 dateTaken = true;
             }

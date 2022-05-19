@@ -27,13 +27,21 @@
 
 
 <body>
-<div class="navBar">
-    <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
-    <a class="navBar_href" id="navBar_booking_link" th:href="@{'/booking'}">Booking</a>
-    <a class="navBar_href" id="navBar_motorhome_link" th:href="@{'/motorhome'}">Motorhome</a>
-    <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
-</div>
 
+<div class="navBar">
+    <a th:href="@{'/'}" id="homeLink">
+        <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
+    </a>
+    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
+        <button type="button" class="btn btn-outline-secondary">Booking</button>
+    </a>
+    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
+        <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
+    </a>
+    <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">
+        <button type="button" class="btn btn-outline-secondary">Customer</button>
+    </a>
+</div>
 <h1 id="pageHeader">Create booking</h1>
 <div th:if="${!dateError} and ${!isEmpty}">
     <table class="table">
@@ -66,8 +74,8 @@
                         <td th:text="${motorhome.base_price}"/>
 
                         <input hidden name="client" th:value="${client}">
-                        <input hidden name="dateStart" th:value="${dateStart}">
-                        <input hidden name="dateEnd" th:value="${dateEnd}">
+                        <input hidden name="dateStart" th:value="${dateStart1}">
+                        <input hidden name="dateEnd" th:value="${dateEnd1}">
                         <td class="buttons_column">
                             <button class="btn btn-outline-warning" id="action_buttonEdit" th:href="@{'/createBooking'}">Select
                             </button>
@@ -97,9 +105,9 @@
         <div class="form-check-inline">
             <label class="mr-sm-2">Brand</label>
             <select name="brand" class="form-select">
-                <option value="Ford" th:if="${brand}==Ford" th:selected>Ford</option>
-                <option value="Mercedes" th:if="${brand}==Mercedes" th:selected>Mercedes</option>
-                <option value="Fiat" th:if="${brand}==Fiat" th:selected>Fiat</option>
+                <option value="Ford">Ford</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="Fiat">Fiat</option>
             </select>
         </div>
         <div class="form-check-inline">
@@ -113,7 +121,7 @@
             </select>
         </div>
         <div class="form-check-inline">
-            <a th:href="@{'/addCustomer'}" class="btn btn-outline-warning" >New customer</a>
+            <a th:href="@{'/addCustomer'}" class="btn btn-success" >New customer</a>
         </div>
         <div class="form-check-inline">
             <label class="mr-sm-2">Start date</label>
@@ -126,10 +134,10 @@
         <div class="form-check-inline">
             <label class="mr-sm-2">Num. of people</label>
             <select name="numberOfPpl" class="form-select">
-                <option value="2" th:if="${numberOfPpl}==2" selected>Two</option>
-                <option value="3" th:if="${numberOfPpl}==3" selected>Three</option>
-                <option value="4" th:if="${numberOfPpl}==4" selected>Four</option>
-                <option value="6" th:if="${numberOfPpl}==6" selected>Six</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="6">Six</option>
             </select>
         </div>
         <div class="form-check-inline">
