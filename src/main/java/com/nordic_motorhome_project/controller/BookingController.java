@@ -151,28 +151,36 @@ public class BookingController {
     public String changeBooking(@RequestParam int client, @RequestParam String dateStart, @RequestParam String dateEnd,@RequestParam String motorhome, @RequestParam int booking, Model model)
     {
 
-        boolean wrongDate = false;
+        List<Booking> bookings = bookingService.getBookings();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date dStart = sdf.parse(dateStart);
-            Date dEnd = sdf.parse(dateEnd);
-            if(dStart.after(dEnd))
-            {
-                wrongDate = true;
-            }
-        }catch (java.text.ParseException e)
+        boolean wrongDate = false;
+        boolean dateTaken = false;
+
+        LocalDate dStart = LocalDate.parse(dateStart);
+        LocalDate dEnd = LocalDate.parse(dateStart);
+
+        if(dStart.isAfter(dEnd))
         {
-            e.printStackTrace();
+            wrongDate = true;
         }
 
+        for(int i=0;i<bookings.size();i++)
+        {
+            if(dEnd.isAfter(bookings.get(i).getDate_start())&&dStart.isBefore(bookings.get(i).getDate_end())&&bookings.get(i).getId()==booking)
+            {
+                dateTaken = true;
+            }
+        }
+
+        model.addAttribute("dateTaken", dateTaken);
+        model.addAttribute("booking", booking);
         model.addAttribute("client", client);
         model.addAttribute("dateStart", dateStart);
         model.addAttribute("dateEnd", dateEnd);
         model.addAttribute("motorhome", motorhome);
         model.addAttribute("dateError", wrongDate);
 
-        if(wrongDate==false) {
+        if(wrongDate==false&&dateTaken==false) {
             bookingService.editBooking(client, dateStart, dateEnd, booking);
         }
         //customers

@@ -31,21 +31,36 @@
 <h1>Edit booking</h1>
 <div class="page">
     <div class="text">
+
+<!-- In case date was entered wrongly  -->
         <h1 th:if="${dateError}" class="title">Date mistake</h1>
         <p th:if="${dateError}" class="description">
             Start date need to be before end date!
         </p>
-        <h1 th:if="${!dateError}" class="title">Booking was edited for motorhome <span th:text="${motorhome}"></span></h1>
-        <p th:if="${!dateError}" class="description">
+
+<!-- In case date is already taken  -->
+        <h1 th:if="${dateTaken}" class="title">Date mistake</h1>
+        <p th:if="${dateTaken}" class="description">
+            This date for this motorhome is already taken,
+        </p>
+        <p th:if="${dateTaken}" class="description">
+            "Go back" and choose different date!
+        </p>
+
+<!-- In case of successful edit -->
+        <h1 th:if="${!dateError} and ${!dateTaken}" class="title">Booking was edited for motorhome <span th:text="${motorhome}"></span></h1>
+        <p th:if="${!dateError} and ${!dateTaken}" class="description">
             New booking is <span th:text="${dateStart}"></span>-<span th:text="${dateEnd}"></span>
         </p>
-        <p th:if="${!dateError}" >
+        <p th:if="${!dateError} and ${!dateTaken}" >
             <div th:each="customer:${customers}">
             <div th:if="${customer.id} eq ${client}" class="description">
             For <span  th:text="${customer.first_name}+' '+${customer.last_name}"></span>
             </div>
             </div>
         </p>
+        <a th:href="@{'/editBooking/'+${booking}}" class="goBack">Back</a>
+        <a class="goBack" th:href="@{'/'}">Home Page</a>
     </div>
 <div id="footer">
     <form action="/addBooking" method="post">
@@ -62,7 +77,6 @@
         </select>
         <input name="dateStart" type="date" required>
         <input name="dateEnd" type="date" required>
-        <small th:if="${dateError}">End date need to be after Start date</small>
         <select name="numberOfPpl">
             <option value="2">Two</option>
             <option value="3">Three</option>

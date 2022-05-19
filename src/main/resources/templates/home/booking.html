@@ -67,6 +67,7 @@
         </div>
     </div>
 </table>
+<a class="goBack" th:href="@{'/'}">Home Page</a>
 <div id="footer">
     <form action="/addBooking" method="post">
             <select name="brand">
@@ -82,7 +83,6 @@
             </select>
     <input name="dateStart" type="date" required>
     <input name="dateEnd" type="date" required>
-        <small th:if="${dateError}">End date need to be after Start date</small>
 <select name="numberOfPpl">
     <option value="2">Two</option>
     <option value="3">Three</option>

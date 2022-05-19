@@ -22,15 +22,15 @@
 
 
 <body>
-<nav class="navBar">
-    <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
-    <a class="navBar_href" href="booking">Booking</a>
-    <a class="navBar_href" href="motorhome">Motorhome</a>
-    <a class="navBar_href" href="client.html">Client</a>
-</nav>
+<!--<nav class="navBar">-->
+<!--    <img class="logo" th:src="@{images/Logo.png}" alt="Logo">-->
+<!--    <a class="navBar_href" href="booking">Booking</a>-->
+<!--    <a class="navBar_href" href="motorhome">Motorhome</a>-->
+<!--    <a class="navBar_href" href="client.html">Client</a>-->
+<!--</nav>-->
 
 <h1>Create booking</h1>
-
+<div th:if="${!dateError}">
 <table>
     <tr>
         <th></th>
@@ -70,9 +70,14 @@
         </div>
     </div>
 </table>
+</div>
+<div class="text">
 <h1 th:if="${isEmpty==true}"> There are no available motorhomes of this type!</h1>
 <h3 th:if="${isEmpty==true}"> Try search for different dates or type of motorhome</h3>
 <h1 th:if="${dateError}">Entered dates are not valid: End date supposed to be after Start date!</h1>
+</div>
+
+<a class="goBack" th:href="@{'/'}">Home Page</a>
 <div id="footer">
     <form action="/addBooking" method="post">
         <select name="brand" >
@@ -90,7 +95,6 @@
         </select>
         <input name="dateStart" type="date" th:value="${dateStart1}" required>
         <input name="dateEnd" type="date" th:value="${dateEnd1}" required>
-        <small th:if="${dateError}">End date need to be after Start date</small>
         <select name="numberOfPpl">
             <option value="2" th:if="${numberOfPpl}==2" selected>Two</option>
             <option value="3" th:if="${numberOfPpl}==3" selected>Three</option>
