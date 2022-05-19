@@ -9,6 +9,8 @@
     <!-- Link to the css file -->
     <!-- CSS File has to be inside src/main/resources/static -->
     <link th:href="@{/motorhome.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 
@@ -17,9 +19,15 @@
         <a th:href="@{'/'}" id="homeLink">
             <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
         </a>
-        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">Booking</a>
-        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">Motorhome</a>
-        <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">Client</a>
+        <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
+            <button type="button" class="btn btn-outline-secondary">Booking</button>
+        </a>
+        <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
+            <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
+        </a>
+        <a class="navBar_href" id="navBar_href3" th:href="@{'/client'}">
+            <button type="button" class="btn btn-outline-secondary">Customer</button>
+        </a>
     </div>
 <!--Nav bar end-->
 
@@ -30,9 +38,9 @@
             <h1 class="title">Motorhome</h1>
             <p class="description">
                 The following table shows all the motorhomes saved in the system.<br>
-                <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a motorhome<br>
+                <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a motorhome
                 through the buttons in the column "Actions". <br>
-                <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "+" button.
+                <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "Create New" button.
             </p>
 
         </div>
@@ -41,7 +49,9 @@
         <div class="column_div(outer)">
             <!--Create new motorhome button-->
             <div class="action_buttonCreatePosition">
-                <a id="action_buttonCreate" th:href="@{'/createMotorhome'}">+</a>
+                <a id="action_buttonCreate" th:href="@{'/createMotorhome'}">
+                    <button type="button" class="btn btn-success" id="create">Create new</button>
+                </a>
             </div>
             <!-- Create new motorhome button end-->
             <div class="row_div">
@@ -49,10 +59,17 @@
                         <!--Filter&SearchBar-->
                     <div class="filterButtonPosition">
 
-                        <a class="FilterButtons_Text">Type order:</a>
-                        <a class="FilterButtons" id="action_buttonFilterTypeDesc" th:href="@{'/filterTypeDesc'}">Descending</a>
-                        <a class="FilterButtons" id="action_buttonFilterOff" th:href="@{'/motorhome'}">Ascending </a>
-                        <a class="FilterButtons" id="action_buttonFilterOff1" th:href="@{'/motorhome'}">Turn off filter </a>
+                        <a th:href="@{'/filterTypeDesc'}" class="a_filter">
+                            <button type="button" class="btn btn-outline-secondary">Descending</button>
+                        </a>
+
+                        <a th:href="@{'/motorhome'}" class="a_filter">
+                            <button type="button" class="btn btn-outline-secondary">Ascending</button>
+                        </a>
+
+                        <a th:href="@{'/motorhome'}" class="a_filter">
+                            <button type="button" class="btn btn-outline-secondary">Turn off filter</button>
+                        </a>
                         <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/motorhome")-->
                         <!-- th:object = Specifies the object to which the submitted form data will be bound. It has to match the "attributeName" in "model.addAttribute"-->
                         <form action="#" th:action="@{/motorhome}" th:object="${motorhomeModel}" method="post">
@@ -82,7 +99,7 @@
                                     <th>Capacity</th>
                                     <th>Brand</th>
                                     <th>Luxury</th>
-                                    <th>Price</th>
+                                    <th>Price </th>
                                     <th class="buttons_column">Actions</th>
                                 </tr>
                             </thead>
@@ -97,10 +114,14 @@
                                 <td th:text="${motorhome.getNumber_of_persons()}"></td>
                                 <td th:text="${motorhome.getBrand()}"></td>
                                 <td th:text="${motorhome.getIsLuxury()}"></td>
-                                <td th:text="${motorhome.getBase_price()}"></td>
+                                <td th:text="${motorhome.getBase_price()} + '€'"></td>
                                 <td class="buttons_column" id="actions_cell">
-                                    <a class="action_button" id="action_buttonEdit" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">Edit</a>
-                                    <a class="action_button" id="action_buttonDelete" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">Delete</a>
+                                    <a class="action_button" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">
+                                        <button type="button" id="action_buttonEdit" class="btn btn-outline-warning">Edit</button>
+                                    </a>
+                                    <a class="action_button" th:href="@{'deleteMotorhome/' + ${motorhome.getLicense_plate()}}" onclick="return confirm('This operation cannot be undone. Are you sure to want to delete the selected motorhome?')">
+                                        <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -110,7 +131,7 @@
                 </div>
             </div>
         </div>
-        <a class="goBack" th:href="@{'/'}">Home Page</a>
+        <a class="btn btn-outline-secondary" id="goBack" th:href="@{'/'}">Home Page</a>
     </div>
 </body>
 </html>

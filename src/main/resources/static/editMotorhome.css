@@ -1,75 +1,53 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
 
-.navBar{
-    z-index: 1;
+.page {
+    padding-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.navBar {
     background-color: white;
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid gray;
-    position: fixed;
     width: 100%;
 }
 
-.navBar_href{
+.navBar_href {
     margin: auto;
     position: relative;
     font-weight: normal;
     font-size: medium;
-    cursor: pointer;
-    border: none;
     padding: 0.5% 1%;
-    color: white;
-    text-decoration: none!important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
 }
-.navBar_href:visited{
-    text-decoration: none!important;
+
+.navBar_href:visited {
+    text-decoration: none !important;
     color: white;
 }
 
-#navBar_href1:hover {
-    text-decoration: none!important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid black;
-}
-#navBar_href1{
+
+#navBar_href1 {
     margin-right: -10%;
 }
 
-#navBar_href2:hover {
-    text-decoration: none!important;
-    color: rgba(0, 81, 255, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid rgba(0, 81, 255, 0.77);
-}
-#navBar_href3{
-    margin-left: -10%;
+#motorhomeNavBar:hover{
+    outline: rgba(0, 81, 255, 0.77);
+    border: rgba(0, 81, 255, 0.77);
+    color: white;
+    background-color: rgba(0, 81, 255, 0.77);
 }
 
-#navBar_href3:hover {
-    text-decoration: none!important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid black;
+#navBar_href3 {
+    margin-left: -10%;
 }
 
 .logo{
@@ -81,13 +59,6 @@ body{
 }
 #homeLink{
     width: 6%;
-}
-
-.page{
-    padding-top: 5%;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
 }
 
 .title {
@@ -102,46 +73,46 @@ body{
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     font-size: 140%;
-    margin-top: -3%;
     padding-bottom: 2%;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    margin: auto;
+    padding: 4% 6%;
+    box-shadow: 0 0 20px rgb(204, 204, 204);
 }
 
 .label{
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
-    font-size: 140%;
+    display: flex;
 }
+
+#label_licensePlate{
+    font-size: 140%;
+    margin-bottom: 5%;
+}
+
 
 #label_type{
-    margin-top: 5%;
+    font-size: 160%;
+    margin: auto;
+    margin-left: -4%;
 }
 
-.edit_button{
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
+#submit{
+    position: relative;
+    width: 90%;
+    margin: auto;
+    margin-top: 30%;
+}
+
+#submit:hover{
     color: white;
-    text-decoration: none !important;
-    background-color: rgba(255, 140, 0, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    margin-top: 15%;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.edit_button:hover{
-    text-decoration: none!important;
-    color: rgba(255, 140, 0, 0.77);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border:  1px solid rgba(255, 140, 0, 0.77);
 }
 
 .input{
@@ -150,12 +121,13 @@ body{
     border-bottom: 1px solid red;
     text-align: center;
     margin-top: 5%;
+    font-size: 70%;
 }
-
 
 #input_type{
-    margin-left: 28%;
+    margin-left: 10%;
 }
+
 
 .input:valid{
     border-bottom: solid blue 1px;
@@ -173,17 +145,6 @@ body{
     flex-wrap: wrap;
     flex-flow: wrap;
     justify-content: center;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    margin: auto;
-    padding: 4% 2%;
-    margin-bottom: 6%;
-    box-shadow: 0 0 20px rgb(204, 204, 204);
 }
 
 .verticalDiv{
@@ -230,32 +191,24 @@ body{
 
 .href_inText{
     font-weight: bold;
+    text-decoration: none!important;
+    color: black;
+}
+.href_inText:hover{
+    text-decoration: none!important;
+    color: black;
 }
 
-.goBack{
+
+#goBack{
+    font-family: "Arial Rounded", system-ui;
     margin: auto;
-    margin-top: 6%;
-    position: relative;
-    font-weight: normal;
-    font-size: medium;
-    cursor: pointer;
-    border: none;
-    padding: 0.5% 1%;
-    color: white;
-    text-decoration: none !important;
-    background-color: rgba(12, 12, 12, 0.84);
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
 }
-.goBack:hover{
-    text-decoration: none !important;
-    color: black;
-    border-radius: 20px;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: normal;
-    font-size: medium;
-    background-color: transparent;
-    border: 1px solid black;
+
+#goBackPosition{
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
 }
 
 .alert_error{
