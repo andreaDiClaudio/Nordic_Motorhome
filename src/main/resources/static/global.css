@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navBar{
+    z-index: 1;
+    background-color: white;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid gray;
+    position: fixed;
+    width: 100%;
+}
+
+.navBar_href{
+    margin: auto;
+    position: relative;
+    font-weight: normal;
+    font-size: medium;
+    cursor: pointer;
+    border: 1px solid black;
+    padding: 0.5% 1%;
+    color: white;
+    text-decoration: none!important;
+    background-color: rgba(12, 12, 12, 0.84);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+}
+.navBar_href:visited{
+    text-decoration: none!important;
+    color: white;
+}
+
+#navBar_booking_link:hover {
+    text-decoration: none!important;
+    color: black;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid black;
+}
+#navBar_booking_link{
+    margin-right: -10%;
+}
+
+#navBar_motorhome_link:hover {
+    text-decoration: none!important;
+    color: rgba(0, 81, 255, 0.77);
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid rgba(0, 81, 255, 0.77);
+}
+#navBar_customer_link{
+    margin-left: -10%;
+}
+
+#navBar_customer_link:hover {
+    text-decoration: none!important;
+    color: #8D608C;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border:  1px solid #8D608C;
+}
+
+.logo{
+    margin-left: 2%;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    width: 5%;
+}
+
+.goBackButton {
+    margin: 15px;
+}
