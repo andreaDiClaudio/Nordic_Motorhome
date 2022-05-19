@@ -147,13 +147,15 @@
             </select>
         </div>
         <div class="form-check-inline">
+            <a th:href="@{'/addCustomer'}" class="btn btn-outline-warning" >New customer</a>
+        </div>
+        <div class="form-check-inline">
             <label class="mr-sm-2">Type</label>
             <select name="type" class="form-select">
                 <option value="Yes">Luxury</option>
                 <option value="No">Economy</option>
             </select>
         </div>
-        <input hidden value="booking" name="page">
         <div class="form-check-inline">
             <button class="btn btn-success">Search</button>
         </div>
