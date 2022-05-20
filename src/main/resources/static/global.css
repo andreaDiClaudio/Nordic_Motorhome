@@ -96,3 +96,27 @@ body {
 #homeLink{
     width: 6%;
 }
+
+
+table{
+    z-index: -1;
+    margin: auto;
+}
+
+th{
+    font-family: "Arial Rounded MT Bold";
+    color: #ffffff;
+    background-color: rgba(0, 81, 255, 0.77);
+    padding: 15px 35px;
+}
+
+td{
+    text-align: center;
+    font-family: "Arial Rounded", system-ui;
+    padding: 25px 10px;
+}
+
+tr:nth-child(even){
+    background-color: lightgrey;
+}
+
