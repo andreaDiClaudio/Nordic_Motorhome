@@ -4,51 +4,6 @@ body{
     padding-bottom: 5%;
 }
 
-
-.navBar{
-    z-index: 2;
-    background-color: white;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid gray;
-    position: fixed;
-    width: 100%;
-}
-
-.navBar_href{
-    margin: auto;
-    position: relative;
-    font-weight: normal;
-    font-size: medium;
-    font-family: "Arial Rounded", system-ui;
-}
-
-#navBar_href1{
-    margin-right: -10%;
-}
-#motorhomeNavBar:hover{
-    outline: rgba(0, 81, 255, 0.77);
-    border: rgba(0, 81, 255, 0.77);
-    color: white;
-    background-color: rgba(0, 81, 255, 0.77);
-}
-
-#navBar_href3{
-    margin-left: -10%;
-}
-
-.logo{
-    position: relative;
-    margin-left: 16%;
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 8%;
-}
-#homeLink{
-    width: 6%;
-}
-
 .page{
     padding-top: 7%;
     display: flex;
@@ -112,6 +67,9 @@ body{
     padding-left: 14.75%;
     padding-top: 2.85%;
     position: fixed;
+}
+#try{
+    display: flex;
 }
 #create:hover{
     background-color: transparent;
