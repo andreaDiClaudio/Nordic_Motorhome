@@ -51,12 +51,3 @@ INSERT INTO motorhome (license_plate, type)
                     ('AB00030', 5),
                     ('AB00031', 2),
                     ('AB00032', 1);
-
-
-
-
-SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY type ASC;
-SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY type DESC;
-
-SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury ASC;
-SELECT * FROM motorhome join motorhome_type mt on mt.id = motorhome.type ORDER BY is_luxury DESC;
