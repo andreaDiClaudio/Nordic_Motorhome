@@ -62,24 +62,27 @@ body {
 }
 
 #navBar_customer_link:hover {
-    text-decoration: none!important;
+    text-decoration: none !important;
     color: #8D608C;
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
     font-size: medium;
     background-color: transparent;
-    border:  1px solid #8D608C;
-}
-
-.logo{
-    margin-left: 2%;
-    margin-top: 0;
-    margin-bottom: 0;
-    position: relative;
-    width: 5%;
+    border: 1px solid #8D608C;
 }
 
 .goBackButton {
     margin: 15px;
+}
+
+.logo{
+    position: relative;
+    margin-left: 16%;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 85%;
+}
+#homeLink{
+    width: 6%;
 }

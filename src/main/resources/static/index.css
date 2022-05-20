@@ -3,17 +3,6 @@ body{
     padding: 0;
 }
 
-.logo{
-    position: relative;
-    margin-left: 16%;
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 85%;
-}
-#homeLink{
-    width: 6%;
-}
-
 .page{
     display: flex;
     flex-direction: column;
