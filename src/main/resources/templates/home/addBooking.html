@@ -24,11 +24,12 @@
 
 <div class="page">
 <h1 class="title">Create booking</h1>
+    <p class="description" th:if="${!isEmpty} and ${!dateError}">Fill all the fields and press <a class="href_inText" id="edit_hrefInText">Select</a> a motorhome for the current booking</p>
 <div th:if="${!dateError} and ${!isEmpty}">
-    <table class="table">
+    <table >
         <thead>
             <tr>
-                <th></th>
+                <th class="th_booking">Brand</th>
                 <th class="th_booking">License plate</th>
                 <th class="th_booking">Num. of people</th>
                 <th class="th_booking">Type</th>
@@ -51,13 +52,13 @@
                         <input hidden name="motorhomeId" th:value="${motorhome.license_plate}">
                         <td th:text="${motorhome.number_of_persons}"/>
                         <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
-                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
+                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
                         <td th:text="${motorhome.base_price}"/>
 
                         <input hidden name="client" th:value="${client}">
                         <input hidden name="dateStart" th:value="${dateStart1}">
                         <input hidden name="dateEnd" th:value="${dateEnd1}">
-                        <td class="buttons_column">
+                        <td>
                             <button class="btn btn-outline-warning" id="action_buttonEdit" th:href="@{'/createBooking'}">Select
                             </button>
                         </td>

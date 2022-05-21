@@ -21,12 +21,15 @@
 
 <div class="page">
 <h1 class="title">Edit Booking</h1>
+    <p class="description">
+        Edit the type of the selected booking and <a class="href_inText" id="create_hrefInText">Save</a> it
+    </p>
 
-<table class="table">
+<table>
 
     <thead>
     <tr>
-        <th></th>
+        <th class="th_booking">Brand</th>
         <th class="th_booking">Name</th>
         <th class="th_booking">Phone</th>
         <th class="th_booking">Num. of people</th>
@@ -66,10 +69,10 @@
                                                                       th:value="${booking.date_end}"></td>
                         <td th:text="${booking.motorhome_id}"/>
                         <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
-                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
+                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
                         <input hidden name="motorhome" th:value="${motorhome.license_plate}">
                         <input hidden name="booking" th:value="${booking.id}">
-                        <td class="buttons_column">
+                        <td>
                             <a th:if="${booking.id} != ${editId}" class="btn btn-outline-warning"
                                th:href="@{'/editBooking/'+${booking.id}}"
                                onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')"

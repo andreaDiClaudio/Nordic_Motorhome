@@ -132,10 +132,26 @@ table{
     color: white;
 }
 
+#descriptionCustomer{
+    margin-top: -2%;
+}
+
+#descriptionDate{
+    margin-top: 2%;
+}
+
 #goBack{
     margin: auto;
     margin-top: 2%;
     position: relative;
     font-family: "Arial Rounded", system-ui;
+}
+
+.goBack\&homeButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 42%;
+    margin-right: 40%;
 }
 
