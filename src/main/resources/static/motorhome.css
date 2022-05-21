@@ -5,7 +5,8 @@ body{
 }
 
 .page{
-    padding-top: 7%;
+    padding-top: 6%;
+    padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -36,22 +37,28 @@ body{
 
 .column_div\(outer\){
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin: auto;
-    padding-left: 2%;
 }
 .row_div{
     display: flex;
     flex-direction: row;
-    margin: auto;
+    justify-content: space-between;
+    padding: 0.5%;
 }
 
 .action_buttonCreatePosition{
     z-index: 2;
-    padding-left: 14.75%;
-    padding-top: 2.85%;
-    position: fixed;
+    position: relative;
 }
+
+#FilterPosition{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 68%;
+}
+
 #try{
     display: flex;
 }
@@ -108,7 +115,7 @@ body{
 
 #goBack{
     margin: auto;
-    margin-top: 2%;
+    margin-top: 4%;
     position: relative;
     font-family: "Arial Rounded", system-ui;
 }
@@ -122,10 +129,9 @@ body{
 
 .searchTerm {
     width: 100%;
-    border: 2px solid rgb(183, 186, 190);
+    border: 1px solid rgb(111, 117, 124);
     border-right: none;
-    padding: 6.4% 5px 5.25%;
-    height: 20px;
+    height: 36.5px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: rgb(0, 0, 0);
@@ -137,7 +143,7 @@ body{
 
 .searchButton {
     width: 80px;
-    height: 36px;
+    height: 36.25px;
     border: 2px solid rgb(183, 186, 190);
     background: rgb(183, 186, 190);
     text-align: center;
@@ -148,10 +154,10 @@ body{
 }
 
 .searchButton:hover{
-    background-color: #a8a9ad;
-    border: 2px solid rgb(183, 186, 190);;
+    background-color: #6f757c;
+    border: 2px solid rgb(111, 117, 124);;
 }
-
+/*
 .wrap{
     margin-left: 35%;
     padding-bottom: 1%;
@@ -161,6 +167,8 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+ */
 
 #searchButtonText{
     font-weight: normal;

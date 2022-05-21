@@ -31,7 +31,7 @@
         <div class="text">
             <h1 class="title">Create</h1>
             <p class="description">
-                Fill all the fields and press submit to create and save a new motorhome in the system
+                Fill all the fields and press <a class="href_inText" id="create_hrefInText">Add Motorhome</a> to create and save a new motorhome in the system
             </p>
         </div>
         <!--Title&Description end-->
@@ -62,7 +62,7 @@
                 </label>
                 <div class="alert_error" id="type_error" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
 
-                <button class="btn btn-outline-success" id="submit" type="submit" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">Create</button>
+                <button class="btn btn-outline-success" id="submit" type="submit" onclick="return confirm('License Plate value cannot be changed after this point.\nPlease make sure that the License Plate number is correct.\n \nPress ok to continue with the creation of the motorhome.')">Add Motorhome</button>
 
             </form>
 
