@@ -14,40 +14,17 @@ body{
     height: 90px;
     background-color: rgb(96, 141, 125);
     text-align: center;
+
     /*display: flex;*/
     /*flex-direction: row;*/
     /*justify-content: space-between;*/
 }
 
-#pageHeader {
-    padding-top: 6%;
-    font-family: lucida, sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
 .page{
-    padding-top: 7%;
+    padding-top: 6%;
     display: flex;
     flex-direction: column;
     margin: auto;
-}
-
-.title {
-    padding-left: 2%;
-    font-size: 480%;
-    font-family: lucida, sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
-.description{
-    text-align: center;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: lighter;
-    font-size: 140%;
-    padding-bottom: 2%;
-    padding-left: 2%;
 }
 
 .href_inText{
@@ -129,6 +106,17 @@ table{
 }
 #buttonCustomer:hover{
     background-color: #8D608C;
+    color: white;
+}
+
+#buttonMotorhome{
+    background-color: white;
+    color: #5064d0;
+    border-color: #5064d0;
+}
+
+#buttonMotorhome:hover{
+    background-color: #5064d0;
     color: white;
 }
 

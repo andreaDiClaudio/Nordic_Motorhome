@@ -34,8 +34,8 @@
     <a class="navBar_href" id="navBar_motorhome_link" th:href="@{'/motorhome'}">Motorhome</a>
     <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
-
-<h1 id="pageHeader">Edit Booking</h1>
+<div class="page">
+<h1 class="title">Edit Booking</h1>
 <div class="page">
     <div class="text">
 
@@ -70,7 +70,7 @@
 
     <br>
     <div class="d-flex justify-content-center inline">
-        <a th:href="@{'/editBooking/'+${booking}}" class="btn btn-outline-secondary" >Back</a>
+        <a th:href="@{'/booking'}" class="btn btn-outline-secondary" >Back</a>
         <a class="btn btn-outline-secondary" th:href="@{'/'}">Home Page</a>
     </div>
     <br><br><br><br><br><div class="footer">
@@ -123,6 +123,7 @@
             <button class="btn btn-success">Search</button>
         </div>
     </form>
+</div>
 </div>
 </div>
 </body>
