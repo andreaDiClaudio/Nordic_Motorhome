@@ -12,7 +12,7 @@ body{
     width: 100%;
     /* Height of the footer*/
     height: 90px;
-    background: #ff8800;
+    background-color: rgb(96, 141, 125);
     text-align: center;
     /*display: flex;*/
     /*flex-direction: row;*/
@@ -24,10 +24,6 @@ body{
     font-family: lucida, sans-serif;
     font-weight: bold;
     text-align: center;
-}
-
-#homeLink{
-    width: 6%;
 }
 
 .page{
@@ -105,33 +101,36 @@ body{
     flex-direction: column;
 }
 
-.motorhome_table{
-    margin: auto;
-}
-
-
 table{
-    z-index: -1;
     margin: auto;
 }
 
-th{
-    font-family: "Arial Rounded MT Bold";
-    color: #ffffff;
-    background-color: rgba(0, 81, 255, 0.77);
-    padding: 15px 35px;
+.th_booking{
+    background-color: #608d7d;
 }
 
-td{
+.buttons_column{
+    background-color: rgb(96, 141, 125);
+    table-layout: auto;
     text-align: center;
-    font-family: "Arial Rounded", system-ui;
-    padding: 25px 10px;
 }
 
-tr:nth-child(even){
-    background-color: lightgrey;
+#buttonSuccessSearch{
+    background-color: white;
+}
+#buttonSuccessSearch:hover{
+    background-color: green;
 }
 
+#buttonCustomer{
+    background-color: white;
+    color: #8D608C;
+    border-color: #8D608C;
+}
+#buttonCustomer:hover{
+    background-color: #8D608C;
+    color: white;
+}
 
 .action_button{
     background-color: transparent;
@@ -145,95 +144,10 @@ tr:nth-child(even){
     color: white;
 }
 
-.filterButtonPosition{
-    z-index: 1;
-    position: relative;
-    padding-bottom: 1%;
-}
-
-.a_filter{
-    color: white;
-    background-color: transparent;
-}
-
-.a_filter:visited{
-    text-decoration: none!important;
-}
-
-.a_filter:hover{
-    text-decoration: none!important;
-}
-
-.buttons_column{
-    table-layout: auto;
-    text-align: center;
-    width: 25%;
-}
-
 #goBack{
     margin: auto;
     margin-top: 2%;
     position: relative;
     font-family: "Arial Rounded", system-ui;
 }
-
-
-.search {
-    width: 100%;
-    position: relative;
-    display: flex;
-}
-
-.searchTerm {
-    width: 100%;
-    border: 2px solid rgb(183, 186, 190);
-    border-right: none;
-    padding: 6.4% 5px 5.25%;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: rgb(0, 0, 0);
-}
-
-.searchTerm:focus{
-    color: rgb(0, 0, 0);
-}
-
-.searchButton {
-    width: 80px;
-    height: 36px;
-    border: 2px solid rgb(183, 186, 190);
-    background: rgb(183, 186, 190);
-    text-align: center;
-    color: #fff;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.searchButton:hover{
-    background-color: #a8a9ad;
-    border: 2px solid rgb(183, 186, 190);;
-}
-
-.wrap{
-    margin-left: 35%;
-    padding-bottom: 1%;
-    width: 30%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#searchButtonText{
-    font-weight: normal;
-    font-size: small;
-    color: white;
-    font-family: "Arial Rounded", system-ui;
-    margin-bottom: 22%;
-    margin-top: 13%;
-    padding-right: 1%;
-}
-
 

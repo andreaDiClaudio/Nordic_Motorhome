@@ -22,18 +22,18 @@
     <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
 <h1 id="pageHeader">Bookings</h1>
-<table class="table" >
+<table>
     <thead>
         <tr>
-            <th class="h4 text-dark" width="100">Brand</th>
-            <th class="h4 text-dark" width="150">Name</th>
-            <th class="h4 text-dark" width="120">Phone</th>
-            <th class="h4 text-dark" width="145">Num. of people</th>
-            <th class="h4 text-dark" width="75">Start date</th>
-            <th class="h4 text-dark" width="75">End date</th>
-            <th class="h4 text-dark" width="100">Plate</th>
-            <th class="h4 text-dark" width="50">Type</th>
-            <th class="h4 buttons_column text-dark">Actions</th>
+            <th class="th_booking">Brand</th>
+            <th class="th_booking">Name</th>
+            <th class="th_booking">Phone</th>
+            <th class="th_booking">Num. of people</th>
+            <th class="th_booking">Start date</th>
+            <th class="th_booking">End date</th>
+            <th class="th_booking">Plate</th>
+            <th class="th_booking">Type</th>
+            <th class="buttons_column">Actions</th>
         </tr>
     </thead>
     <div th:each="booking:${bookings}">
@@ -53,8 +53,8 @@
                     <td th:text="${booking.motorhome_id}"/>
                     <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
                     <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
-                    <td class="buttons_column">
-                        <a th:href="@{'/editBooking/'+${booking.id}}" class="btn btn-outline-warning"
+                    <td>
+                        <a th:href="@{'/editBooking/'+${booking.id}}" class="btn btn-outline-warning" id="action_buttonEdit"
                            onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')">Edit</a>
                         <a th:href="@{'/deleteBooking/'+${booking.id}}" class="btn btn-outline-danger"
                            onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
@@ -72,6 +72,9 @@
 <div class="footer">
     <form action="/addBooking" method="post">
         <div class="form-check-inline">
+            <a th:href="@{'/addCustomer'}" class="btn btn-outline-secondary" id="buttonCustomer" >New customer</a>
+        </div>
+        <div class="form-check-inline">
             <label class="mr-sm-2">Brand</label>
             <select name="brand" class="form-select">
                 <option value="Ford">Ford</option>
@@ -88,9 +91,7 @@
                 </option>
             </select>
         </div>
-        <div class="form-check-inline">
-        <a th:href="@{'/addCustomer'}" class="btn btn-success" >New customer</a>
-        </div>
+
         <div class="form-check-inline">
             <label class="mr-sm-2">Start date</label>
             <input name="dateStart" type="date" class="input-group date" required>
@@ -116,7 +117,7 @@
             </select>
         </div>
         <div class="form-check-inline">
-            <button class="btn btn-success">Search</button>
+            <button class="btn btn-outline-success" id="buttonSuccessSearch">Search</button>
         </div>
     </form>
 </div>
