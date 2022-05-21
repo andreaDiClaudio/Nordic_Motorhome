@@ -30,18 +30,13 @@
 
 <div class="navBar">
     <a th:href="@{'/'}" id="homeLink">
-        <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
+        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
     </a>
-    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
-        <button type="button" class="btn btn-outline-secondary">Booking</button>
-    </a>
-    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
-        <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
-    </a>
-    <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">
-        <button type="button" class="btn btn-outline-secondary">Customer</button>
-    </a>
+    <a class="navBar_href" id="navBar_booking_link" th:href="@{'/booking'}">Booking</a>
+    <a class="navBar_href" id="navBar_motorhome_link" th:href="@{'/motorhome'}">Motorhome</a>
+    <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
+
 <h1 id="pageHeader">Create booking</h1>
 <div th:if="${!dateError} and ${!isEmpty}">
     <table class="table">

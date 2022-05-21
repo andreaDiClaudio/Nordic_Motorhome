@@ -11,23 +11,6 @@ body{
     margin: auto;
 }
 
-.title {
-    padding-left: 2%;
-    font-size: 480%;
-    font-family: lucida, sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
-.description{
-    text-align: center;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: lighter;
-    font-size: 140%;
-    padding-bottom: 2%;
-    padding-left: 2%;
-}
-
 .href_inText{
     font-weight: normal;
     text-decoration: none!important;
