@@ -98,13 +98,13 @@ body {
 
 #navBar_motorhome_link:hover {
     text-decoration: none!important;
-    color: rgba(0, 81, 255, 0.77);
+    color: rgb(80, 100, 208);
     border-radius: 20px;
     font-family: "Arial Rounded", system-ui;
     font-weight: normal;
     font-size: medium;
     background-color: transparent;
-    border:  1px solid rgba(0, 81, 255, 0.77);
+    border:  1px solid rgb(80, 100, 208);
 }
 #navBar_customer_link{
     margin-left: -10%;
@@ -119,6 +119,17 @@ body {
     font-size: medium;
     background-color: transparent;
     border: 1px solid #8D608C;
+}
+
+#navBar_booking_link:hover{
+    text-decoration: none !important;
+    color: #608d7d;
+    border-radius: 20px;
+    font-family: "Arial Rounded", system-ui;
+    font-weight: normal;
+    font-size: medium;
+    background-color: transparent;
+    border: 1px solid #608d7d;
 }
 
 .goBackButton {
@@ -144,7 +155,6 @@ table{
 th{
     font-family: "Arial Rounded MT Bold";
     color: #ffffff;
-    background-color: rgba(0, 81, 255, 0.77);
     padding: 15px 35px;
 }
 

@@ -76,6 +76,15 @@ body{
     margin: auto;
 }
 
+.th_motorhome{
+    background-color: rgb(76, 87, 169);
+}
+
+.buttons_column{
+    background-color: rgb(76, 87, 169);
+    table-layout: auto;
+    text-align: center;
+}
 .action_button{
     background-color: transparent;
     text-decoration: none!important;
@@ -107,10 +116,6 @@ body{
     text-decoration: none!important;
 }
 
-.buttons_column{
-    table-layout: auto;
-    text-align: center;
-}
 
 #goBack{
     margin: auto;

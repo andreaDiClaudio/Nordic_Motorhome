@@ -35,7 +35,7 @@
                 The following table shows all the motorhomes saved in the system.<br>
                 <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a motorhome
                 through the buttons in the column "Actions". <br>
-                <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "Create New" button.
+                <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "Add New" button.
             </p>
 
         </div>
@@ -86,12 +86,12 @@
                 <!-- tr: Element that defines a row of cells in a table-->
                 <tr>
                     <!-- th: Element that defines a cell as header in a table-->
-                    <th>License Plate</th>
-                    <th>Type</th>
-                    <th>Capacity</th>
-                    <th>Brand</th>
-                    <th>Luxury</th>
-                    <th>Price </th>
+                    <th class="th_motorhome">License Plate</th>
+                    <th class="th_motorhome">Type</th>
+                    <th class="th_motorhome">Capacity</th>
+                    <th class="th_motorhome">Brand</th>
+                    <th class="th_motorhome">Luxury</th>
+                    <th class="th_motorhome">Price </th>
                     <th class="buttons_column">Actions</th>
                 </tr>
                 </thead>
@@ -107,7 +107,7 @@
                     <td th:text="${motorhome.getBrand()}"></td>
                     <td th:text="${motorhome.getIsLuxury()}"></td>
                     <td th:text="${motorhome.getBase_price()} + '€'"></td>
-                    <td class="buttons_column" id="actions_cell">
+                    <td  id="actions_cell">
 
                         <a class="action_button" th:href="@{'/editMotorhome/' + ${motorhome.getLicense_plate()}}">
                             <button type="button" id="action_buttonEdit" class="btn btn-outline-warning">Edit</button>
