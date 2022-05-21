@@ -48,7 +48,6 @@ body{
 }
 
 .action_buttonCreatePosition{
-    z-index: 2;
     position: relative;
 }
 
@@ -143,7 +142,7 @@ body{
 
 .searchButton {
     width: 80px;
-    height: 36.25px;
+    height: 36.50px;
     border: 2px solid rgb(183, 186, 190);
     background: rgb(183, 186, 190);
     text-align: center;
