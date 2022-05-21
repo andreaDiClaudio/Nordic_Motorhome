@@ -175,3 +175,15 @@ tr:nth-child(even){
     background-color: lightgrey;
 }
 
+
+#error{
+    color: green;
+}
+
+
+.pageError{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 25%;
+}
