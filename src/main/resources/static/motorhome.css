@@ -4,73 +4,12 @@ body{
     padding-bottom: 5%;
 }
 
-
-.navBar{
-    z-index: 2;
-    background-color: white;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid gray;
-    position: fixed;
-    width: 100%;
-}
-
-.navBar_href{
-    margin: auto;
-    position: relative;
-    font-weight: normal;
-    font-size: medium;
-    font-family: "Arial Rounded", system-ui;
-}
-
-#navBar_href1{
-    margin-right: -10%;
-}
-#motorhomeNavBar:hover{
-    outline: rgba(0, 81, 255, 0.77);
-    border: rgba(0, 81, 255, 0.77);
-    color: white;
-    background-color: rgba(0, 81, 255, 0.77);
-}
-
-#navBar_href3{
-    margin-left: -10%;
-}
-
-.logo{
-    position: relative;
-    margin-left: 16%;
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 8%;
-}
-#homeLink{
-    width: 6%;
-}
-
 .page{
-    padding-top: 7%;
+    padding-top: 6%;
+    padding-bottom: 5%;
     display: flex;
     flex-direction: column;
     margin: auto;
-}
-
-.title {
-    padding-left: 2%;
-    font-size: 480%;
-    font-family: lucida, sans-serif;
-    font-weight: bold;
-    text-align: center;
-}
-
-.description{
-    text-align: center;
-    font-family: "Arial Rounded", system-ui;
-    font-weight: lighter;
-    font-size: 140%;
-    padding-bottom: 2%;
-    padding-left: 2%;
 }
 
 .href_inText{
@@ -99,19 +38,28 @@ body{
 .column_div\(outer\){
     display: flex;
     flex-direction: column;
-    padding-left: 2%;
+    margin: auto;
 }
 .row_div{
     display: flex;
     flex-direction: row;
-    margin: auto;
+    justify-content: space-between;
+    padding: 0.5%;
 }
 
 .action_buttonCreatePosition{
-    z-index: 2;
-    padding-left: 14.75%;
-    padding-top: 2.85%;
-    position: fixed;
+    position: relative;
+}
+
+#FilterPosition{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 68%;
+}
+
+#try{
+    display: flex;
 }
 #create:hover{
     background-color: transparent;
@@ -128,30 +76,15 @@ body{
     margin: auto;
 }
 
-
-table{
-    z-index: -1;
-    margin: auto;
+.th_motorhome{
+    background-color: rgb(76, 87, 169);
 }
 
-th{
-    font-family: "Arial Rounded MT Bold";
-    color: #ffffff;
-    background-color: rgba(0, 81, 255, 0.77);
-    padding: 15px 35px;
-}
-
-td{
+.buttons_column{
+    background-color: rgb(76, 87, 169);
+    table-layout: auto;
     text-align: center;
-    font-family: "Arial Rounded", system-ui;
-    padding: 25px 10px;
 }
-
-tr:nth-child(even){
-    background-color: lightgrey;
-}
-
-
 .action_button{
     background-color: transparent;
     text-decoration: none!important;
@@ -183,15 +116,10 @@ tr:nth-child(even){
     text-decoration: none!important;
 }
 
-.buttons_column{
-    table-layout: auto;
-    text-align: center;
-    width: 25%;
-}
 
 #goBack{
     margin: auto;
-    margin-top: 2%;
+    margin-top: 4%;
     position: relative;
     font-family: "Arial Rounded", system-ui;
 }
@@ -205,10 +133,9 @@ tr:nth-child(even){
 
 .searchTerm {
     width: 100%;
-    border: 2px solid rgb(183, 186, 190);
+    border: 1px solid rgb(111, 117, 124);
     border-right: none;
-    padding: 6.4% 5px 5.25%;
-    height: 20px;
+    height: 36.5px;
     border-radius: 5px 0 0 5px;
     outline: none;
     color: rgb(0, 0, 0);
@@ -220,7 +147,7 @@ tr:nth-child(even){
 
 .searchButton {
     width: 80px;
-    height: 36px;
+    height: 36.50px;
     border: 2px solid rgb(183, 186, 190);
     background: rgb(183, 186, 190);
     text-align: center;
@@ -231,10 +158,10 @@ tr:nth-child(even){
 }
 
 .searchButton:hover{
-    background-color: #a8a9ad;
-    border: 2px solid rgb(183, 186, 190);;
+    background-color: #6f757c;
+    border: 2px solid rgb(111, 117, 124);;
 }
-
+/*
 .wrap{
     margin-left: 35%;
     padding-bottom: 1%;
@@ -244,6 +171,8 @@ tr:nth-child(even){
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+ */
 
 #searchButtonText{
     font-weight: normal;

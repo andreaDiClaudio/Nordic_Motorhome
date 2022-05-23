@@ -1,29 +1,10 @@
-body{
-    margin: 0;
-    padding: 0;
-}
-
-.logo{
-    position: relative;
-    margin-left: 16%;
-    margin-top: 0;
-    margin-bottom: 0;
-    width: 85%;
-}
-#homeLink{
-    width: 6%;
-}
-
-.page{
+.pageIndex{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    position: center;
 
     padding-left: 3%;
     padding-right: 3%;
-    padding-top: 3%;
-    margin: 2%;
+    padding-top: 8%;
 }
 
 .paragraph1{
@@ -34,7 +15,7 @@ body{
 }
 
 .title{
-    font-size: 460%;
+    font-size: 480%;
     font-family: lucida,sans-serif;
     font-weight: bold;
 
@@ -46,17 +27,16 @@ body{
     font-family: "Arial Rounded", system-ui;
     font-weight: lighter;
     margin-left: 0.25%;
-    margin-top: -3%;
 }
 
 .paragraph2{
     flex-direction: row;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin: auto;
 
     padding-right: 2%;
-    padding-top: 2%;
 }
 
 .bullet_points{
@@ -77,13 +57,19 @@ body{
     color: black;
 }
 
-#hrefInText_motorhome:hover{
-    color: rgba(0, 81, 255, 0.77);
+#hrefInText_motorhome:hover {
+    color: rgb(80, 100, 208);
+}
+
+#hrefInText_Customer:hover{
+    color: #8D608C;
+}
+#hrefInText_Booking:hover{
+    color: #608d7d;
 }
 
 .motorhome_image{
     box-shadow: 0 0 50px #ccc;
     border-radius: 10px;
     width: 42.5%;
-    margin-top: -5.5%;
 }

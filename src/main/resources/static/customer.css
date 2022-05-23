@@ -1,14 +1,21 @@
-#pageHeader {
-    padding-top: 6%;
-    font-family: lucida, sans-serif;
-    font-weight: bold;
-    text-align: center;
+body{
+    display: flex;
+    flex-direction: column;
 }
 
+#pageHeader {
+    padding-top: 6%;
+}
 #addButton {
     display: flex;
     justify-content: end;
     align-items: end;
+}
+
+#addNewButton:hover{
+    background-color: transparent;
+    color: green;
+    border: 1px solid green;
 }
 
 #orderByButtons {
@@ -43,5 +50,13 @@ a {
     text-decoration: none !important;
 }
 
+#editbutton:hover{
+    color: white;
+}
 
-
+#goBack{
+    padding-top: 2%;
+    margin: auto;
+    position: relative;
+    font-family: "Arial Rounded", system-ui;
+}

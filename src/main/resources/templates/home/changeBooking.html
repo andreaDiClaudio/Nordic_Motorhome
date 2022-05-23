@@ -5,44 +5,21 @@
     <title>Booking</title>
     <link th:href="@{/booking.css}" rel="stylesheet">
     <link th:href="@{/global.css}" rel="stylesheet"/>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-
-    <style>
-        #footer {
-            position: fixed;
-            padding: 10px 10px 0px 10px;
-            bottom: 0;
-            width: 100%;
-            /* Height of the footer*/
-            height: 55px;
-            background: grey;
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
 </head>
 
 <body>
 
 <div class="navBar">
     <a th:href="@{'/'}" id="homeLink">
-        <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
+        <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
     </a>
-    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
-        <button type="button" class="btn btn-outline-secondary">Booking</button>
-    </a>
-    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
-        <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
-    </a>
-    <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">
-        <button type="button" class="btn btn-outline-secondary">Customer</button>
-    </a>
+    <a class="navBar_href" id="navBar_booking_link" th:href="@{'/booking'}">Booking</a>
+    <a class="navBar_href" id="navBar_motorhome_link" th:href="@{'/motorhome'}">Motorhome</a>
+    <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
-
-<h1 id="pageHeader">Edit Booking</h1>
 <div class="page">
     <div class="text">
 
@@ -62,74 +39,81 @@
         </p>
 
 <!-- In case of successful edit -->
-        <h1 th:if="${!dateError} and ${!dateTaken}" class="title">Booking was edited for motorhome <span th:text="${motorhome}"></span></h1>
-        <p th:if="${!dateError} and ${!dateTaken}" class="description">
-            New booking is <span th:text="${dateStart}"></span>/<span th:text="${dateEnd}"></span>
+        <h1 th:if="${!dateError} and ${!dateTaken}" class="title">Booking was edited <br> for motorhome <span th:text="${motorhome}"></span></h1>
+        <p th:if="${!dateError} and ${!dateTaken}" class="description" id="descriptionDate">
+            Date: <span th:text="${dateStart}"></span>/<span th:text="${dateEnd}"></span>
         </p>
         <p th:if="${!dateError} and ${!dateTaken}" >
             <div th:each="customer:${customers}">
-            <div th:if="${customer.id} eq ${client}" class="description">
-            For <span  th:text="${customer.first_name}+' '+${customer.last_name}"></span>
+            <div th:if="${customer.id} eq ${client}" class="description" id="descriptionCustomer">
+            Customer: <span  th:text="${customer.first_name}+' '+${customer.last_name}"></span>
             </div>
             </div>
         </p>
     </div>
 
     <br>
-    <div class="d-flex justify-content-center inline">
-        <a th:href="@{'/editBooking/'+${booking}}" class="btn btn-outline-secondary" >Back</a>
+    <div class="goBack&homeButtons">
+        <a th:href="@{'/booking'}" class="btn btn-outline-secondary" >Bookings</a>
         <a class="btn btn-outline-secondary" th:href="@{'/'}">Home Page</a>
     </div>
-    <br><br><br><br><br><div class="footer">
-    <form action="/addBooking" method="post">
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Brand</label>
-            <select name="brand" class="form-select">
-                <option value="Ford">Ford</option>
-                <option value="Mercedes">Mercedes</option>
-                <option value="Fiat">Fiat</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Customer</label>
-            <select name="client" class="form-select" title="To add customer go to Customer section">
-                <option th:each="customer:${customers}"
-                        th:value="${customer.id}"
-                        th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
-                </option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <a th:href="@{'/addCustomer'}" class="btn btn-success" >New customer</a>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Start date</label>
-            <input name="dateStart" type="date" class="input-group date" required>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">End date</label>
-            <input name="dateEnd" type="date" class="input-group date" required>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Num. of people</label>
-            <select name="numberOfPpl" class="form-select">
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="6">Six</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Type</label>
-            <select name="type" class="form-select">
-                <option value="Yes">Luxury</option>
-                <option value="No">Economy</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <button class="btn btn-success">Search</button>
-        </div>
-    </form>
+    <br><br><br><br><br>
+    <div class="footer">
+        <form action="/addBooking" method="post">
+            <div class="form-check-inline">
+                <a th:href="@{'/createMotorhome'}" class="btn btn-outline-secondary" id="buttonMotorhome" >New motorhome</a>
+            </div>
+            <div class="form-check-inline">
+                <a th:href="@{'/addCustomer'}" class="btn btn-outline-secondary" id="buttonCustomer" >New customer</a>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Brand</label>
+                <select name="brand" class="form-select">
+                    <option value="Ford">Ford</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Fiat">Fiat</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Customer</label>
+                <select name="client" class="form-select" title="To add customer go to Customer section">
+                    <option th:each="customer:${customers}"
+                            th:value="${customer.id}"
+                            th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Start date</label>
+                <input name="dateStart" type="date" class="input-group date" required>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">End date</label>
+                <input name="dateEnd" type="date" class="input-group date" required>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Num. of people</label>
+                <select name="numberOfPpl" class="form-select">
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="6">Six</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Type</label>
+                <select name="type" class="form-select">
+                    <option value="Yes">Luxury</option>
+                    <option value="No">Economy</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <button class="btn btn-outline-success" id="buttonSuccessSearch">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
 </div>
 </body>
 </html>

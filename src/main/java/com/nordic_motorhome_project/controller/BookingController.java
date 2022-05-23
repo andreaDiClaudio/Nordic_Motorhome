@@ -4,6 +4,7 @@ import com.nordic_motorhome_project.model.Booking;
 import com.nordic_motorhome_project.model.Customer;
 import com.nordic_motorhome_project.model.MotorhomeModel;
 import com.nordic_motorhome_project.repository.BookingRepository;
+import com.nordic_motorhome_project.service.BookingService;
 import com.nordic_motorhome_project.service.CustomerService;
 import com.nordic_motorhome_project.service.MotorhomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    private BookingRepository bookingService;
+    private BookingService bookingService;
     @Autowired
     private MotorhomeService motorhomeService;
     @Autowired

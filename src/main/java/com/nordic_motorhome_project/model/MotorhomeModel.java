@@ -14,8 +14,6 @@ import javax.validation.constraints.Size;
 @Entity
 public class MotorhomeModel {
 
-    // Once created the DB change the following field with the column in the table. I'll do it just to give you an idea.
-
     //Each field represent a column in the table, and they must match name and data type in the DB.
     //The @Id annotation defines the primary key in a table.
     @Id

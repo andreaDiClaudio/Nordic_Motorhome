@@ -5,65 +5,49 @@
     <title>Booking</title>
     <link th:href="@{/booking.css}" rel="stylesheet">
     <link th:href="@{/global.css}" rel="stylesheet"/>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-
-    <style>
-        #footer {
-            position: fixed;
-            padding: 10px 10px 0px 10px;
-            bottom: 0;
-            width: 100%;
-            /* Height of the footer*/
-            height: 55px;
-            background: grey;
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
 </head>
 
 <body>
-<!--TODO edit references-->
 <div class="navBar">
     <a th:href="@{'/'}" id="homeLink">
         <img class="logo" th:src="@{/images/Logo.png}" alt="Logo">
     </a>
-    <a class="navBar_href" id="navBar_href1" th:href="@{'/booking'}">
-        <button type="button" class="btn btn-outline-secondary">Booking</button>
-    </a>
-    <a class="navBar_href" id="navBar_href2" th:href="@{'/motorhome'}">
-        <button type="button" class="btn btn-outline-secondary" id="motorhomeNavBar">Motorhome</button>
-    </a>
-    <a class="navBar_href" id="navBar_href3" th:href="@{'/customer'}">
-        <button type="button" class="btn btn-outline-secondary">Customer</button>
-    </a>
+    <a class="navBar_href" id="navBar_booking_link" th:href="@{'/booking'}">Booking</a>
+    <a class="navBar_href" id="navBar_motorhome_link" th:href="@{'/motorhome'}">Motorhome</a>
+    <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
-<h1 id="pageHeader">Edit Booking</h1>
-<table class="table">
+
+<div class="page">
+<h1 class="title">Edit Booking</h1>
+    <p class="description">
+        Edit the type of the selected booking and <a class="href_inText" id="create_hrefInText">Save</a> it
+    </p>
+
+<table>
+
     <thead>
     <tr>
-        <th></th>
-        <th class="h4 text-dark" width="150">Name</th>
-        <th class="h4 text-dark" width="120">Phone</th>
-        <th class="h4 text-dark" width="145">Num. of people</th>
-        <th class="h4 text-dark" width="50">Date in</th>
-        <th class="h4 text-dark" width="50">Date out</th>
-        <th class="h4 text-dark" width="100">Plate</th>
-        <th class="h4 text-dark" width="50">Type</th>
-        <th class="buttons_column h4 text-dark">Actions</th>
+        <th class="th_booking">Brand</th>
+        <th class="th_booking">Name</th>
+        <th class="th_booking">Phone</th>
+        <th class="th_booking">Num. of people</th>
+        <th class="th_booking">Date in</th>
+        <th class="th_booking">Date out</th>
+        <th class="th_booking">Plate</th>
+        <th class="th_booking">Type</th>
+        <th class="th_booking">Actions</th>
     </tr>
     </thead>
+
     <div th:each="booking:${bookings}">
         <div th:each="motorhome:${motorhomes}">
             <div th:each="customer:${customers}"
                  th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
                 <tr>
                     <form action="/changeBooking" method="post">
-                        <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{/images/mercedes.png}"
-                                                                               width="50"></td>
+                        <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{/images/mercedes.png}" width="50"></td>
                         <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{/images/ford.png}" width="50"></td>
                         <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{/images/fiat.png}" width="50"></td>
                         <td th:if="${booking.id} != ${editId}"
@@ -85,10 +69,10 @@
                                                                       th:value="${booking.date_end}"></td>
                         <td th:text="${booking.motorhome_id}"/>
                         <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
-                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Crap"/>
+                        <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
                         <input hidden name="motorhome" th:value="${motorhome.license_plate}">
                         <input hidden name="booking" th:value="${booking.id}">
-                        <td class="buttons_column">
+                        <td>
                             <a th:if="${booking.id} != ${editId}" class="btn btn-outline-warning"
                                th:href="@{'/editBooking/'+${booking.id}}"
                                onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')"
@@ -114,14 +98,20 @@
 
 <br>
 <div class="d-flex justify-content-center">
-    <a class="btn btn-outline-secondary" th:href="@{'/'}">Home Page</a>
+    <a class="btn btn-outline-secondary" th:href="@{'/booking'}">Go Back</a>
 </div>
 <br><br><br><br><br>
 
 <div class="footer">
     <form action="/addBooking" method="post">
         <div class="form-check-inline">
-            <label class="mr-sm-2">Brand:</label>
+            <a th:href="@{'/createMotorhome'}" class="btn btn-outline-secondary" id="buttonMotorhome" >New motorhome</a>
+        </div>
+        <div class="form-check-inline">
+            <a th:href="@{'/addCustomer'}" class="btn btn-outline-secondary" id="buttonCustomer" >New customer</a>
+        </div>
+        <div class="form-check-inline">
+            <label class="mr-sm-2">Brand</label>
             <select name="brand" class="form-select">
                 <option value="Ford">Ford</option>
                 <option value="Mercedes">Mercedes</option>
@@ -137,6 +127,7 @@
                 </option>
             </select>
         </div>
+
         <div class="form-check-inline">
             <label class="mr-sm-2">Start date</label>
             <input name="dateStart" type="date" class="input-group date" required>
@@ -155,9 +146,6 @@
             </select>
         </div>
         <div class="form-check-inline">
-            <a th:href="@{'/addCustomer'}" class="btn btn-success" >New customer</a>
-        </div>
-        <div class="form-check-inline">
             <label class="mr-sm-2">Type</label>
             <select name="type" class="form-select">
                 <option value="Yes">Luxury</option>
@@ -165,9 +153,10 @@
             </select>
         </div>
         <div class="form-check-inline">
-            <button class="btn btn-success">Search</button>
+            <button class="btn btn-outline-success" id="buttonSuccessSearch">Search</button>
         </div>
     </form>
+</div>
 </div>
 </body>
 </html>
