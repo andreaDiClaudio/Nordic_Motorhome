@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import javax.validation.Valid;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 //MVC (Model-View-Controller) is a design pattern which separates the application in three areas.
 
@@ -39,7 +42,14 @@ public class MotorhomeController {
     //Interface that defines a holder for model attributes. Primarily designed for adding attributes to the model.
     public String motorhome(Model model){
 
+        boolean empty = false;
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
+
+        if(motorhomesList.isEmpty())
+        {
+            empty = true;
+        }
+
         MotorhomeModel motorhomeModel = new MotorhomeModel();
         //model.addAttribute: Add the supplied attribute under the supplied name.
         model.addAttribute("motorhomesList", motorhomesList);
@@ -47,6 +57,7 @@ public class MotorhomeController {
         //th:field works only with attributes. Any get method is not recognized.
         model.addAttribute("motorhomeModel", motorhomeModel);
 
+        model.addAttribute("isEmpty", empty);
         //returns a String that is the view (html File)
         return "home/motorhome";
     }
@@ -57,10 +68,21 @@ public class MotorhomeController {
     @PostMapping("/motorhome")
     public String motorhomeByLP(String license_plate, Model model){
 
-        List<MotorhomeModel> motorhomesList = motorhomeService.searchMotorhome(license_plate);
+        boolean empty = false;
+        List<MotorhomeModel> motorhomesList;
+
+        if(license_plate.isBlank())
+        {
+            empty = true;
+        }
+        if(!empty) {
+            motorhomesList = motorhomeService.searchMotorhome(license_plate);
+            model.addAttribute("motorhomesList", motorhomesList);
+        }
+
         MotorhomeModel motorhomeModel = new MotorhomeModel();
-        model.addAttribute("motorhomesList", motorhomesList);
         model.addAttribute("motorhomeModel", motorhomeModel);
+        model.addAttribute("isEmpty", empty);
 
         return "home/motorhome";
     }
