@@ -13,6 +13,7 @@ public class Booking {
     private Integer customer_id;
     private LocalDate date_start;
     private LocalDate date_end;
+    private Integer price;
 
     public Integer getId() {
         return id;
@@ -54,5 +55,12 @@ public class Booking {
         this.date_end = date_end;
     }
 
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 
 }

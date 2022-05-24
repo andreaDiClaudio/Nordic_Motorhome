@@ -24,10 +24,10 @@ public class BookingRepository {
         return jdbcTemplate.query(sql, rowMapper);
     }
 
-    public void addBooking (String motorhome_id, int customer_id, String start, String end)
+    public void addBooking (String motorhome_id, int customer_id, String start, String end, int price)
     {
-        String sql = "INSERT INTO nordic_motorhome.booking (motorhome_id, customer_id, date_start, date_end) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, motorhome_id, customer_id, start, end);
+        String sql = "INSERT INTO nordic_motorhome.booking (motorhome_id, customer_id, date_start, date_end, price) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, motorhome_id, customer_id, start, end, price);
     }
 
     public void deleteBooking(int id)
