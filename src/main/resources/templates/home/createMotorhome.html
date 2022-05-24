@@ -45,7 +45,7 @@
                 <label class="label" id="label_licensePlate" th:name="input_licensePlate">License Plate
                     <input class="input" id="input_licensePlate" placeholder="e.g AA00000" type="text" th:field="*{license_plate}">
                 </label>
-                <!-- th:errors: Setting th:errors to a field will display any validation errors for that field.-->
+
                 <div class="alert_error" th:if="${#fields.hasErrors('license_plate')}" th:errors="*{license_plate}"></div>
 
                 <label class="label" id="label_type">Type

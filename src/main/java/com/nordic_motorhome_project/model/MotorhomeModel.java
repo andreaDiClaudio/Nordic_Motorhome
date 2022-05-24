@@ -11,20 +11,15 @@ import javax.validation.constraints.Size;
 //The Model works as a container that contains data of the application.
 //When working with DBs  it is important to annotate the model class with the annotation @Entity.
 //An Entity represents a table stored in a DB. Every instance of the entity represent a row in the table.
+
 @Entity
 public class MotorhomeModel {
 
-    //Each field represent a column in the table, and they must match name and data type in the DB.
-    //The @Id annotation defines the primary key in a table.
     @Id
     @NotEmpty(message = "License Plate cannot be empty")
     @Size(min = 7, max = 7, message = "License Plate must be 7 characters")
     private String license_plate;
-
-
-    @Max(value = 8, message = "Please Choose valid type (1 to 8)")@Min(value=1, message = "Please Choose valid type (1 to 8)")
     private int type;
-
     private int id;
     private int number_of_persons;
     private String brand;

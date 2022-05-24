@@ -31,15 +31,11 @@
         <div class="text">
 
             <h1 class="title">Motorhome</h1>
-            <p th:if="${!isEmpty}" class="description">
+            <p  class="description">
                 The following table shows all the motorhomes saved in the system.<br>
                 <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a motorhome
                 through the buttons in the column "Actions". <br>
                 <a class="href_inText" id="create_hrefInText">Create</a> a new motorhome and save it in the system through the "Add New" button.
-            </p>
-
-            <p th:if="${isEmpty}" class="description">
-                Something went wrong try entering valid motorhome license plate or creating new motorhome
             </p>
 
         </div>
@@ -84,7 +80,7 @@
                 </div>
                 <!--Filter&SearchBar end-->
             </div>
-            <table th:if="${!isEmpty}" class="motorhome_table">
+            <table class="motorhome_table">
                 <!-- thead: Element that defines a set of rows that defining the head of the columns in a table-->
                 <thead>
                 <!-- tr: Element that defines a row of cells in a table-->

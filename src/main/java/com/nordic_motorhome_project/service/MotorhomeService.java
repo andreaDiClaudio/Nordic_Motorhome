@@ -23,7 +23,10 @@ public class MotorhomeService {
 
     public void createMotorhome(MotorhomeModel motorhomeModel) {motorhomeRepository.createMotorhome(motorhomeModel);}
 
-    public MotorhomeModel findMotorhomeByLicensePlate(String license_plate){ return motorhomeRepository.findMotorhomeByLicensePlate(license_plate); }
+    public MotorhomeModel findMotorhomeByLicensePlate(String license_plate){
+
+        return motorhomeRepository.findMotorhomeByLicensePlate(license_plate);
+    }
 
     public void updateMotorhome(MotorhomeModel motorhomeModel){motorhomeRepository.updateMotorhome(motorhomeModel);}
 

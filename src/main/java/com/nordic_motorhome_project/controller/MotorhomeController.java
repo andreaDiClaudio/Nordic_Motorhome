@@ -42,13 +42,7 @@ public class MotorhomeController {
     //Interface that defines a holder for model attributes. Primarily designed for adding attributes to the model.
     public String motorhome(Model model){
 
-        boolean empty = false;
         List<MotorhomeModel> motorhomesList = motorhomeService.getMotorhomes();
-
-        if(motorhomesList.isEmpty())
-        {
-            empty = true;
-        }
 
         MotorhomeModel motorhomeModel = new MotorhomeModel();
         //model.addAttribute: Add the supplied attribute under the supplied name.
@@ -57,7 +51,6 @@ public class MotorhomeController {
         //th:field works only with attributes. Any get method is not recognized.
         model.addAttribute("motorhomeModel", motorhomeModel);
 
-        model.addAttribute("isEmpty", empty);
         //returns a String that is the view (html File)
         return "home/motorhome";
     }
@@ -68,21 +61,11 @@ public class MotorhomeController {
     @PostMapping("/motorhome")
     public String motorhomeByLP(String license_plate, Model model){
 
-        boolean empty = false;
-        List<MotorhomeModel> motorhomesList;
-
-        if(license_plate.isBlank())
-        {
-            empty = true;
-        }
-        if(!empty) {
-            motorhomesList = motorhomeService.searchMotorhome(license_plate);
-            model.addAttribute("motorhomesList", motorhomesList);
-        }
+        List<MotorhomeModel> motorhomesList = motorhomeService.searchMotorhome(license_plate);
+        model.addAttribute("motorhomesList", motorhomesList);
 
         MotorhomeModel motorhomeModel = new MotorhomeModel();
         model.addAttribute("motorhomeModel", motorhomeModel);
-        model.addAttribute("isEmpty", empty);
 
         return "home/motorhome";
     }
