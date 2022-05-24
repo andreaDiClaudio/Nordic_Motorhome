@@ -2,26 +2,30 @@ body{
     display: flex;
     flex-direction: column;
 }
-
-#pageHeader {
+#pageHeader{
     padding-top: 6%;
 }
-#addButton {
+.column_div\(outer\){
     display: flex;
-    justify-content: end;
-    align-items: end;
+    flex-direction: column;
+    margin: auto;
+}
+
+.row_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+#addButton {
+    position: relative;
+    padding-top: 0.5%;
 }
 
 #addNewButton:hover{
     background-color: transparent;
     color: green;
     border: 1px solid green;
-}
-
-#orderByButtons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .header{

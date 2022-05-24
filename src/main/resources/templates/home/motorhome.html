@@ -52,6 +52,10 @@
 
                 <!--Filter&SearchBar-->
                 <div id="FilterPosition">
+                    <a th:href="@{'/motorhome'}" class="a_filter">
+                        <button type="button" class="btn btn-outline-secondary">Turn off filter</button>
+                    </a>
+
                     <a th:href="@{'/filterTypeDesc'}" class="a_filter">
                         <button type="button" class="btn btn-outline-secondary">Descending</button>
                     </a>
@@ -60,9 +64,6 @@
                         <button type="button" class="btn btn-outline-secondary">Ascending</button>
                     </a>
 
-                    <a th:href="@{'/motorhome'}" class="a_filter">
-                        <button type="button" class="btn btn-outline-secondary">Turn off filter</button>
-                    </a>
                     <!-- th:action = The URL that processes the form submission. Here it is pointing to the method that is annotated as @Postmapping("/motorhome")-->
                     <!-- th:object = Specifies the object to which the submitted form data will be bound. It has to match the "attributeName" in "model.addAttribute"-->
                     <form action="#" th:action="@{/motorhome}" th:object="${motorhomeModel}" method="post">

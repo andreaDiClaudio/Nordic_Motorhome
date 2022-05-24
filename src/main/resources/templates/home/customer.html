@@ -17,6 +17,7 @@
               integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     </head>
 <body>
+
     <div class="navBar">
         <a th:href="@{'/'}" id="homeLink">
             <img class="logo" th:src="@{images/Logo.png}" alt="Logo">
@@ -26,80 +27,84 @@
         <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
     </div>
 
-    <!-- Page Header -->
-    <h1 class="title" id="pageHeader">Customers</h1>
-    <p class="description">
-        The following table shows all the customers saved in the system.<br>
-        <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a customer
-        through the buttons in the column "Actions". <br>
-        <a class="href_inText" id="create_hrefInText">Add</a> a new customer and save it in the system through the "Add New" button.
-    </p>
-    <div class="container" id="buttonDiv">
-        <div class="row">
-            <!-- Button for Adding New Customer -->
-            <div id="addButton">
-                <a th:href="@{'/addCustomer'}">
-                    <!-- Bootstrap changes styling based on CLASSES -->
-                    <button id="addNewButton" class="btn btn-success">Add New</button>
-                </a>
-            </div>
+    <div class="page">
+        <!-- Page Header -->
+        <div class="text">
+
+            <h1 class="title" >Customers</h1>
+
+            <p class="description">
+                The following table shows all the customers saved in the system.<br>
+                <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a customer
+                through the buttons in the column "Actions". <br>
+                <a class="href_inText" id="create_hrefInText">Add</a> a new customer and save it in the system through the "Add New" button.
+            </p>
+
         </div>
-        <div class="row">
-            <!-- Buttons for Sorting -->
-            <div id="orderByButtons">
-                <a th:href="@{'/customerAtoZ'}">
-                    <button class="btn btn-outline-secondary customerButton">Order From A to Z</button>
-                </a>
-                <a th:href="@{'/customerZtoA'}">
-                    <button class="btn btn-outline-secondary customerButton">Order From Z to A</button>
-                </a>
-                <a th:href="@{'/customer'}">
-                    <button class="btn btn-outline-secondary customerButton">Order By Date Added (First to Last)</button>
-                </a>
-                <a th:href="@{'/customerDateLast'}">
-                    <button class="btn btn-outline-secondary customerButton">Order By Date Added (Last to First)</button>
-                </a>
+            <div class="column_div(outer)">
+                <div class="row_div">
+
+                    <!-- Buttons for adding new customers -->
+                    <div id="addButton">
+                        <a th:href="@{'/addCustomer'}">
+                            <!-- Bootstrap changes styling based on CLASSES -->
+                            <button id="addNewButton" class="btn btn-success">Add New</button>
+                        </a>
+                    </div>
+
+                    <!-- Buttons for Sorting -->
+                    <div id="orderByButtons">
+                        <a th:href="@{'/customerAtoZ'}">
+                            <button class="btn btn-outline-secondary customerButton">From A to Z</button>
+                        </a>
+                        <a th:href="@{'/customerZtoA'}">
+                            <button class="btn btn-outline-secondary customerButton">From Z to A</button>
+                        </a>
+                        <a th:href="@{'/customer'}">
+                            <button class="btn btn-outline-secondary customerButton">Added (First to Last)</button>
+                        </a>
+                        <a th:href="@{'/customerDateLast'}">
+                            <button class="btn btn-outline-secondary customerButton">Added (Last to First)</button>
+                        </a>
+                    </div>
+                </div>
+
+                    <table id="customer-table">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Date of Birth</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="customer : ${customers}">
+                                <td th:text="${customer.getFirst_name()}"/>
+                                <td th:text="${customer.getLast_name()}"/>
+                                <td th:text="${customer.getDob()}"/>
+                                <td th:text="${customer.getEmail()}"/>
+                                <td th:text="${customer.getPhone_number()}"/>
+                                <td>
+                                    <a th:href="@{'/editCustomer/'+${customer.getId()}}">
+                                        <button class="btn btn-outline-warning" id="editbutton">Edit</button>
+                                    </a>
+                                    <a th:href="@{'/deleteCustomer/'+${customer.getId()}}" onclick="return confirm('Are you sure you want to delete? This action cannot be undone.')">
+                                        <button class="btn btn-outline-danger">Delete</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
             </div>
-        </div>
+        <a id="goBack" th:href="@{'/'}">
+            <button class="btn btn-outline-secondary goBackButton">Home Page</button>
+        </a>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     </div>
-
-    <div class="container">
-    <table id="customer-table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Birth</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="customer : ${customers}">
-                <td th:text="${customer.getFirst_name()}"/>
-                <td th:text="${customer.getLast_name()}"/>
-                <td th:text="${customer.getDob()}"/>
-                <td th:text="${customer.getEmail()}"/>
-                <td th:text="${customer.getPhone_number()}"/>
-                <td>
-                    <a th:href="@{'/editCustomer/'+${customer.getId()}}">
-                        <button class="btn btn-outline-warning" id="editbutton">Edit</button>
-                    </a>
-                    <a th:href="@{'/deleteCustomer/'+${customer.getId()}}" onclick="return confirm('Are you sure you want to delete? This action cannot be undone.')">
-                        <button class="btn btn-outline-danger">Delete</button>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-
-    <a id="goBack" th:href="@{'/'}">
-        <button class="btn btn-outline-secondary goBackButton">Home Page</button>
-    </a>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
 </body>
 </html>

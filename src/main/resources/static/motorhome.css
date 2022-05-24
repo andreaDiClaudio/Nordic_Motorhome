@@ -4,37 +4,6 @@ body{
     padding-bottom: 5%;
 }
 
-.page{
-    padding-top: 6%;
-    padding-bottom: 5%;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-}
-
-.href_inText{
-    font-weight: normal;
-    text-decoration: none!important;
-
-    color: black;
-}
-
-.href_inText:visited{
-    color: black;
-}
-
-#edit_hrefInText:hover{
-    color: rgba(255, 140, 0, 0.77);
-}
-
-#delete_hrefInText:hover{
-    color: rgba(255, 60, 0, 0.77);
-}
-
-#create_hrefInText:hover{
-    color: rgba(76, 197, 81, 0.77);
-}
-
 .column_div\(outer\){
     display: flex;
     flex-direction: column;
