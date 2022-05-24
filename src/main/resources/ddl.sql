@@ -20,3 +20,7 @@ CREATE TABLE IF NOT EXISTS motorhome (license_plate VARCHAR(255) NOT NULL, type 
 CREATE TABLE IF NOT EXISTS booking (id INT NOT NULL AUTO_INCREMENT, motorhome_id VARCHAR(255) NOT NULL, customer_id INT NOT NULL,
                                     date_start DATE NOT NULL, date_end DATE NOT NULL, PRIMARY KEY (id), FOREIGN KEY (motorhome_id)
                                    REFERENCES motorhome(license_plate), FOREIGN KEY (customer_id) REFERENCES customer (id));
+
+alter table booking
+    add prices int not null;
+
