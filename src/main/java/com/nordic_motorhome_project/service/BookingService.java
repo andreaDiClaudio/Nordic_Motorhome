@@ -23,9 +23,9 @@ public class BookingService {
         bookingRepository.deleteBooking(id);
     }
 
-    public void addBooking(String motorhome_id, int customer_id, String start, String end)
+    public void addBooking(String motorhome_id, int customer_id, String start, String end, int price)
     {
-        bookingRepository.addBooking(motorhome_id, customer_id, start, end);
+        bookingRepository.addBooking(motorhome_id, customer_id, start, end, price);
     }
 
     public void editBooking(int customerId, String dateStart, String dateEnd, int bookingId)

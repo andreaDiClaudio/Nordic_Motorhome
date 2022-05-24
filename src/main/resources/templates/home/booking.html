@@ -23,16 +23,18 @@
 </div>
 
 <div class="page">
-<h1 class="title">Bookings</h1>
+    <h1 class="title">Bookings</h1>
     <p class="description">
         The following table shows all the bookings saved in the system.<br>
-        <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText" id="delete_hrefInText">delete</a> a booking
+        <a class="href_inText" id="edit_hrefInText">Edit</a> information and <a class="href_inText"
+                                                                                id="delete_hrefInText">delete</a> a
+        booking
         through the buttons in the column "Actions". <br>
         <a class="href_inText" id="create_hrefInText">Add</a> a new booking and save it in the system using the footer!.
     </p>
 
-<table>
-    <thead>
+    <table>
+        <thead>
         <tr>
             <th class="th_booking">Brand</th>
             <th class="th_booking">Name</th>
@@ -40,99 +42,106 @@
             <th class="th_booking">Num. of people</th>
             <th class="th_booking">Start date</th>
             <th class="th_booking">End date</th>
+            <th class="th_booking">Price</th>
             <th class="th_booking">Plate</th>
             <th class="th_booking">Type</th>
             <th class="buttons_column">Actions</th>
         </tr>
-    </thead>
-    <div th:each="booking:${bookings}">
-        <div th:each="motorhome:${motorhomes}">
-            <div th:each="customer:${customers}"
-                 th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
-                <tr>
-                    <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}" width="50">
-                    </td>
-                    <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50"></td>
-                    <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50"></td>
-                    <td th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
-                    <td th:text="${customer.phone_number}"/>
-                    <td th:text="${motorhome.number_of_persons}"/>
-                    <td th:text="${booking.date_start}"/>
-                    <td th:text="${booking.date_end}"/>
-                    <td th:text="${booking.motorhome_id}"/>
-                    <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
-                    <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
-                    <td>
-                        <a th:href="@{'/editBooking/'+${booking.id}}" class="btn btn-outline-warning" id="action_buttonEdit"
-                           onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')">Edit</a>
-                        <a th:href="@{'/deleteBooking/'+${booking.id}}" class="btn btn-outline-danger"
-                           onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
-                    </td>
-                </tr>
+        </thead>
+        <div th:each="booking:${bookings}">
+            <div th:each="motorhome:${motorhomes}">
+                <div th:each="customer:${customers}"
+                     th:if="${motorhome.getLicense_plate()} eq ${booking.motorhome_id} and ${booking.customer_id} eq ${customer.id}">
+                        <tr>
+                            <td th:if="${motorhome.getBrand()} eq 'Mercedes'"><img th:src="@{images/mercedes.png}"
+                                                                                   width="50">
+                            </td>
+                            <td th:if="${motorhome.getBrand()} eq 'Ford'"><img th:src="@{images/ford.png}" width="50">
+                            </td>
+                            <td th:if="${motorhome.getBrand()} eq 'Fiat'"><img th:src="@{images/fiat.png}" width="50">
+                            </td>
+                            <td th:text="${customer.first_name} +' '+ ${customer.last_name}"/>
+                            <td th:text="${customer.phone_number}"/>
+                            <td th:text="${motorhome.number_of_persons}"/>
+                            <td th:text="${booking.date_start}"/>
+                            <td th:text="${booking.date_end}"/>
+                            <td th:text="${booking.price}"/>
+                            <td th:text="${booking.motorhome_id}"/>
+                            <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
+                            <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
+                            <td>
+                                <a th:href="@{'/editBooking/'+${booking.id}}" class="btn btn-outline-warning"
+                                   id="action_buttonEdit"
+                                   onclick="return confirm('If you want to change motorhome this booking should be DELETED and new CREATED')">Edit</a>
+                                <a th:href="@{'/deleteBooking/'+${booking.id}}" class="btn btn-outline-danger"
+                                   onclick="return confirm('Are you sure you want to Delete?')">Delete</a>
+                            </td>
+                        </tr>
+                </div>
             </div>
         </div>
+    </table>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a class="btn btn-outline-secondary" th:href="@{'/'}">Home Page</a>
     </div>
-</table>
-<br>
-<div class="d-flex justify-content-center">
-<a class="btn btn-outline-secondary" th:href="@{'/'}">Home Page</a>
-</div>
-<br><br><br><br><br>
-<div class="footer">
-    <form action="/addBooking" method="post">
-        <div class="form-check-inline">
-            <a th:href="@{'/createMotorhome'}" class="btn btn-outline-secondary" id="buttonMotorhome" >New motorhome</a>
-        </div>
-        <div class="form-check-inline">
-            <a th:href="@{'/addCustomer'}" class="btn btn-outline-secondary" id="buttonCustomer" >New customer</a>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Brand</label>
-            <select name="brand" class="form-select">
-                <option value="Ford">Ford</option>
-                <option value="Mercedes">Mercedes</option>
-                <option value="Fiat">Fiat</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Customer</label>
-            <select name="client" class="form-select" title="To add customer go to Customer section">
-                <option th:each="customer:${customers}"
-                        th:value="${customer.id}"
-                        th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
-                </option>
-            </select>
-        </div>
+    <br><br><br><br><br>
+    <div class="footer">
+        <form action="/addBooking" method="post">
+            <div class="form-check-inline">
+                <a th:href="@{'/createMotorhome'}" class="btn btn-outline-secondary" id="buttonMotorhome">New
+                    motorhome</a>
+            </div>
+            <div class="form-check-inline">
+                <a th:href="@{'/addCustomer'}" class="btn btn-outline-secondary" id="buttonCustomer">New customer</a>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Brand</label>
+                <select name="brand" class="form-select">
+                    <option value="Ford">Ford</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Fiat">Fiat</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Customer</label>
+                <select name="client" class="form-select" title="To add customer go to Customer section">
+                    <option th:each="customer:${customers}"
+                            th:value="${customer.id}"
+                            th:text="${customer.first_name} +' '+ ${customer.last_name}">Name
+                    </option>
+                </select>
+            </div>
 
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Start date</label>
-            <input name="dateStart" type="date" class="input-group date" required>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">End date</label>
-            <input name="dateEnd" type="date" class="input-group date" required>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Num. of people</label>
-            <select name="numberOfPpl" class="form-select">
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="6">Six</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <label class="mr-sm-2">Type</label>
-            <select name="type" class="form-select">
-                <option value="Yes">Luxury</option>
-                <option value="No">Economy</option>
-            </select>
-        </div>
-        <div class="form-check-inline">
-            <button class="btn btn-outline-success" id="buttonSuccessSearch">Search</button>
-        </div>
-    </form>
-</div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Start date</label>
+                <input name="dateStart" type="date" class="input-group date" required>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">End date</label>
+                <input name="dateEnd" type="date" class="input-group date" required>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Num. of people</label>
+                <select name="numberOfPpl" class="form-select">
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="6">Six</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <label class="mr-sm-2">Type</label>
+                <select name="type" class="form-select">
+                    <option value="Yes">Luxury</option>
+                    <option value="No">Economy</option>
+                </select>
+            </div>
+            <div class="form-check-inline">
+                <button class="btn btn-outline-success" id="buttonSuccessSearch">Search</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
