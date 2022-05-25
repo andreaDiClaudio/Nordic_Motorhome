@@ -428,9 +428,14 @@ public class BookingController {
             price = (days * pricePerDay*factor);
             pricePerMonth.add(0.0);
             pricePerMonth.add(price);
-        } else
+        } else if(month!=12)
         {
             int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(),month,1), LocalDate.of(endDate.getYear(),(month+1),1));
+            price = (days * pricePerDay*factor);
+            pricePerMonth.add(1.0);
+            pricePerMonth.add(price);
+        }else{
+            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(),month,1), LocalDate.of((endDate.getYear()+1),1,1));
             price = (days * pricePerDay*factor);
             pricePerMonth.add(1.0);
             pricePerMonth.add(price);
