@@ -26,7 +26,7 @@
     <a class="navBar_href" id="navBar_customer_link" th:href="@{'/customer'}">Customer</a>
 </div>
 
-    <div class="page">
+    <div class="page" id="motorhomePage">
         <!--Title&Description-->
         <div class="text">
 
@@ -71,7 +71,7 @@
                         <div class="wrap">
                             <div class="search">
                                 <!-- th:field = For mapping the individual fields of the object-->
-                                <input type="text" class="searchTerm" placeholder="What are you looking for?" th:field="*{license_plate}">
+                                <input type="text" class="searchTerm" placeholder=" Enter license plate" th:field="*{license_plate}">
                                 <button type="submit" class="searchButton"><p id="searchButtonText">Search</p>
                                     <i class="fa fa-search"></i>
                                 </button>
