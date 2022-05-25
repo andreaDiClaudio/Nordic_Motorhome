@@ -36,9 +36,9 @@ public class BookingRepository {
         jdbcTemplate.update(sql, id);
     }
 
-    public void editBooking(int customerId, String dateStart, String dateEnd, int bookingId)
+    public void editBooking(int customerId, String dateStart, String dateEnd, int bookingId, int price)
     {
-        String sql = "UPDATE nordic_motorhome.booking t SET t.customer_id = ?, t.date_start = ?, t.date_end = ? WHERE t.id = ?";
-        jdbcTemplate.update(sql, customerId, dateStart, dateEnd, bookingId);
+        String sql = "UPDATE nordic_motorhome.booking t SET t.customer_id = ?, t.date_start = ?, t.date_end = ?, t.price = ? WHERE t.id = ?";
+        jdbcTemplate.update(sql, customerId, dateStart, dateEnd, price, bookingId);
     }
 }

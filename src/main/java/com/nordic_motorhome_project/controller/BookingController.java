@@ -166,7 +166,8 @@ public class BookingController {
         model.addAttribute("dateError", wrongDate);
 
         if (wrongDate == false && dateTaken == false) {
-            bookingService.editBooking(client, dateStart, dateEnd, booking);
+            int price = getPrice(dateStart,dateEnd,motorhome);
+            bookingService.editBooking(client, dateStart, dateEnd, booking, price);
         }
         //customers
         List<Customer> customerList = customerService.getCustomers();
