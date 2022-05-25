@@ -100,7 +100,7 @@ public class BookingController {
     @PostMapping("/createBooking")
     public String createBooking(@RequestParam String motorhomeId, @RequestParam Integer client, @RequestParam String dateStart, @RequestParam String dateEnd) {
 
-        int price = getPrice(dateStart,dateEnd,motorhomeId);
+        int price = getPrice(dateStart, dateEnd, motorhomeId);
         bookingService.addBooking(motorhomeId, client, dateStart, dateEnd, price);
         return "redirect:/booking";
     }
@@ -166,7 +166,7 @@ public class BookingController {
         model.addAttribute("dateError", wrongDate);
 
         if (wrongDate == false && dateTaken == false) {
-            int price = getPrice(dateStart,dateEnd,motorhome);
+            int price = getPrice(dateStart, dateEnd, motorhome);
             bookingService.editBooking(client, dateStart, dateEnd, booking, price);
         }
         //customers
@@ -247,160 +247,235 @@ public class BookingController {
         List<MotorhomeModel> motorhomes = motorhomeService.getMotorhomes();
 
         double price = 0;
+
+        //Variables to check when counting loops are finished
         boolean counted = false;
         int countingMonth;
+
+        //Get months as ints to easier compare them
         int startMonth = start.getMonthValue();
         int endMonth = end.getMonthValue();
-        int months = (int) ChronoUnit.MONTHS.between(start, end);
-
-        if (months <= 9) {
+        int yearsInBetween = (int) ChronoUnit.YEARS.between(start, end);
+        if (yearsInBetween == 0) {
+            //if start and end date are in the same season, program just multiples days between dates with this season price
             if (startMonth == 1 || startMonth == 2 || startMonth == 12) {
-                if (endMonth == 1|| endMonth == 2 || endMonth == 12)
-                {
+                if (endMonth == 1 || endMonth == 2) {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
                             price = (days * motorhomes.get(i).getBase_price());
                         }
                     }
-                }else
-                {
+                } else {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
-                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(),3,1));
+                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 3, 1));
                             price += (days * motorhomes.get(i).getBase_price());
-                            countingMonth = (startMonth+1);
-                            while(!counted)
-                            {
-                                if(countingMonth==12)
-                                {
-                                    countingMonth=1;
-                                }else
-                                {
+                            countingMonth = (startMonth + 1);
+                            while (!counted) {
+                                if (countingMonth == 12) {
+                                    countingMonth = 1;
+                                } else {
                                     countingMonth++;
                                 }
 
-                                price += priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(1);
-                                if((Double.compare(priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(0), 0.0)) == 0)
-                                {
-                                    counted=true;
+                                price += priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(1);
+                                if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(0), 0.0)) == 0) {
+                                    counted = true;
                                 }
                             }
                         }
                     }
                 }
-            }else if (startMonth == 6 || startMonth == 7 || startMonth == 8) {
-                if (endMonth == 6|| endMonth == 7 || endMonth == 8)
-                {
+                //if start and end date are in the same season, program just multiples days between dates with this season price
+            } else if (startMonth == 6 || startMonth == 7 || startMonth == 8) {
+                if (endMonth == 6 || endMonth == 7 || endMonth == 8) {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
-                            price = (days * motorhomes.get(i).getBase_price()*1.6);
+                            price = (days * motorhomes.get(i).getBase_price() * 1.6);
                         }
                     }
-                }else
-                {
+                } else {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
-                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(),3,1));
-                            price += (days * motorhomes.get(i).getBase_price()*1.6);
-                            countingMonth = (startMonth+1);
-                            while(!counted)
-                            {
-                                if(countingMonth==12)
-                                {
-                                    countingMonth=1;
-                                }else
-                                {
+                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 9, 1));
+                            price += (days * motorhomes.get(i).getBase_price() * 1.6);
+                            countingMonth = (startMonth + 1);
+                            while (!counted) {
+                                if (countingMonth == 12) {
+                                    countingMonth = 1;
+                                } else {
                                     countingMonth++;
                                 }
 
-                                price += priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(1);
-                                if((Double.compare(priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(0), 0.0)) == 0)
-                                {
-                                    counted=true;
+                                price += priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(1);
+                                if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(0), 0.0)) == 0) {
+                                    counted = true;
                                 }
                             }
                         }
                     }
                 }
-            }else if(startMonth == 3 || startMonth == 4 || startMonth == 5) {
-                if (endMonth == 3|| endMonth == 4 || endMonth == 5)
-                {
+                //if start and end date are in the same season, program just multiples days between dates with this season price
+            } else if (startMonth == 3 || startMonth == 4 || startMonth == 5) {
+                if (endMonth == 3 || endMonth == 4 || endMonth == 5) {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
-                            price = (days * motorhomes.get(i).getBase_price()*1.3);
+                            price = (days * motorhomes.get(i).getBase_price() * 1.3);
                         }
                     }
-                }else
-                {
+                } else {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
-                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(),3,1));
-                            price += (days * motorhomes.get(i).getBase_price()*1.3);
-                            countingMonth = (startMonth+1);
-                            while(!counted)
-                            {
-                                if(countingMonth==12)
-                                {
-                                    countingMonth=1;
-                                }else
-                                {
+                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 6, 1));
+                            price += (days * motorhomes.get(i).getBase_price() * 1.3);
+                            countingMonth = (startMonth + 1);
+                            while (!counted) {
+                                if (countingMonth == 12) {
+                                    countingMonth = 1;
+                                } else {
                                     countingMonth++;
                                 }
 
-                                price += priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(1);
-                                if((Double.compare(priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(0), 0.0)) == 0)
-                                {
-                                    counted=true;
+                                price += priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(1);
+                                if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(0), 0.0)) == 0) {
+                                    counted = true;
                                 }
                             }
                         }
                     }
                 }
-            }else {
-                if (endMonth == 9|| endMonth == 10 || endMonth == 11)
-                {
+            } else {
+                if (endMonth == 9 || endMonth == 10 || endMonth == 11) {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
-                            price = (days * motorhomes.get(i).getBase_price()*1.3);
+                            price = (days * motorhomes.get(i).getBase_price() * 1.3);
                         }
                     }
-                }else
-                {
+                } else {
+                    //Loop to match price with one of motorhomes in DB
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
-                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(),3,1));
-                            price += (days * motorhomes.get(i).getBase_price()*1.3);
-                            countingMonth = (startMonth+1);
-                            while(!counted)
-                            {
-                                if(countingMonth==12)
-                                {
-                                    countingMonth=1;
-                                }else
-                                {
+                            int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 12, 1));
+                            price += (days * motorhomes.get(i).getBase_price() * 1.3);
+                            countingMonth = (startMonth + 1);
+                            while (!counted) {
+                                if (countingMonth == 12) {
+                                    countingMonth = 1;
+                                } else {
                                     countingMonth++;
                                 }
 
-                                price += priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(1);
-                                if((Double.compare(priceForMonth(countingMonth,motorhomes.get(i).getBase_price(),end).get(0), 0.0)) == 0)
-                                {
-                                    counted=true;
+                                price += priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(1);
+                                if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(0), 0.0)) == 0) {
+                                    counted = true;
                                 }
                             }
                         }
                     }
                 }
             }
-        } else {
-
-            for (int i = 0; i < motorhomes.size(); i++) {
+            //+year price even if  month is same
+        } else {for (int i = 0; i < motorhomes.size(); i++) {
                 if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
-                    int days = (int) ChronoUnit.DAYS.between(start, end);
-                    price = (days * motorhomes.get(i).getBase_price());
+                    if (start.getMonthValue() == 1 || start.getMonthValue() == 2 || start.getMonthValue() == 12) {
+                        int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 3, 1));
+                        price += (days * motorhomes.get(i).getBase_price());
+                        countingMonth = (startMonth + 1);
+                        while (!counted) {
+                            if (countingMonth == 12) {
+                                countingMonth = 1;
+                            } else {
+                                countingMonth++;
+                            }
+
+                            price += priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(1);
+                            if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(i).getBase_price(), end).get(0), 0.0)) == 0) {
+                                counted = true;
+                            }
+                        }
+                    } else if (start.getMonthValue() == 3 || start.getMonthValue() == 4 || start.getMonthValue() == 5) {
+                        //Loop to match price with one of motorhomes in DB
+                        for (int j = 0; j < motorhomes.size(); j++) {
+                            if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
+                                int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 6, 1));
+                                price += (days * motorhomes.get(j).getBase_price() * 1.3);
+                                countingMonth = (startMonth + 1);
+                                while (!counted) {
+                                    if (countingMonth == 12) {
+                                        countingMonth = 1;
+                                    } else {
+                                        countingMonth++;
+                                    }
+
+                                    price += priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(1);
+                                    if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(0), 0.0)) == 0) {
+                                        counted = true;
+                                    }
+                                }
+                            }
+                        }
+
+                    } else if (start.getMonthValue() == 6 || start.getMonthValue() == 7 || start.getMonthValue() == 8) {
+                        //Loop to match price with one of motorhomes in DB
+                        for (int j = 0; j < motorhomes.size(); j++) {
+                            if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
+                                int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 9, 1));
+                                price += (days * motorhomes.get(j).getBase_price() * 1.6);
+                                countingMonth = (startMonth + 1);
+                                while (!counted) {
+                                    if (countingMonth == 12) {
+                                        countingMonth = 1;
+                                    } else {
+                                        countingMonth++;
+                                    }
+
+                                    price += priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(1);
+                                    if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(0), 0.0)) == 0) {
+                                        counted = true;
+                                    }
+                                }
+                            }
+                        }
+
+                    } else {
+                        //Loop to match price with one of motorhomes in DB
+                        for (int j = 0; j < motorhomes.size(); j++) {
+                            if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
+                                int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 12, 1));
+                                price += (days * motorhomes.get(j).getBase_price() * 1.3);
+                                countingMonth = (startMonth + 1);
+                                while (!counted) {
+                                    if (countingMonth == 12) {
+                                        countingMonth = 1;
+                                    } else {
+                                        countingMonth++;
+                                    }
+
+                                    price += priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(1);
+                                    if ((Double.compare(priceForMonth(countingMonth, motorhomes.get(j).getBase_price(), end).get(0), 0.0)) == 0) {
+                                        counted = true;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+            for (int j = 0; j < motorhomes.size(); j++) {
+                if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
+                    price += (yearsInBetween*365*15.6*motorhomes.get(j).getBase_price());
                 }
             }
         }
@@ -408,36 +483,31 @@ public class BookingController {
         return endPrice;
     }
 
-    public ArrayList<Double> priceForMonth (int month, int pricePerDay, LocalDate endDate)
-    {
+    public ArrayList<Double> priceForMonth(int month, int pricePerDay, LocalDate endDate) {
         ArrayList<Double> pricePerMonth = new ArrayList<>();
         double price;
         double factor;
-        if(month == 1 || month == 2 || month == 12)
-        {
+        if (month == 1 || month == 2 || month == 12) {
             factor = 1;
-        }else if(month == 3 || month == 4 || month == 5 || month == 9 || month == 10 || month == 11)
-        {
+        } else if (month == 3 || month == 4 || month == 5 || month == 9 || month == 10 || month == 11) {
             factor = 1.3;
-        }else{
+        } else {
             factor = 1.6;
         }
 
-        if(month==endDate.getMonthValue())
-        {
-            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(),month,1), endDate);
-            price = (days * pricePerDay*factor);
+        if (month == endDate.getMonthValue()) {
+            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(), month, 1), endDate);
+            price = (days * pricePerDay * factor);
             pricePerMonth.add(0.0);
             pricePerMonth.add(price);
-        } else if(month!=12)
-        {
-            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(),month,1), LocalDate.of(endDate.getYear(),(month+1),1));
-            price = (days * pricePerDay*factor);
+        } else if (month != 12) {
+            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(), month, 1), LocalDate.of(endDate.getYear(), (month + 1), 1));
+            price = (days * pricePerDay * factor);
             pricePerMonth.add(1.0);
             pricePerMonth.add(price);
-        }else{
-            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(),month,1), LocalDate.of((endDate.getYear()+1),1,1));
-            price = (days * pricePerDay*factor);
+        } else {
+            int days = (int) ChronoUnit.DAYS.between(LocalDate.of(endDate.getYear(), month, 1), LocalDate.of((endDate.getYear() + 1), 1, 1));
+            price = (days * pricePerDay * factor);
             pricePerMonth.add(1.0);
             pricePerMonth.add(price);
         }
