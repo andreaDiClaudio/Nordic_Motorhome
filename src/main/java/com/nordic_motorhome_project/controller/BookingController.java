@@ -252,7 +252,7 @@ public class BookingController {
         int endMonth = end.getMonthValue();
         int months = (int) ChronoUnit.MONTHS.between(start, end);
 
-        if (months >= 6) {
+        if (months <= 9) {
             if (startMonth == 1 || startMonth == 2 || startMonth == 12) {
                 if (endMonth == 1|| endMonth == 2 || endMonth == 12)
                 {

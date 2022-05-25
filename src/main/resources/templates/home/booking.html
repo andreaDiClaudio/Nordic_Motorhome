@@ -65,7 +65,7 @@
                             <td th:text="${motorhome.number_of_persons}"/>
                             <td th:text="${booking.date_start}"/>
                             <td th:text="${booking.date_end}"/>
-                            <td th:text="${booking.price}"/>
+                            <td th:text="${booking.price}+'€'"/>
                             <td th:text="${booking.motorhome_id}"/>
                             <td th:if="${motorhome.isLuxury} eq 'Yes'" th:text="Luxury"/>
                             <td th:if="${motorhome.isLuxury} eq 'No'" th:text="Economy"/>
