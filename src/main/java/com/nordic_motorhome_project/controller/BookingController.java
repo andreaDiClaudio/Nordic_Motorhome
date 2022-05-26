@@ -217,9 +217,11 @@ public class BookingController {
         for (int i = 0; i < motorhomes.size(); i++) {
             found = false;
             for (int j = 0; j < dateId.size(); j++) {
-                if (motorhomes.get(i).getLicense_plate().equals(dateId.get(j))) {
-                    motorhomes.remove(i);
-                    found = true;
+                if (!found){
+                    if (motorhomes.get(i).getLicense_plate().equals(dateId.get(j))) {
+                        motorhomes.remove(i);
+                        found = true;
+                    }
                 }
             }
             if (found == true) {
@@ -475,7 +477,7 @@ public class BookingController {
             }
             for (int j = 0; j < motorhomes.size(); j++) {
                 if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
-                    price += (yearsInBetween*365*15.6*motorhomes.get(j).getBase_price());
+                    price += (yearsInBetween*365*1.3*motorhomes.get(j).getBase_price());
                 }
             }
         }
