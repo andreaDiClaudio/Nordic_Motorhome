@@ -266,6 +266,8 @@ public class BookingController {
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
+                            if (days == 0)
+                            {days++;}
                             price = (days * motorhomes.get(i).getBase_price());
                         }
                     }
@@ -275,7 +277,7 @@ public class BookingController {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 3, 1));
                             price += (days * motorhomes.get(i).getBase_price());
-                            countingMonth = (startMonth + 1);
+                            countingMonth = (startMonth);
                             while (!counted) {
                                 if (countingMonth == 12) {
                                     countingMonth = 1;
@@ -298,6 +300,8 @@ public class BookingController {
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
+                            if (days == 0)
+                            {days++;}
                             price = (days * motorhomes.get(i).getBase_price() * 1.6);
                         }
                     }
@@ -307,7 +311,7 @@ public class BookingController {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 9, 1));
                             price += (days * motorhomes.get(i).getBase_price() * 1.6);
-                            countingMonth = (startMonth + 1);
+                            countingMonth = (startMonth);
                             while (!counted) {
                                 if (countingMonth == 12) {
                                     countingMonth = 1;
@@ -330,6 +334,8 @@ public class BookingController {
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
+                            if (days == 0)
+                            {days++;}
                             price = (days * motorhomes.get(i).getBase_price() * 1.3);
                         }
                     }
@@ -339,7 +345,7 @@ public class BookingController {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 6, 1));
                             price += (days * motorhomes.get(i).getBase_price() * 1.3);
-                            countingMonth = (startMonth + 1);
+                            countingMonth = (startMonth);
                             while (!counted) {
                                 if (countingMonth == 12) {
                                     countingMonth = 1;
@@ -361,6 +367,8 @@ public class BookingController {
                     for (int i = 0; i < motorhomes.size(); i++) {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, end);
+                            if (days == 0)
+                            {days++;}
                             price = (days * motorhomes.get(i).getBase_price() * 1.3);
                         }
                     }
@@ -370,7 +378,7 @@ public class BookingController {
                         if (motorhomeId.equals(motorhomes.get(i).getLicense_plate())) {
                             int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 12, 1));
                             price += (days * motorhomes.get(i).getBase_price() * 1.3);
-                            countingMonth = (startMonth + 1);
+                            countingMonth = (startMonth);
                             while (!counted) {
                                 if (countingMonth == 12) {
                                     countingMonth = 1;
@@ -393,7 +401,7 @@ public class BookingController {
                     if (start.getMonthValue() == 1 || start.getMonthValue() == 2 || start.getMonthValue() == 12) {
                         int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 3, 1));
                         price += (days * motorhomes.get(i).getBase_price());
-                        countingMonth = (startMonth + 1);
+                        countingMonth = (startMonth);
                         while (!counted) {
                             if (countingMonth == 12) {
                                 countingMonth = 1;
@@ -412,7 +420,7 @@ public class BookingController {
                             if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
                                 int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 6, 1));
                                 price += (days * motorhomes.get(j).getBase_price() * 1.3);
-                                countingMonth = (startMonth + 1);
+                                countingMonth = (startMonth);
                                 while (!counted) {
                                     if (countingMonth == 12) {
                                         countingMonth = 1;
@@ -434,7 +442,7 @@ public class BookingController {
                             if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
                                 int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 9, 1));
                                 price += (days * motorhomes.get(j).getBase_price() * 1.6);
-                                countingMonth = (startMonth + 1);
+                                countingMonth = (startMonth);
                                 while (!counted) {
                                     if (countingMonth == 12) {
                                         countingMonth = 1;
@@ -456,7 +464,7 @@ public class BookingController {
                             if (motorhomeId.equals(motorhomes.get(j).getLicense_plate())) {
                                 int days = (int) ChronoUnit.DAYS.between(start, LocalDate.of(start.getYear(), 12, 1));
                                 price += (days * motorhomes.get(j).getBase_price() * 1.3);
-                                countingMonth = (startMonth + 1);
+                                countingMonth = (startMonth);
                                 while (!counted) {
                                     if (countingMonth == 12) {
                                         countingMonth = 1;
