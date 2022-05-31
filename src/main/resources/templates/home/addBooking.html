@@ -24,7 +24,7 @@
 
 <div class="page">
 <h1 class="title">Create booking</h1>
-    <p class="description" th:if="${!isEmpty} and ${!dateError}">Fill all the fields and press <a class="href_inText" id="edit_hrefInText">Select</a> a motorhome for the current booking</p>
+    <p class="description" th:if="${!isEmpty} and ${!dateError}"><a class="href_inText" id="edit_hrefInText">Select</a> a motorhome for the current booking</p>
 <div th:if="${!dateError} and ${!isEmpty}">
     <table >
         <thead>
